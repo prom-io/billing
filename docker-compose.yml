@@ -1,0 +1,26 @@
+version: "3"
+services:
+  node:
+    build:
+      context: .
+      dockerfile: node.docker
+      args:
+        privatekey: df504d175ae63abf209bad9dda965310d99559620550e74521a6798a41215f46
+        password: word
+    environment:
+      - address=0x8cc5a1a0802db41db826c2fcb72423744338dcb0
+    volumes:
+      - storage:/opt/storage
+    ports:
+      - 30307:30307
+      - 7545:7545 
+      - 8546:8546
+volumes:
+  storage:
+
+    # api:
+#   build:
+#     context: .
+#     dockerfile: api.docker
+#   ports:
+#     - '3001:3001'

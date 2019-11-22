@@ -1,0 +1,3 @@
+[submodule "go-ethreum"]
+	path = go-ethreum
+	url = https://github.com/Prometeus-Network/go-ethereum.git
