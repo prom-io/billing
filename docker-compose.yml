@@ -15,12 +15,13 @@ services:
       - 30307:30307
       - 7545:7545 
       - 8546:8546
+  api:
+    build:
+      context: .
+      dockerfile: api.docker
+    ports:
+      - 3001:3001
+    depends_on:
+      - node
 volumes:
   storage:
-
-    # api:
-#   build:
-#     context: .
-#     dockerfile: api.docker
-#   ports:
-#     - '3001:3001'

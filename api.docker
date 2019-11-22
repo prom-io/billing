@@ -1,8 +1,10 @@
-FROM node:10-alpine
+FROM node:10
 WORKDIR /usr/src/app
+
+RUN apt-get install g++ make python
 
 COPY . .
 RUN npm install
 
 EXPOSE 3001
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start:prod"]
