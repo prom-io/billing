@@ -7,6 +7,7 @@ services:
       args:
         privatekey: df504d175ae63abf209bad9dda965310d99559620550e74521a6798a41215f46
         password: word
+        bootnode: enode://b816dd9a04d9b95cf52d060ccc243c6f84dbca4aa79bc2da85d108a1387f8f013ac1311697a7b60181d282891bbf42a7dfc0b23f4687eee8a3825187e3e44ef4@35.238.28.246?discport=30301
     environment:
       - address=0x8cc5a1a0802db41db826c2fcb72423744338dcb0
     volumes:
