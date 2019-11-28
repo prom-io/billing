@@ -11,7 +11,7 @@ export class BuyDto {
 	readonly data_validator: string;
 
 	@IsNotEmpty()
-	readonly sum: number;
+	sum: string;
 
 	coinbase: string;
 }

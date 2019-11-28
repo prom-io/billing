@@ -22,7 +22,7 @@ export class PayHandler {
 		this.transactionService = transactionService;
 		this.dataUploadService = dataUploadService;
 		this.accountService = accountService;
-		this.web3 = web3Service.ipcInstance();
+		this.web3 = web3Service.websocketInstance();
 	}
 
 	public async handle(dto: PayDto): Promise<any> {
