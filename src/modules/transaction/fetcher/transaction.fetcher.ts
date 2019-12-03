@@ -10,7 +10,7 @@ export class TransactionFetcher {
 	private transactionService: TransactionService;
 
 	constructor(transactionService: TransactionService, web3Service: Web3PrivateNetService) {
-		this.web3 = web3Service.ipcInstance();
+		this.web3 = web3Service.websocketInstance();
 		this.web3Service = web3Service;
 		this.transactionService = transactionService;
 	}
@@ -54,5 +54,86 @@ export class TransactionFetcher {
 		} catch (e) {
 			throw e;
 		}
+	}
+
+	public async getAddressTransactionPaginate(address: string, pageNumber: number, pageSize: number): Promise<any> {
+		console.log(address, 'ADDRESS');
+		let queueNumber = await this.transactionService.getAddressTransactionCount(address);
+		let transactions = {
+			'count': queueNumber,
+			'data': []
+		};
+		let max = pageSize * pageNumber;
+		let counter = (max - pageSize) + 1;
+		if(pageNumber == 1) {
+			let counter = 1;
+		}
+
+		if(queueNumber >= 1) {
+			if(max > queueNumber) {
+				max = queueNumber;
+			}
+
+			for (counter; counter <= max; counter++) {
+				var tx = await this.transactionService.getAddressTransaction(address, counter);
+				let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
+				var txItem = {
+					'id': tx.fileUuid,
+					'txType': tx.txType,
+					'hash': tx.hash,
+					'serviceNode': tx.serviceNode,
+					'from': tx.from,
+					'to': tx.to,
+					'value': tx.value,
+					'status': false
+				};
+
+				if(minedTx != null) {
+					txItem.status = true;
+				} 
+				transactions['data'].push(txItem);
+			}
+		}
+		return transactions;
+	}
+
+	public async paginate(pageNumber: number, pageSize: number): Promise<any> {
+		let queueNumber = await this.transactionService.queueNumber();
+		let transactions = {
+			'count': queueNumber,
+			'data': []
+		};
+		let max = pageSize * pageNumber;
+		let counter = (max - pageSize) + 1;
+		if(pageNumber == 1) {
+			let counter = 1;
+		}
+
+		if(queueNumber >= 1) {
+			if(max > queueNumber) {
+				max = queueNumber;
+			}
+
+			for (counter; counter <= max; counter++) {
+				var tx = await this.transactionService.getTransaction(counter);
+				let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
+				var txItem = {
+					'id': tx.fileUuid,
+					'txType': tx.txType,
+					'hash': tx.hash,
+					'serviceNode': tx.serviceNode,
+					'from': tx.from,
+					'to': tx.to,
+					'value': tx.value,
+					'status': false
+				};
+
+				if(minedTx != null) {
+					txItem.status = true;
+				} 
+				transactions['data'].push(txItem);
+			}
+		}
+		return transactions;
 	}
 }

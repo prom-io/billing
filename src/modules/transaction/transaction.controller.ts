@@ -13,6 +13,18 @@ export class TransactionController {
 		return res.status(HttpStatus.OK).json(transactions);
 	}
 
+	@Get('/paginate/:pageNumber/:pageSize')
+	async paginate(@Param('pageNumber') pageNumber, @Param('pageSize') pageSize, @Res() res: Response) {
+		let data = await this.fetcher.paginate(pageNumber, pageSize);
+		return res.status(HttpStatus.OK).send(data);
+	}
+
+	@Get('/address/:address/paginate/:pageNumber/:pageSize')
+	async addressTransactionPaginate(@Param('address') address, @Param('pageNumber') pageNumber, @Param('pageSize') pageSize, @Res() res: Response) {
+		let data = await this.fetcher.getAddressTransactionPaginate(address, pageNumber, pageSize);
+		return res.status(HttpStatus.OK).send(data);
+	}
+
 	@Get('/:hash')
 	async transaction(@Param('hash') hash, @Res() res: Response) {
 		let transaction = await this.fetcher.getByHash(hash);

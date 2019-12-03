@@ -31,8 +31,14 @@ export class DataMartService {
 		return this.contract;
 	}
 
-	public sellData(dto: BuyDto): Promise<any[]> {
-		return this.contract.methods.sell(dto.id, dto.owner, dto.data_validator, dto.sum)
+	public sellData(dto: BuyDto): Promise<any> {
+		return this.contract.methods.sell(
+			dto.id, 
+			dto.owner, 
+			dto.data_validator, 
+			dto.service_node, 
+			dto.sum
+		)
 			.send({
 				from: dto.coinbase, 
 				gas: 1e6,

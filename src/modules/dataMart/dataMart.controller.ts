@@ -9,8 +9,8 @@ export class DataMartController {
 	constructor(private readonly handler: BuyHandler) {}
 
 	@Post('/buy')
-	pay(@Body() buyDto: BuyDto, @Res() res: Response) {
-		this.handler.handle(buyDto);
+	async pay(@Body() buyDto: BuyDto, @Res() res: Response) {
+		await this.handler.handle(buyDto);
 		res.status(HttpStatus.OK).send();
 	}
 }

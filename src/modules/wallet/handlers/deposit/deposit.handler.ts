@@ -37,7 +37,6 @@ export class DepositHandler {
 			let sum = this.web3.utils.toWei(amount, 'ether');
 			let tx1 = await this.plasmaService.deposit(address, sum);
 			if(tx1.status == true) {
-				await this.accountService.unlockCoinbase();
 				let coinbase = await this.accountService.coinbaseAccount();
 				let dto = new AccountDto(address, coinbase);
 				dto.sum = sum; 

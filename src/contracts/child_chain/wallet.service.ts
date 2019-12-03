@@ -26,6 +26,14 @@ export class WalletService {
 		return this.web3.utils.fromWei(sum, 'ether');
 	}
 
+	public async checkBalance(address: string, sum: string): Promise<any> {
+		let balance = await this.balanceOf(address);
+		if(balance < sum) {
+			return false;
+		}
+		return true;
+	}
+
 	public async deposit(owner: string, amount: string): Promise<any> {
 		return this.contract.methods.balanceReplenishment(owner, amount)
 			.send({ 

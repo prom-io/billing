@@ -3,6 +3,7 @@ import { Injectable, Global } from '@nestjs/common';
 import Web3 from 'web3';
 import { ConfigService } from "../../config/config.service";
 import { AccountDto } from "./dto/account.dto";
+import { TransactionDto } from './dto/transaction.dto';
 
 @Injectable()
 export class TransactionService {
@@ -20,24 +21,36 @@ export class TransactionService {
 		);
 	}
 
-	public async queueNumber(): Promise<any> {
-		return this.contract.methods.queueNumber().call();
-	}
-
-	public async setTransaction(coinbase: string, hash: string, queueNumber: number): Promise<any> {
-		return this.contract.methods.setTransaction(hash, queueNumber).send({
-			from: coinbase, 
+	public async transactionStart(dto: TransactionDto): Promise<any> {
+		return this.contract.methods.transactionStart(
+			dto.uuid, 
+			dto.type, 
+			dto.hash, 
+			dto.serviceNode, 
+			dto.from, 
+			dto.to, 
+			dto.value
+		).send({
+			from: dto.coinbase, 
 			gas: 1e6,
 			gasPrice: 8 * 1e9
 		});
 	}
 
-	public async getTransaction(queueNumber: number): Promise<any> {
-		return this.contract.methods.getTransaction(queueNumber).call();
+	public async queueNumber(): Promise<any> {
+		return this.contract.methods.queueNumber().call();
 	}
 
-	public async pendingTransactions(id: number): Promise<any> {
-		return this.contract.methods.pendingTransactions(id).call();
+	public async getTransaction(queueNumber: number): Promise<any> {
+		return this.contract.methods.transactions(queueNumber).call();
+	}
+
+	public async getAddressTransactionCount(address: string): Promise<any> {
+		return this.contract.methods.addressTxCount(address).call();
+	}
+
+	public async getAddressTransaction(address: string, queueNumber: number): Promise<any> {
+		return this.contract.methods.addressTx(address, queueNumber).call();
 	}
 
 	public getContract(): any {

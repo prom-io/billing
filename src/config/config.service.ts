@@ -494,7 +494,7 @@ export class ConfigService {
 	}
 
 	getAccountManageAddress(): string {
-		return "0xfd95cD79F634b82DDA6f57822D9CB855Aa4F9497"
+		return "0xAcA9b8F575f53c37e16CC8694d7404aEc3BC08fA"
 	}
 
 	getDataSellAbi(): any {
@@ -664,6 +664,10 @@ export class ConfigService {
 		          "type": "address"
 		        },
 		        {
+		          "name": "_serviceNode",
+		          "type": "address"
+		        },
+		        {
 		          "name": "_sum",
 		          "type": "uint256"
 		        }
@@ -709,7 +713,7 @@ export class ConfigService {
 	}
 
 	getDataSellAddress(): string {
-		return "0xe3444e4a0E231b0DB7ede03F74076FaFFe4883E1";
+		return "0x365e581511c85288081DC9ba8b2FD7641c0aF3dD";
 	}
 
 	getDataUploadAbi(): any {
@@ -778,14 +782,6 @@ export class ConfigService {
 		        {
 		          "name": "dataOwnerAddress",
 		          "type": "address"
-		        },
-		        {
-		          "name": "serviceNodeAmount",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "dataOwnerAmount",
-		          "type": "uint256"
 		        },
 		        {
 		          "name": "assessedValue",
@@ -942,16 +938,6 @@ export class ConfigService {
 		        },
 		        {
 		          "indexed": false,
-		          "name": "serviceNodeAmount",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataOwnerAmount",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
 		          "name": "assessedValue",
 		          "type": "uint256"
 		        },
@@ -1103,7 +1089,7 @@ export class ConfigService {
 	}
 
 	getDataUploadAddress(): string {
-		return "0x91F47e41F48E5003FD252Abc0BB41A68Be0EcFd6";
+		return "0x832871A323F8CC9f86D0866c3D4359c3792aF3D9";
 	}
 
 	getTransactionAbi(): any {
@@ -1144,10 +1130,10 @@ export class ConfigService {
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "pendingTransactions",
+		      "name": "transactions",
 		      "outputs": [
 		        {
-		          "name": "uuid",
+		          "name": "fileUuid",
 		          "type": "string"
 		        },
 		        {
@@ -1161,6 +1147,92 @@ export class ConfigService {
 		        {
 		          "name": "queueNumber",
 		          "type": "uint256"
+		        },
+		        {
+		          "name": "serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "name": "from",
+		          "type": "address"
+		        },
+		        {
+		          "name": "to",
+		          "type": "address"
+		        },
+		        {
+		          "name": "value",
+		          "type": "uint256"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "addressTxCount",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "uint256"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "",
+		          "type": "address"
+		        },
+		        {
+		          "name": "",
+		          "type": "uint256"
+		        }
+		      ],
+		      "name": "addressTx",
+		      "outputs": [
+		        {
+		          "name": "fileUuid",
+		          "type": "string"
+		        },
+		        {
+		          "name": "txType",
+		          "type": "string"
+		        },
+		        {
+		          "name": "hash",
+		          "type": "string"
+		        },
+		        {
+		          "name": "queueNumber",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "name": "from",
+		          "type": "address"
+		        },
+		        {
+		          "name": "to",
+		          "type": "address"
+		        },
+		        {
+		          "name": "value",
+		          "type": "uint256"
 		        }
 		      ],
 		      "payable": false,
@@ -1172,7 +1244,7 @@ export class ConfigService {
 		      "inputs": [
 		        {
 		          "indexed": false,
-		          "name": "uuid",
+		          "name": "fileUuid",
 		          "type": "string"
 		        },
 		        {
@@ -1182,11 +1254,26 @@ export class ConfigService {
 		        },
 		        {
 		          "indexed": false,
-		          "name": "queueNumber",
+		          "name": "serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "from",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "to",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "value",
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "PendingTransactionEvent",
+		      "name": "TxEvent",
 		      "type": "event"
 		    },
 		    {
@@ -1199,27 +1286,29 @@ export class ConfigService {
 		        {
 		          "name": "_type",
 		          "type": "string"
-		        }
-		      ],
-		      "name": "newTransaction",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
+		        },
 		        {
 		          "name": "_hash",
 		          "type": "string"
 		        },
 		        {
-		          "name": "_queueNumber",
+		          "name": "_serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_from",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_to",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_value",
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "setTransaction",
+		      "name": "transactionStart",
 		      "outputs": [],
 		      "payable": false,
 		      "stateMutability": "nonpayable",
@@ -1238,57 +1327,12 @@ export class ConfigService {
 		      "payable": false,
 		      "stateMutability": "nonpayable",
 		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_queueNumber",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "getTransaction",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "string"
-		        },
-		        {
-		          "name": "",
-		          "type": "string"
-		        },
-		        {
-		          "name": "",
-		          "type": "string"
-		        },
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "getQueue",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
 		    }
 		  ];
 	}
 
 	getTransactionAddress(): string {
-		return "0x839ed273904E0738a50fEb6c25D7A0492018e37e";
+		return "0xb87F1850e56Be41f78F74C398e941633c649933F";
 	}
 
 	getWalletAbi(): any {
@@ -1519,6 +1563,6 @@ export class ConfigService {
 	}
 
 	getWalletAddress(): string {
-		return "0x96a9A53366d4f0b671ef6abdF6138cfdAF68DF16";
+		return "0x91f88Ca1f5166abA81535095d1d5df4DA9821944";
 	}
 }
