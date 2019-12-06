@@ -58,4 +58,8 @@ export class DataUploadService {
 	public async fileList(index: number): Promise<any> {
 		return this.contract.methods.fileList(index).call();
 	}
+
+	public async uploadedData(id: string): Promise<any> {
+		return this.contract.methods.uploadedData(id).call();
+	}
 }

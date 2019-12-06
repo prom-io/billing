@@ -56,8 +56,32 @@ export class TransactionFetcher {
 		}
 	}
 
+	public async getByQueueNumber(queueNumber: number): Promise<any> {
+		console.log(queueNumber);
+		var tx = await this.transactionService.getTransaction(queueNumber);
+		let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
+		console.log(minedTx);
+		var txItem = {
+			'id': tx.fileUuid,
+			'txType': tx.txType,
+			'hash': tx.hash,
+			'serviceNode': tx.serviceNode,
+			'queueNumber': queueNumber,
+			'blockNumber': minedTx.blockNumber,
+			'from': tx.from,
+			'to': tx.to,
+			'gasUsed': minedTx.gasUsed,
+			'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
+			'status': false
+		};
+
+		if(minedTx != null) {
+			txItem.status = true;
+		} 
+		return txItem;
+	}
+
 	public async getAddressTransactionPaginate(address: string, pageNumber: number, pageSize: number): Promise<any> {
-		console.log(address, 'ADDRESS');
 		let queueNumber = await this.transactionService.getAddressTransactionCount(address);
 		let transactions = {
 			'count': queueNumber,
@@ -82,9 +106,11 @@ export class TransactionFetcher {
 					'txType': tx.txType,
 					'hash': tx.hash,
 					'serviceNode': tx.serviceNode,
+					'queueNumber': counter,
+					'blockNumber': minedTx.blockNumber,
 					'from': tx.from,
 					'to': tx.to,
-					'value': tx.value,
+					'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
 					'status': false
 				};
 
@@ -122,9 +148,11 @@ export class TransactionFetcher {
 					'txType': tx.txType,
 					'hash': tx.hash,
 					'serviceNode': tx.serviceNode,
+					'queueNumber': counter,
+					'blockNumber': minedTx.blockNumber,
 					'from': tx.from,
 					'to': tx.to,
-					'value': tx.value,
+					'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
 					'status': false
 				};
 

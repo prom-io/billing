@@ -34,14 +34,17 @@ services:
       - --hostname
       - '0.0.0.0'
       - --debug
-  # api:
-  #   build:
-  #     context: .
-  #     dockerfile: api.docker
-  #   ports:
-  #     - 3001:3001
-  #   depends_on:
-  #     - node
-  #     - main_net
+  api:
+    build:
+      context: .
+      dockerfile: api.docker
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3001:3001
+    depends_on:
+      - node
+      - main_net
+    command: ["./wait-for-it.sh", "-t", "60", "node:7545", "--", "npm", "run", "start:prod"]
 volumes:
   storage:

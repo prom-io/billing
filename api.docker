@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 RUN apt-get install g++ make python
 
 COPY . .
-RUN npm install
+RUN yarn install
 
 EXPOSE 3001
 CMD ["npm", "run", "start:prod"]
