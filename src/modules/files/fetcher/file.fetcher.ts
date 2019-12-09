@@ -38,6 +38,7 @@ export class FileFetcher {
 					'size': file.size,
 					'file_extension': file.file_extension,
 					'mime_type': file.mime_type,
+					'meta_data': file.meta_data,
 					'owner': file.owner,
 					'sum': this.web3.utils.fromWei(uploaded.sum, 'ether')
 				};
@@ -76,6 +77,7 @@ export class FileFetcher {
 					'size': file.size,
 					'file_extension': file.file_extension,
 					'mime_type': file.mime_type,
+					'meta_data': file.meta_data,
 					'owner': file.owner,
 					'sum': this.web3.utils.fromWei(uploaded.sum, 'ether')
 				};
