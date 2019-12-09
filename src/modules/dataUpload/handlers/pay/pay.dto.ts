@@ -20,16 +20,19 @@ export class PayDto {
 	readonly mime_type: string;
 
 	@IsNotEmpty()
+	readonly meta_data: string;
+
+	@IsNotEmpty()
 	readonly service_node: string;
 
 	@IsNotEmpty()
 	readonly data_owner: string;
 
 	@IsNotEmpty()
-	data_price: string;
+	sum: string;
 
 	@IsNotEmpty()
-	sum: string;
+	buy_sum: string;
 
 	coinbase: string;
 }

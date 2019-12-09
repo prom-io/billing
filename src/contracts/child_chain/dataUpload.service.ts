@@ -38,10 +38,11 @@ export class DataUploadService {
 				dto.size,
 				dto.extension,
 				dto.mime_type,
+				dto.meta_data,
 				dto.owner,
 				dto.service_node, 
 				dto.data_owner, 
-				dto.data_price, 
+				dto.buy_sum, 
 				dto.sum
 			)
 			.send({
@@ -61,5 +62,13 @@ export class DataUploadService {
 
 	public async uploadedData(id: string): Promise<any> {
 		return this.contract.methods.uploadedData(id).call();
+	}
+
+	public async fileUploadedCount(id: string): Promise<any> {
+		return this.contract.methods.fileUploadedCount(id).call();
+	}
+
+	public async fileUploaded(id: string, index: number): Promise<any> {
+		return this.contract.methods.fileUploaded(id, index).call();
 	}
 }

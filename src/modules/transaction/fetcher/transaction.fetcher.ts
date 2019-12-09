@@ -60,7 +60,6 @@ export class TransactionFetcher {
 		console.log(queueNumber);
 		var tx = await this.transactionService.getTransaction(queueNumber);
 		let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-		console.log(minedTx);
 		var txItem = {
 			'id': tx.fileUuid,
 			'txType': tx.txType,
@@ -142,24 +141,28 @@ export class TransactionFetcher {
 
 			for (counter; counter <= max; counter++) {
 				var tx = await this.transactionService.getTransaction(counter);
-				let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-				var txItem = {
-					'id': tx.fileUuid,
-					'txType': tx.txType,
-					'hash': tx.hash,
-					'serviceNode': tx.serviceNode,
-					'queueNumber': counter,
-					'blockNumber': minedTx.blockNumber,
-					'from': tx.from,
-					'to': tx.to,
-					'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
-					'status': false
-				};
+				if(this.web3.utils.isHex(tx.hash)) {
+					let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
+					var date = new Date(tx.created_at * 1000);
+					var txItem = {
+						'id': tx.fileUuid,
+						'txType': tx.txType,
+						'hash': tx.hash,
+						'serviceNode': tx.serviceNode,
+						'queueNumber': counter,
+						'blockNumber': minedTx.blockNumber,
+						'from': tx.from,
+						'to': tx.to,
+						'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
+						'created_at': date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),
+						'status': false
+					};
 
-				if(minedTx != null) {
-					txItem.status = true;
-				} 
-				transactions['data'].push(txItem);
+					if(minedTx != null) {
+						txItem.status = true;
+					} 
+					transactions['data'].push(txItem);
+				}
 			}
 		}
 		return transactions;

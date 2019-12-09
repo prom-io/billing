@@ -34,7 +34,7 @@ export class PayHandler {
 		try {
 			dto.coinbase = await this.accountService.coinbaseAccount();
 			dto.sum = this.web3.utils.toWei(dto.sum, 'ether');
-			dto.data_price = this.web3.utils.toWei(dto.data_price, 'ether');
+			dto.buy_sum = this.web3.utils.toWei(dto.buy_sum, 'ether');
 			let checkOwner = await this.accountService.checkAccountExist(dto.owner);
 			let checkServiceNode = await this.accountService.checkAccountExist(dto.service_node);
 			if(checkOwner == false) {
@@ -51,7 +51,7 @@ export class PayHandler {
 			}
 
 			let tx = await this.dataUploadService.payToUpload(dto);
-
+console.log(tx);
 			let transactionDto = new TransactionDto();
 			transactionDto.uuid = dto.id;
 			transactionDto.type = 'dataUpload';

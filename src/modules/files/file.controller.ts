@@ -12,4 +12,10 @@ export class FileController {
 		let data = await this.fetcher.paginate(pageNumber, pageSize);
 		return res.status(HttpStatus.OK).send(data);
 	}
+
+	@Get('/address/:address/paginate/:pageNumber/:pageSize')
+	async getOwnerFilesPaginate(@Param('address') address, @Param('pageNumber') pageNumber, @Param('pageSize') pageSize, @Res() res: Response) {
+		let data = await this.fetcher.paginateByAddress(address, pageNumber, pageSize);
+		return res.status(HttpStatus.OK).send(data);
+	}
 }

@@ -494,7 +494,7 @@ export class ConfigService {
 	}
 
 	getAccountManageAddress(): string {
-		return "0xAcA9b8F575f53c37e16CC8694d7404aEc3BC08fA"
+		return "0x38307f0FA2e2b8e323F4b86D835E7EF9b2B38afa"
 	}
 
 	getDataSellAbi(): any {
@@ -713,7 +713,7 @@ export class ConfigService {
 	}
 
 	getDataSellAddress(): string {
-		return "0x365e581511c85288081DC9ba8b2FD7641c0aF3dD";
+		return "0x6086D6FAA1De0D459e8F57878762e9822fC227bA";
 	}
 
 	getDataUploadAbi(): any {
@@ -749,6 +749,10 @@ export class ConfigService {
 		          "type": "string"
 		        },
 		        {
+		          "name": "meta_data",
+		          "type": "string"
+		        },
+		        {
 		          "name": "owner",
 		          "type": "address"
 		        },
@@ -776,20 +780,20 @@ export class ConfigService {
 		          "type": "string"
 		        },
 		        {
+		          "name": "sum",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "buySum",
+		          "type": "uint256"
+		        },
+		        {
 		          "name": "serviceNodeAddress",
 		          "type": "address"
 		        },
 		        {
-		          "name": "dataOwnerAddress",
+		          "name": "dataOwner",
 		          "type": "address"
-		        },
-		        {
-		          "name": "assessedValue",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "sum",
-		          "type": "uint256"
 		        }
 		      ],
 		      "payable": false,
@@ -844,6 +848,25 @@ export class ConfigService {
 		        {
 		          "name": "",
 		          "type": "address"
+		        }
+		      ],
+		      "name": "fileUploadedCount",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "uint256"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "",
+		          "type": "address"
 		        },
 		        {
 		          "name": "",
@@ -870,6 +893,61 @@ export class ConfigService {
 		        },
 		        {
 		          "name": "mime_type",
+		          "type": "string"
+		        },
+		        {
+		          "name": "meta_data",
+		          "type": "string"
+		        },
+		        {
+		          "name": "owner",
+		          "type": "address"
+		        },
+		        {
+		          "name": "exist",
+		          "type": "bool"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "",
+		          "type": "address"
+		        },
+		        {
+		          "name": "",
+		          "type": "uint256"
+		        }
+		      ],
+		      "name": "fileUploaded",
+		      "outputs": [
+		        {
+		          "name": "id",
+		          "type": "string"
+		        },
+		        {
+		          "name": "name",
+		          "type": "string"
+		        },
+		        {
+		          "name": "size",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "file_extension",
+		          "type": "string"
+		        },
+		        {
+		          "name": "mime_type",
+		          "type": "string"
+		        },
+		        {
+		          "name": "meta_data",
 		          "type": "string"
 		        },
 		        {
@@ -938,11 +1016,6 @@ export class ConfigService {
 		        },
 		        {
 		          "indexed": false,
-		          "name": "assessedValue",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
 		          "name": "sum",
 		          "type": "uint256"
 		        }
@@ -974,6 +1047,10 @@ export class ConfigService {
 		          "type": "string"
 		        },
 		        {
+		          "name": "_meta_data",
+		          "type": "string"
+		        },
+		        {
 		          "name": "_owner",
 		          "type": "address"
 		        },
@@ -986,7 +1063,7 @@ export class ConfigService {
 		          "type": "address"
 		        },
 		        {
-		          "name": "_dataPrice",
+		          "name": "_buySum",
 		          "type": "uint256"
 		        },
 		        {
@@ -1089,7 +1166,7 @@ export class ConfigService {
 	}
 
 	getDataUploadAddress(): string {
-		return "0x832871A323F8CC9f86D0866c3D4359c3792aF3D9";
+		return "0xE59a93DA751226a2D4207743994E8fc5C4A9aF76";
 	}
 
 	getTransactionAbi(): any {
@@ -1163,6 +1240,10 @@ export class ConfigService {
 		        {
 		          "name": "value",
 		          "type": "uint256"
+		        },
+		        {
+		          "name": "created_at",
+		          "type": "uint256"
 		        }
 		      ],
 		      "payable": false,
@@ -1232,6 +1313,10 @@ export class ConfigService {
 		        },
 		        {
 		          "name": "value",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "created_at",
 		          "type": "uint256"
 		        }
 		      ],
@@ -1332,7 +1417,7 @@ export class ConfigService {
 	}
 
 	getTransactionAddress(): string {
-		return "0xb87F1850e56Be41f78F74C398e941633c649933F";
+		return "0x833306551B1e29951E4562Dc664048B50d5a7ec8";
 	}
 
 	getWalletAbi(): any {
@@ -1563,6 +1648,6 @@ export class ConfigService {
 	}
 
 	getWalletAddress(): string {
-		return "0x91f88Ca1f5166abA81535095d1d5df4DA9821944";
+		return "0x2bBf7d5640018069A668408e1496fC220f9E8584";
 	}
 }
