@@ -51,7 +51,7 @@ export class PayHandler {
 			}
 
 			let tx = await this.dataUploadService.payToUpload(dto);
-console.log(tx);
+
 			let transactionDto = new TransactionDto();
 			transactionDto.uuid = dto.id;
 			transactionDto.type = 'dataUpload';
@@ -62,8 +62,15 @@ console.log(tx);
 			transactionDto.value = dto.sum;
 			transactionDto.coinbase = dto.coinbase;
 
-			let startTransaction = await this.transactionService.transactionStart(transactionDto);
-			return startTransaction;
+			// let startTransaction = await this.transactionService.transactionStart(transactionDto);
+			let startTransaction = this.transactionService.transactionStartTest(transactionDto)
+				.then(function(result) {
+					return result;
+				})
+				.on('error', function(error) {
+					throw new BadRequestException(error.message);
+				});
+			return true;
 		} catch (e) {
 			throw new BadRequestException(e.message);
 		}

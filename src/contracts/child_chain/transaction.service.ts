@@ -37,6 +37,22 @@ export class TransactionService {
 		});
 	}
 
+	public transactionStartTest(dto: TransactionDto): any {
+		return this.contract.methods.transactionStart(
+			dto.uuid, 
+			dto.type, 
+			dto.hash, 
+			dto.serviceNode, 
+			dto.from, 
+			dto.to, 
+			dto.value
+		).send({
+			from: dto.coinbase, 
+			gas: 1e6,
+			gasPrice: 8 * 1e9
+		});
+	}
+
 	public async queueNumber(): Promise<any> {
 		return this.contract.methods.queueNumber().call();
 	}
