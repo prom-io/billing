@@ -1170,7 +1170,7 @@ export class ConfigService {
 	}
 
 	getTransactionAbi(): any {
-		return [
+		return [ 
 		    {
 		      "constant": true,
 		      "inputs": [],

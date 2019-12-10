@@ -19,7 +19,6 @@ export class PayDto {
 	@IsNotEmpty()
 	readonly mime_type: string;
 
-	@IsNotEmpty()
 	readonly meta_data: string;
 
 	@IsNotEmpty()
