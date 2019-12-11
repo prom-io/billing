@@ -6,7 +6,7 @@ RUN apt-get update \
 
 WORKDIR "/opt"
 
-ADD ./go-ethreum ./go-ethereum
+ADD ./ethereum_fork ./go-ethereum
 RUN make -C ./go-ethereum geth
 
 ADD ./genesis.json ./genesis.json
