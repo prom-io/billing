@@ -36,12 +36,17 @@ export class PayHandler {
 			dto.sum = this.web3.utils.toWei(dto.sum, 'ether');
 			dto.buy_sum = this.web3.utils.toWei(dto.buy_sum, 'ether');
 			let checkOwner = await this.accountService.checkAccountExist(dto.owner);
+			let checkDataOwner = await this.accountService.checkAccountExist(dto.data_owner);
 			let checkServiceNode = await this.accountService.checkAccountExist(dto.service_node);
 			if(checkOwner == false) {
 				throw new BadRequestException("Is account " + dto.owner + " not registered!");
 			}
 			if(checkServiceNode == false) {
 				throw new BadRequestException("Is account " + dto.service_node + " not registered!");
+			}
+
+			if(checkDataOwner == false) {
+				throw new BadRequestException("Is account " + dto.data_owner + " not registered!");
 			}
 
 			let checkBalance = await this.walletService.checkBalance(dto.owner, dto.sum);
@@ -51,7 +56,6 @@ export class PayHandler {
 			}
 
 			let tx = await this.dataUploadService.payToUpload(dto);
-
 			let transactionDto = new TransactionDto();
 			transactionDto.uuid = dto.id;
 			transactionDto.type = 'dataUpload';
@@ -61,16 +65,8 @@ export class PayHandler {
 			transactionDto.to = dto.service_node;
 			transactionDto.value = dto.sum;
 			transactionDto.coinbase = dto.coinbase;
-
-			// let startTransaction = await this.transactionService.transactionStart(transactionDto);
-			let startTransaction = this.transactionService.transactionStartTest(transactionDto)
-				.then(function(result) {
-					return result;
-				})
-				.on('error', function(error) {
-					throw new BadRequestException(error.message);
-				});
-			return true;
+			let startTransaction = await this.transactionService.transactionStart(transactionDto);
+			return startTransaction;
 		} catch (e) {
 			throw new BadRequestException(e.message);
 		}
