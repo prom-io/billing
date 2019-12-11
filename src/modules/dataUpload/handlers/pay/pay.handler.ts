@@ -54,7 +54,6 @@ export class PayHandler {
 			if(!checkBalance) {
 				throw new BadRequestException("Is account " + dto.owner + " not enough funds on the balance sheet!");
 			}
-
 			let tx = await this.dataUploadService.payToUpload(dto);
 			let transactionDto = new TransactionDto();
 			transactionDto.uuid = dto.id;
