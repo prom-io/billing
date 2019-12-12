@@ -67,8 +67,9 @@ export class TransactionFetcher {
 			'serviceNode': tx.serviceNode,
 			'queueNumber': queueNumber,
 			'blockNumber': minedTx.blockNumber,
-			'from': tx.from,
-			'to': tx.to,
+			'dataValidator': tx.dataValidator,
+			'dataMart': tx.dataMart,
+			'dataOwner': tx.dataOwner,
 			'gasUsed': minedTx.gasUsed,
 			'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
 			'status': false
@@ -107,8 +108,9 @@ export class TransactionFetcher {
 					'serviceNode': tx.serviceNode,
 					'queueNumber': counter,
 					'blockNumber': minedTx.blockNumber,
-					'from': tx.from,
-					'to': tx.to,
+					'dataValidator': tx.dataValidator,
+					'dataMart': tx.dataMart,
+					'dataOwner': tx.dataOwner,
 					'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
 					'status': false
 				};
