@@ -21,6 +21,54 @@ export class TransactionService {
 		);
 	}
 
+	public async transactionDataUpload(
+		uuid: string, 
+		hash: string, 
+		serviceNode: string, 
+		dataValidator: string,
+		dataOwner: string,
+		value: string,
+		coinbase: string
+	): Promise<any> {
+		return this.contract.methods.transactionDataUpload(
+			uuid,
+			hash,
+			serviceNode,
+			dataValidator,
+			dataOwner,
+			value
+		).send({
+			from: coinbase, 
+			gas: 4612388,
+			gasPrice: 8 * 1e9
+		});
+	}
+
+	public async transactionDataPurchase(
+		uuid: string,
+		hash: string,
+		serviceNode: string,
+		dataValidator: string,
+		dataMart: string,
+		dataOwner: string,
+		value: string,
+		coinbase: string
+	): Promise<any> {
+		return this.contract.methods.transactionDataPurchase(
+			uuid,
+			hash,
+			serviceNode,
+			dataValidator,
+			dataMart,
+			dataOwner,
+			value
+		).send({
+			from: coinbase,
+			gas: 4612388,
+			gasPrice: 8 * 1e9
+		});
+	}
+
 	public async transactionStart(dto: TransactionDto): Promise<any> {
 		return this.contract.methods.transactionStart(
 			dto.uuid, 

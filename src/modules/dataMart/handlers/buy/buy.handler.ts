@@ -2,17 +2,21 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { BuyDto } from "./buy.dto";
 import { DataMartService } from '../../../../contracts/child_chain/dataMart.service';
 import { AccountService } from '../../../../contracts/child_chain/account.service';
-import { TransactionDto } from '../../../../contracts/child_chain/dto/transaction.dto';
-import { TransactionService } from '../../../../contracts/child_chain/transaction.service'
+// import { TransactionDto } from '../../../../contracts/child_chain/dto/transaction.dto';
+// import { TransactionService } from '../../../../contracts/child_chain/transaction.service';
 import { Web3PrivateNetService } from '../../../../web3/web3PrivateNet.service';
-import { WalletService } from '../../../../contracts/child_chain/wallet.service'
+import { WalletService } from '../../../../contracts/child_chain/wallet.service';
+import { TransactionPayService } from '../../services/transactionPay.service';
+import { TransactionDto } from '../../services/transaction.dto';
+
 import Web3 from 'web3';
 
 @Injectable()
 export class BuyHandler {
 	private dataMartservice: DataMartService;
 	private accountService: AccountService;
-	private transactionService: TransactionService;
+	private transactionService: TransactionPayService;
+	private transactionDto: TransactionDto;
 	private walletService: WalletService;
 	private web3: Web3;
 
@@ -21,11 +25,13 @@ export class BuyHandler {
 		accountService: AccountService, 
 		web3Service: Web3PrivateNetService,
 		walletService: WalletService,
-		transactionService: TransactionService
+		transactionService: TransactionPayService,
+		transactionDto: TransactionDto
 	) {
 		this.dataMartservice = service;
 		this.accountService = accountService;
 		this.transactionService = transactionService;
+		this.transactionDto = transactionDto;
 		this.walletService = walletService;
 		this.web3 = web3Service.websocketInstance();
 	}
@@ -44,17 +50,18 @@ export class BuyHandler {
 			let tx = await this.dataMartservice
 				.sellData(dto);
 
-			let transactionDto = new TransactionDto();
-			transactionDto.uuid = dto.id;
-			transactionDto.type = 'dataSell';
-			transactionDto.hash = tx.transactionHash;
-			transactionDto.serviceNode = dto.service_node;
-			transactionDto.from = dto.owner;
-			transactionDto.to = dto.data_validator;
-			transactionDto.value = dto.sum;
-			transactionDto.coinbase = dto.coinbase;
+			let transactionDto = this.transactionDto.make(
+				dto.id,
+				tx.transactionHash,
+				dto.service_node,
+				dto.data_validator,
+				dto.owner,
+				dto.data_owner,
+				dto.sum,
+				dto.coinbase
+			);
 
-			let startTransaction = await this.transactionService.transactionStart(transactionDto);
+			let startTransaction = await this.transactionService.push(transactionDto);
 
 			return startTransaction;
 		} catch (e) {

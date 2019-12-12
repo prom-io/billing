@@ -37,6 +37,7 @@ export class DataMartService {
 			dto.owner, 
 			dto.data_validator, 
 			dto.service_node, 
+			dto.data_owner,
 			dto.sum
 		)
 			.send({

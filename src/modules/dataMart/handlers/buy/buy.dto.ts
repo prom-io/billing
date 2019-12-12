@@ -14,6 +14,9 @@ export class BuyDto {
 	readonly service_node: string;
 
 	@IsNotEmpty()
+	readonly data_owner: string;
+
+	@IsNotEmpty()
 	sum: string;
 
 	coinbase: string;

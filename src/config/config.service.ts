@@ -494,7 +494,7 @@ export class ConfigService {
 	}
 
 	getAccountManageAddress(): string {
-		return "0x8b939528cf8D5153a4eA4Fc88500b1CD8CcefC5b"
+		return "0x177812710B2d8Bf8B12DAc883b4f949e6833285E"
 	}
 
 	getDataSellAbi(): any {
@@ -543,20 +543,6 @@ export class ConfigService {
 		    },
 		    {
 		      "constant": true,
-		      "inputs": [],
-		      "name": "transaction",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
 		      "inputs": [
 		        {
 		          "name": "",
@@ -574,7 +560,11 @@ export class ConfigService {
 		          "type": "address"
 		        },
 		        {
-		          "name": "owner",
+		          "name": "dataMart",
+		          "type": "address"
+		        },
+		        {
+		          "name": "dataOwner",
 		          "type": "address"
 		        },
 		        {
@@ -588,10 +578,6 @@ export class ConfigService {
 		    },
 		    {
 		      "inputs": [
-		        {
-		          "name": "_transaction",
-		          "type": "address"
-		        },
 		        {
 		          "name": "_wallet",
 		          "type": "address"
@@ -624,7 +610,12 @@ export class ConfigService {
 		        },
 		        {
 		          "indexed": false,
-		          "name": "owner",
+		          "name": "dataMart",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "dataOwner",
 		          "type": "address"
 		        },
 		        {
@@ -656,7 +647,7 @@ export class ConfigService {
 		          "type": "string"
 		        },
 		        {
-		          "name": "_owner",
+		          "name": "_dataMart",
 		          "type": "address"
 		        },
 		        {
@@ -665,6 +656,10 @@ export class ConfigService {
 		        },
 		        {
 		          "name": "_serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_dataOwner",
 		          "type": "address"
 		        },
 		        {
@@ -713,7 +708,7 @@ export class ConfigService {
 	}
 
 	getDataSellAddress(): string {
-		return "0x7704728A4a1ab3c20677a46b337862058374729D";
+		return "0x578E7a43CB3b69798075c89Aa54afa9294C243f9";
 	}
 
 	getDataUploadAbi(): any {
@@ -1166,11 +1161,39 @@ export class ConfigService {
 	}
 
 	getDataUploadAddress(): string {
-		return "0x7B6338f5FC784417629bAD2d3b8953087A9B3f8a";
+		return "0x714bFCb23E241e2a4Fd4002c91db53caBcC9795C";
 	}
 
 	getTransactionAbi(): any {
 		return [
+		    {
+		      "constant": true,
+		      "inputs": [],
+		      "name": "dataUploadTxCount",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "uint256"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [],
+		      "name": "dataPurchaseTxCount",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "uint256"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
 		    {
 		      "constant": true,
 		      "inputs": [],
@@ -1192,6 +1215,61 @@ export class ConfigService {
 		      "outputs": [
 		        {
 		          "name": "",
+		          "type": "uint256"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "",
+		          "type": "string"
+		        }
+		      ],
+		      "name": "transactionByHash",
+		      "outputs": [
+		        {
+		          "name": "fileUuid",
+		          "type": "string"
+		        },
+		        {
+		          "name": "txType",
+		          "type": "string"
+		        },
+		        {
+		          "name": "hash",
+		          "type": "string"
+		        },
+		        {
+		          "name": "queueNumber",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "name": "dataValidator",
+		          "type": "address"
+		        },
+		        {
+		          "name": "dataMart",
+		          "type": "address"
+		        },
+		        {
+		          "name": "dataOwner",
+		          "type": "address"
+		        },
+		        {
+		          "name": "value",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "created_at",
 		          "type": "uint256"
 		        }
 		      ],
@@ -1230,11 +1308,15 @@ export class ConfigService {
 		          "type": "address"
 		        },
 		        {
-		          "name": "from",
+		          "name": "dataValidator",
 		          "type": "address"
 		        },
 		        {
-		          "name": "to",
+		          "name": "dataMart",
+		          "type": "address"
+		        },
+		        {
+		          "name": "dataOwner",
 		          "type": "address"
 		        },
 		        {
@@ -1304,11 +1386,15 @@ export class ConfigService {
 		          "type": "address"
 		        },
 		        {
-		          "name": "from",
+		          "name": "dataValidator",
 		          "type": "address"
 		        },
 		        {
-		          "name": "to",
+		          "name": "dataMart",
+		          "type": "address"
+		        },
+		        {
+		          "name": "dataOwner",
 		          "type": "address"
 		        },
 		        {
@@ -1323,6 +1409,105 @@ export class ConfigService {
 		      "payable": false,
 		      "stateMutability": "view",
 		      "type": "function"
+		    },
+		    {
+		      "anonymous": false,
+		      "inputs": [
+		        {
+		          "indexed": false,
+		          "name": "fileUuid",
+		          "type": "string"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "hash",
+		          "type": "string"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "queueNumber",
+		          "type": "uint256"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "dataValidator",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "dataOwner",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "value",
+		          "type": "uint256"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "created_at",
+		          "type": "uint256"
+		        }
+		      ],
+		      "name": "TxDataUpload",
+		      "type": "event"
+		    },
+		    {
+		      "anonymous": false,
+		      "inputs": [
+		        {
+		          "indexed": false,
+		          "name": "fileUuid",
+		          "type": "string"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "hash",
+		          "type": "string"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "queueNumber",
+		          "type": "uint256"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "dataValidator",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "dataMart",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "dataOwner",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "value",
+		          "type": "uint256"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "created_at",
+		          "type": "uint256"
+		        }
+		      ],
+		      "name": "TxDataPurchase",
+		      "type": "event"
 		    },
 		    {
 		      "anonymous": false,
@@ -1369,7 +1554,37 @@ export class ConfigService {
 		          "type": "string"
 		        },
 		        {
-		          "name": "_type",
+		          "name": "_hash",
+		          "type": "string"
+		        },
+		        {
+		          "name": "_serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_dataValidator",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_dataOwner",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_value",
+		          "type": "uint256"
+		        }
+		      ],
+		      "name": "transactionDataUpload",
+		      "outputs": [],
+		      "payable": false,
+		      "stateMutability": "nonpayable",
+		      "type": "function"
+		    },
+		    {
+		      "constant": false,
+		      "inputs": [
+		        {
+		          "name": "_uuid",
 		          "type": "string"
 		        },
 		        {
@@ -1381,11 +1596,15 @@ export class ConfigService {
 		          "type": "address"
 		        },
 		        {
-		          "name": "_from",
+		          "name": "_dataValidator",
 		          "type": "address"
 		        },
 		        {
-		          "name": "_to",
+		          "name": "_dataMart",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_dataOwner",
 		          "type": "address"
 		        },
 		        {
@@ -1393,7 +1612,7 @@ export class ConfigService {
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "transactionStart",
+		      "name": "transactionDataPurchase",
 		      "outputs": [],
 		      "payable": false,
 		      "stateMutability": "nonpayable",
@@ -1417,7 +1636,7 @@ export class ConfigService {
 	}
 
 	getTransactionAddress(): string {
-		return "0xA7B5bd2B60BB72b6969cE82206dD9394b08b704f";
+		return "0x26B81589C05a103BFdF00BEA960969cA197f3AFB";
 	}
 
 	getWalletAbi(): any {
@@ -1648,6 +1867,6 @@ export class ConfigService {
 	}
 
 	getWalletAddress(): string {
-		return "0x09A412D75C068aa34573a7424A6141c36955B140";
+		return "0x0b0A47BbE69bdFc26e1f2128c0061Cb088B51c51";
 	}
 }

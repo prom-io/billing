@@ -8,6 +8,7 @@ import { Web3MainNetService } from './web3/web3MainNet.service';
 import { Web3PrivateNetService } from './web3/web3PrivateNet.service';
 import { ConfigModule } from './config/config.module';
 import { WalletService } from './contracts/child_chain/wallet.service';
+import { TransactionService } from './contracts/child_chain/transaction.service';
 import { AccountService } from './contracts/child_chain/account.service';
 import { WalletModule } from './modules/wallet/wallet.module';
 import { AccountModule } from './modules/accounts/account.module';
@@ -35,6 +36,7 @@ import { TransactionModule } from './modules/transaction/transaction.module'
   	Web3PrivateNetService, 
   	Web3MainNetService, 
   	WalletService, 
+    TransactionService,
   	PlasmaService,
   	AccountService
   ],
