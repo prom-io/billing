@@ -112,7 +112,7 @@ export class TransactionFetcher {
 					'hash': tx.hash,
 					'serviceNode': tx.serviceNode,
 					'queueNumber': counter,
-					'blockNumber': minedTx.blockNumber,
+					'blockNumber': 0,
 					'dataValidator': tx.dataValidator,
 					'dataMart': tx.dataMart,
 					'dataOwner': tx.dataOwner,
@@ -124,6 +124,7 @@ export class TransactionFetcher {
 
 				if(minedTx != null) {
 					txItem.status = true;
+					txItem.blockNumber = minedTx.blockNumber;
 				} 
 				transactions['data'].push(txItem);
 			}
