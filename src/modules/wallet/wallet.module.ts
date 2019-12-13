@@ -7,7 +7,8 @@ import { Web3MainNetService } from '../../web3/web3MainNet.service';
 import { DepositHandler } from './handlers/deposit/deposit.handler';
 import { PlasmaService } from '../../contracts/root_chain/plasma.service';
 import { AccountService } from '../../contracts/child_chain/account.service';
-
+import { ExtendFileStoreHandler } from './handlers/extendFileStore/extendFileStore.handler';
+import { ExtendFileStoreDto } from './handlers/extendFileStore/extendFileStore.dto';
 @Module({
   imports: [],
   controllers: [WalletController],
@@ -18,7 +19,8 @@ import { AccountService } from '../../contracts/child_chain/account.service';
   	Web3PrivateNetService, 
   	Web3MainNetService,
   	DepositHandler, 
-  	PlasmaService
+  	PlasmaService,
+    ExtendFileStoreHandler
   ],
 })
 export class WalletModule {}

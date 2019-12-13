@@ -34,6 +34,18 @@ export class WalletService {
 		return true;
 	}
 
+	public async extendFileStore(dataValidator: string, serviceNode: string, sum: string): Promise<any> {
+		return this.contract.methods.extendFileStore(
+			dataValidator,
+			serviceNode,
+			sum
+		).send({
+			from: this.config.get("COINBASE_ACCOUNT"), 
+			gas: 1e6,
+			gasPrice: 8 * 1e9
+		});
+	}
+
 	public async deposit(owner: string, amount: string): Promise<any> {
 		return this.contract.methods.balanceReplenishment(owner, amount)
 			.send({ 

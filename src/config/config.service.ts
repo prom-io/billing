@@ -134,7 +134,7 @@ export class ConfigService {
 	}
 
 	getPlasmaAddress(): string {
-		return "0x76De4E88Fb130c9eb6e0Be00891cB378e2Eb2155"
+		return "0xebA0F9A9db291b749A0b845678f8cd636a600A93"
 	}
 
 	getAccountManageAbi(): any {
@@ -494,7 +494,7 @@ export class ConfigService {
 	}
 
 	getAccountManageAddress(): string {
-		return "0x177812710B2d8Bf8B12DAc883b4f949e6833285E"
+		return "0x023d21BbF004c9917e38F96eade5ed8a2e6DEF92"
 	}
 
 	getDataSellAbi(): any {
@@ -708,7 +708,7 @@ export class ConfigService {
 	}
 
 	getDataSellAddress(): string {
-		return "0x578E7a43CB3b69798075c89Aa54afa9294C243f9";
+		return "0x6F78DF1099EC51Daf13bfa1FA8914ebeA8436534";
 	}
 
 	getDataUploadAbi(): any {
@@ -1161,7 +1161,7 @@ export class ConfigService {
 	}
 
 	getDataUploadAddress(): string {
-		return "0x714bFCb23E241e2a4Fd4002c91db53caBcC9795C";
+		return "0x2a0b276eF4f27B2D559db71749F0D71df55757Ef";
 	}
 
 	getTransactionAbi(): any {
@@ -1169,163 +1169,11 @@ export class ConfigService {
 		    {
 		      "constant": true,
 		      "inputs": [],
-		      "name": "dataUploadTxCount",
+		      "name": "wallet",
 		      "outputs": [
 		        {
 		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "dataPurchaseTxCount",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "queueNumber",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "lastSyncQueue",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "transactionByHash",
-		      "outputs": [
-		        {
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "txType",
-		          "type": "string"
-		        },
-		        {
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "serviceNode",
 		          "type": "address"
-		        },
-		        {
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "created_at",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "transactions",
-		      "outputs": [
-		        {
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "txType",
-		          "type": "string"
-		        },
-		        {
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "created_at",
-		          "type": "uint256"
 		        }
 		      ],
 		      "payable": false,
@@ -1340,7 +1188,34 @@ export class ConfigService {
 		          "type": "address"
 		        }
 		      ],
-		      "name": "addressTxCount",
+		      "name": "accounts",
+		      "outputs": [
+		        {
+		          "name": "owner",
+		          "type": "address"
+		        },
+		        {
+		          "name": "role",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "registered",
+		          "type": "bool"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "dataOwnersCount",
 		      "outputs": [
 		        {
 		          "name": "",
@@ -1363,98 +1238,43 @@ export class ConfigService {
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "addressTx",
+		      "name": "dataOwners",
 		      "outputs": [
 		        {
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "txType",
-		          "type": "string"
-		        },
-		        {
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "serviceNode",
+		          "name": "",
 		          "type": "address"
-		        },
-		        {
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "created_at",
-		          "type": "uint256"
 		        }
 		      ],
 		      "payable": false,
 		      "stateMutability": "view",
 		      "type": "function"
+		    },
+		    {
+		      "inputs": [
+		        {
+		          "name": "_wallet",
+		          "type": "address"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "nonpayable",
+		      "type": "constructor"
 		    },
 		    {
 		      "anonymous": false,
 		      "inputs": [
 		        {
 		          "indexed": false,
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "serviceNode",
+		          "name": "owner",
 		          "type": "address"
 		        },
 		        {
 		          "indexed": false,
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "created_at",
+		          "name": "role",
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "TxDataUpload",
+		      "name": "Registered",
 		      "type": "event"
 		    },
 		    {
@@ -1462,51 +1282,16 @@ export class ConfigService {
 		      "inputs": [
 		        {
 		          "indexed": false,
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "serviceNode",
+		          "name": "owner",
 		          "type": "address"
 		        },
 		        {
 		          "indexed": false,
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "created_at",
+		          "name": "sum",
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "TxDataPurchase",
+		      "name": "RegisteredSum",
 		      "type": "event"
 		    },
 		    {
@@ -1514,53 +1299,95 @@ export class ConfigService {
 		      "inputs": [
 		        {
 		          "indexed": false,
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "txType",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "serviceNode",
+		          "name": "owner",
 		          "type": "address"
 		        },
 		        {
 		          "indexed": false,
-		          "name": "from",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "to",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "value",
+		          "name": "sum",
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "TxEvent",
+		      "name": "ChildChainDeposit",
 		      "type": "event"
 		    },
 		    {
 		      "constant": false,
 		      "inputs": [
 		        {
-		          "name": "_uuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_serviceNode",
+		          "name": "_owner",
 		          "type": "address"
 		        },
+		        {
+		          "name": "_sum",
+		          "type": "uint256"
+		        }
+		      ],
+		      "name": "initAccount",
+		      "outputs": [],
+		      "payable": false,
+		      "stateMutability": "nonpayable",
+		      "type": "function"
+		    },
+		    {
+		      "constant": false,
+		      "inputs": [
+		        {
+		          "name": "_owner",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "registerDataMart",
+		      "outputs": [],
+		      "payable": false,
+		      "stateMutability": "nonpayable",
+		      "type": "function"
+		    },
+		    {
+		      "constant": false,
+		      "inputs": [
+		        {
+		          "name": "_owner",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "registerServiceNode",
+		      "outputs": [],
+		      "payable": false,
+		      "stateMutability": "nonpayable",
+		      "type": "function"
+		    },
+		    {
+		      "constant": false,
+		      "inputs": [
+		        {
+		          "name": "_owner",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "registerDataValidator",
+		      "outputs": [],
+		      "payable": false,
+		      "stateMutability": "nonpayable",
+		      "type": "function"
+		    },
+		    {
+		      "constant": false,
+		      "inputs": [
+		        {
+		          "name": "_owner",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "registerDataOwner",
+		      "outputs": [],
+		      "payable": false,
+		      "stateMutability": "nonpayable",
+		      "type": "function"
+		    },
+		    {
+		      "constant": false,
+		      "inputs": [
 		        {
 		          "name": "_dataValidator",
 		          "type": "address"
@@ -1568,75 +1395,133 @@ export class ConfigService {
 		        {
 		          "name": "_dataOwner",
 		          "type": "address"
-		        },
-		        {
-		          "name": "_value",
-		          "type": "uint256"
 		        }
 		      ],
-		      "name": "transactionDataUpload",
+		      "name": "registerOwner",
 		      "outputs": [],
 		      "payable": false,
 		      "stateMutability": "nonpayable",
 		      "type": "function"
 		    },
 		    {
-		      "constant": false,
+		      "constant": true,
 		      "inputs": [
 		        {
-		          "name": "_uuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_serviceNode",
+		          "name": "_owner",
 		          "type": "address"
-		        },
+		        }
+		      ],
+		      "name": "getRole",
+		      "outputs": [
 		        {
-		          "name": "_dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_value",
+		          "name": "",
 		          "type": "uint256"
 		        }
 		      ],
-		      "name": "transactionDataPurchase",
-		      "outputs": [],
 		      "payable": false,
-		      "stateMutability": "nonpayable",
+		      "stateMutability": "view",
 		      "type": "function"
 		    },
 		    {
-		      "constant": false,
+		      "constant": true,
 		      "inputs": [
 		        {
-		          "name": "lastQueue",
-		          "type": "uint256"
+		          "name": "_owner",
+		          "type": "address"
 		        }
 		      ],
-		      "name": "setLastSyncQueue",
-		      "outputs": [],
+		      "name": "isRegistered",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "bool"
+		        }
+		      ],
 		      "payable": false,
-		      "stateMutability": "nonpayable",
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "_owner",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "isDataValidator",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "bool"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "_owner",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "isDataOwner",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "bool"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "_owner",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "isDataMart",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "bool"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "_owner",
+		          "type": "address"
+		        }
+		      ],
+		      "name": "isServiceNode",
+		      "outputs": [
+		        {
+		          "name": "",
+		          "type": "bool"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
 		      "type": "function"
 		    }
 		  ];
 	}
 
 	getTransactionAddress(): string {
-		return "0x26B81589C05a103BFdF00BEA960969cA197f3AFB";
+		return "0x023d21BbF004c9917e38F96eade5ed8a2e6DEF92";
 	}
 
 	getWalletAbi(): any {
@@ -1750,6 +1635,28 @@ export class ConfigService {
 		      "type": "event"
 		    },
 		    {
+		      "anonymous": false,
+		      "inputs": [
+		        {
+		          "indexed": false,
+		          "name": "dataValidator",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "indexed": false,
+		          "name": "sum",
+		          "type": "uint256"
+		        }
+		      ],
+		      "name": "ExtendFileStore",
+		      "type": "event"
+		    },
+		    {
 		      "constant": false,
 		      "inputs": [
 		        {
@@ -1798,6 +1705,28 @@ export class ConfigService {
 		        }
 		      ],
 		      "name": "balanceConsumption",
+		      "outputs": [],
+		      "payable": false,
+		      "stateMutability": "nonpayable",
+		      "type": "function"
+		    },
+		    {
+		      "constant": false,
+		      "inputs": [
+		        {
+		          "name": "_dataValidator",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_serviceNode",
+		          "type": "address"
+		        },
+		        {
+		          "name": "_sum",
+		          "type": "uint256"
+		        }
+		      ],
+		      "name": "extendFileStore",
 		      "outputs": [],
 		      "payable": false,
 		      "stateMutability": "nonpayable",
@@ -1867,6 +1796,6 @@ export class ConfigService {
 	}
 
 	getWalletAddress(): string {
-		return "0x0b0A47BbE69bdFc26e1f2128c0061Cb088B51c51";
+		return "0xdaadB0582704540e13138DcACd91f6fA9452Cf9C";
 	}
 }
