@@ -9,7 +9,7 @@ export class TransactionController {
 
 	@Get('/')
 	async transactions(@Res() res: Response) {
-		let transactions = await this.fetcher.all();
+		let transactions = await this.fetcher.allTransaction();
 		return res.status(HttpStatus.OK).json(transactions);
 	}
 
@@ -19,10 +19,22 @@ export class TransactionController {
 		return res.status(HttpStatus.OK).send(data);
 	}
 
+	@Get('/address/:address')
+	async addressTransactions(@Param('address') address, @Res() res: Response) {
+		let transaction = await this.fetcher.allAddressTransaction(address);
+		return res.status(HttpStatus.OK).send(transaction);
+	}
+
 	@Get('/address/:address/paginate/:pageNumber/:pageSize')
 	async addressTransactionPaginate(@Param('address') address, @Param('pageNumber') pageNumber, @Param('pageSize') pageSize, @Res() res: Response) {
 		let data = await this.fetcher.getAddressTransactionPaginate(address, pageNumber, pageSize);
 		return res.status(HttpStatus.OK).send(data);
+	}
+
+	@Get('/hash/:hash')
+	async transactionDetailByHash(@Param('hash') hash, @Res() res: Response) {
+		let transaction = await this.fetcher.getByHash(hash);
+		return res.status(HttpStatus.OK).json(transaction);
 	}
 
 	@Get('/:queueNumber')

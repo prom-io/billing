@@ -117,6 +117,10 @@ export class TransactionService {
 		return this.contract.methods.addressTx(address, queueNumber).call();
 	}
 
+	public async getTransactionByHash(hash: string): Promise<any> {
+		return this.contract.methods.transactionByHash(hash).call();
+	}
+
 	public getContract(): any {
 		return this.contract;
 	}
