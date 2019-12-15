@@ -69,22 +69,21 @@ export class TransactionFetcher {
 		let queueNumber = await this.transactionService.getAddressTransactionCount(address);
 		let transactions = {
 			'count': queueNumber,
+			'pageNumbers': Math.ceil(queueNumber / pageSize),
 			'data': []
 		};
-		let max = pageSize * pageNumber;
-		let counter = (max - pageSize) + 1;
-		if(pageNumber == 1) {
-			let counter = 1;
+		let counter = queueNumber - (pageSize * pageNumber);
+		let max = counter - pageSize;
+
+
+		if(max < 0) {
+			max = 0	
 		}
+		for (counter; counter > max; counter--) {
+			var tx = await this.transactionService.getAddressTransaction(address, counter);
 
-		if(queueNumber >= 1) {
-			if(max > queueNumber) {
-				max = queueNumber;
-			}
-
-			for (counter; counter <= max; counter++) {
-				var tx = await this.transactionService.getAddressTransaction(address, counter);
-				var txItem = this.itemFormat(tx, counter);
+			if(this.web3.utils.isHex(tx.hash)) {
+				let txItem = await this.itemFormat(tx, counter); 
 				transactions['data'].push(txItem);
 			}
 		}
@@ -95,12 +94,16 @@ export class TransactionFetcher {
 		let queueNumber = await this.transactionService.queueNumber();
 		let transactions = {
 			'count': queueNumber,
+			'pageNumbers': Math.ceil(queueNumber / pageSize),
 			'data': []
 		};
-
-		let counter = Math.ceil(queueNumber / pageSize);
-		let max = ((counter - pageSize) + 1);
-		for (counter; counter >= max; counter--) {
+		
+		let counter = queueNumber - (pageSize * pageNumber);
+		let max = counter - pageSize;
+		if(max < 0) {
+			max = 0	
+		}
+		for (counter; counter > max; counter--) {
 			var tx = await this.transactionService.getTransaction(counter);
 
 			if(this.web3.utils.isHex(tx.hash)) {

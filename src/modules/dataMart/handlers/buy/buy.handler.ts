@@ -40,12 +40,18 @@ export class BuyHandler {
 		try {
 			dto.coinbase = await this.accountService.coinbaseAccount();
 			dto.sum = this.web3.utils.toWei(dto.sum, 'ether');
-			let exists = await this.checkAccounts(dto);
-			let checkBalance = await this.walletService.checkBalance(dto.owner, dto.sum);
 
-			if(!checkBalance) {
-				throw new BadRequestException("Is account " + dto.owner + " not enough funds on the balance sheet!");
-			}
+			await this.accountService.checkIsRegistered(dto.service_node);
+			await this.accountService.checkIsRegistered(dto.data_validator);
+			await this.accountService.checkIsRegistered(dto.data_mart);
+			await this.accountService.checkIsRegistered(dto.data_owner);
+
+			await this.accountService.isServiceNode(dto.service_node);
+			await this.accountService.isDataValidator(dto.data_validator);
+			await this.accountService.isDataMart(dto.data_mart);
+			await this.accountService.isDataOwner(dto.data_owner);
+
+			await this.walletService.checkWalletBalance(dto.data_mart, dto.sum);
 
 			let tx = await this.dataMartservice
 				.sellData(dto);
@@ -55,7 +61,7 @@ export class BuyHandler {
 				tx.transactionHash,
 				dto.service_node,
 				dto.data_validator,
-				dto.owner,
+				dto.data_mart,
 				dto.data_owner,
 				dto.sum,
 				dto.coinbase
@@ -67,18 +73,6 @@ export class BuyHandler {
 		} catch (e) {
 			throw new BadRequestException(e.message);
 			
-		}
-	}
-
-	private async checkAccounts(dto: BuyDto): Promise<any> {
-		let checkOwner = await this.accountService.checkAccountExist(dto.owner);
-		let checkDataValidator = await this.accountService.checkAccountExist(dto.data_validator);
-		if(checkOwner == false) {
-			throw new BadRequestException("Is account " + dto.owner + " not registered!");
-		}
-
-		if(checkDataValidator == false) {
-			throw new BadRequestException("Is account " + dto.data_validator + " not registered!");
 		}
 	}
 }

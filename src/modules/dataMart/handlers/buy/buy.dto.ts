@@ -5,7 +5,7 @@ export class BuyDto {
 	readonly id: string;
 
 	@IsNotEmpty()
-	readonly owner: string;
+	readonly data_mart: string;
 
 	@IsNotEmpty()
 	readonly data_validator: string;

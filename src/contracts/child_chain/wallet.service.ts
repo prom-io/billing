@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { Web3PrivateNetService } from "../../web3/web3PrivateNet.service";
 import Web3 from "web3";
 import { ConfigService } from "../../config/config.service";
@@ -32,6 +32,14 @@ export class WalletService {
 			return false;
 		}
 		return true;
+	}
+
+	public async checkWalletBalance(address: string, sum: string): Promise<any> {
+		let balance = await this.balanceOf(address);
+		if(balance >= sum) {
+			return true;
+		}
+		throw new BadRequestException(`Is account ${address} not enough funds on the balance sheet!`);
 	}
 
 	public async extendFileStore(dataValidator: string, serviceNode: string, sum: string): Promise<any> {

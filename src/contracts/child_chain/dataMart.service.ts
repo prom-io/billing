@@ -34,7 +34,7 @@ export class DataMartService {
 	public sellData(dto: BuyDto): Promise<any> {
 		return this.contract.methods.sell(
 			dto.id, 
-			dto.owner, 
+			dto.data_mart, 
 			dto.data_validator, 
 			dto.service_node, 
 			dto.data_owner,

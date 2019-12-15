@@ -94,6 +94,14 @@ export class AccountService {
 		return this.contract.methods.getRole(address).call();
 	}
 
+	public async checkIsRegistered(address: string): Promise<any> {
+		let isRegistered = await this.isRegistered(address);
+		if(isRegistered) {
+			return true;
+		}
+		throw new BadRequestException(`${address} is not registerd!`);
+	}
+
 	public async isDataValidator(address: string): Promise<any> {
 		let role = await this.getRole(address);
 
