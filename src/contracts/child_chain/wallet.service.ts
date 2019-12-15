@@ -28,7 +28,7 @@ export class WalletService {
 
 	public async checkBalance(address: string, sum: string): Promise<any> {
 		let balance = await this.balanceOf(address);
-		if(balance < sum) {
+		if(Number(balance) < Number(sum)) {
 			return false;
 		}
 		return true;
@@ -36,7 +36,7 @@ export class WalletService {
 
 	public async checkWalletBalance(address: string, sum: string): Promise<any> {
 		let balance = await this.balanceOf(address);
-		if(balance >= sum) {
+		if(Number(balance) >= Number(sum)) {
 			return true;
 		}
 		throw new BadRequestException(`Is account ${address} not enough funds on the balance sheet!`);
