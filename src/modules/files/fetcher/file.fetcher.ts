@@ -16,75 +16,60 @@ export class FileFetcher {
 			'count': fileCount,
 			'data': []
 		};
-		let max = pageSize * pageNumber;
-		let counter = (max - pageSize) + 1;
-		if(pageNumber == 1) {
-			let counter = 1;
+		let counter = fileCount - (pageSize * pageNumber);
+		let max = counter - pageSize;
+		if(max < 0) {
+			max = 0	
 		}
 
-		if(fileCount >= 1) {
-			
-			if(max > fileCount) {
-				max = fileCount;
-			}
+		for (counter; counter > max; counter--) {
 
-			for (counter; counter <= max; counter++) {
-				var file = await this.dataUpload.fileUploaded(address, counter);
-				var uploaded = await this.dataUpload.uploadedData(file.id);
-				console.log(uploaded);
-				var fileItem = {
-					'id': file.id,
-					'name': file.name,
-					'size': file.size,
-					'file_extension': file.file_extension,
-					'mime_type': file.mime_type,
-					'meta_data': file.meta_data,
-					'owner': file.owner,
-					'data_owner': uploaded.dataOwner,
-					'sum': this.web3.utils.fromWei(uploaded.sum, 'ether')
-				};
-				files['data'].push(fileItem);
-			}
+			let file = await this.dataUpload.fileUploaded(address, counter);
+			let uploaded = await this.dataUpload.uploadedData(file.id);
+			let fileItem = {
+				'id': file.id,
+				'name': file.name,
+				'size': file.size,
+				'file_extension': file.file_extension,
+				'mime_type': file.mime_type,
+				'meta_data': file.meta_data,
+				'owner': file.owner,
+				'data_owner': uploaded.dataOwner,
+				'sum': this.web3.utils.fromWei(uploaded.sum, 'ether')
+			};
+			files['data'].push(fileItem);
 		}
 		return files;
 	}
 
 	public async paginate(pageNumber: number, pageSize: number): Promise<any> {
 		let fileCount = await this.dataUpload.fileCount();
-		console.log(111);
 		let files = {
 			'count': fileCount,
 			'data': []
 		};
-		let max = pageSize * pageNumber;
-		let counter = (max - pageSize) + 1;
-		if(pageNumber == 1) {
-			let counter = 1;
+		let counter = fileCount - (pageSize * pageNumber);
+		let max = counter - pageSize;
+		if(max < 0) {
+			max = 0	
 		}
 
-		if(fileCount >= 1) {
-			
-			if(max > fileCount) {
-				max = fileCount;
-			}
+		for (counter; counter > max; counter--) {
 
-			for (counter; counter <= max; counter++) {
-				var file = await this.dataUpload.fileList(counter);
-				var uploaded = await this.dataUpload.uploadedData(file.id);
-				console.log(uploaded);
-				var fileItem = {
-					'id': file.id,
-					'name': file.name,
-					'size': file.size,
-					'file_extension': file.file_extension,
-					'mime_type': file.mime_type,
-					'meta_data': file.meta_data,
-					'owner': file.owner,
-					'data_owner': uploaded.dataOwner,
-					'sum': this.web3.utils.fromWei(uploaded.sum, 'ether')
-				};
-				files['data'].push(fileItem);
-			}
+			let file = await this.dataUpload.fileList(counter);
+			let uploaded = await this.dataUpload.uploadedData(file.id);
+			let fileItem = {
+				'id': file.id,
+				'name': file.name,
+				'size': file.size,
+				'file_extension': file.file_extension,
+				'mime_type': file.mime_type,
+				'meta_data': file.meta_data,
+				'owner': file.owner,
+				'data_owner': uploaded.dataOwner,
+				'sum': this.web3.utils.fromWei(uploaded.sum, 'ether')
+			};
+			files['data'].push(fileItem);
 		}
 		return files;
 	}

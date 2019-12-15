@@ -1,7 +1,7 @@
 # compiled output
 /dist
 /node_modules
-
+/ethereum_fork
 # Logs
 logs
 *.log
