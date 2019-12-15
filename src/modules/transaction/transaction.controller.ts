@@ -36,10 +36,4 @@ export class TransactionController {
 		let transaction = await this.fetcher.getByHash(hash);
 		return res.status(HttpStatus.OK).json(transaction);
 	}
-
-	@Get('/:queueNumber')
-	async transactionDetailByQueueNumber(@Param('queueNumber') queueNumber, @Res() res: Response) {
-		let transaction = await this.fetcher.getByQueueNumber(queueNumber);
-		return res.status(HttpStatus.OK).json(transaction);
-	}
 }

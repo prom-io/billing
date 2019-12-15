@@ -39,7 +39,7 @@ export class DataUploadService {
 				dto.extension,
 				dto.mime_type,
 				dto.meta_data,
-				dto.owner,
+				dto.data_validator,
 				dto.service_node, 
 				dto.data_owner, 
 				dto.buy_sum, 

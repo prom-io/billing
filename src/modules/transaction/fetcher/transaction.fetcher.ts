@@ -20,35 +20,10 @@ export class TransactionFetcher {
 		this.timeAgo = new TimeAgo('en-US');
 	}
 
-	public async all(): Promise<any> {
-		try {
-			let transactions = [];
-			let queueNumber = await this.transactionService.queueNumber();
-			for (queueNumber; queueNumber >= 1; queueNumber--) {
-				var txData = await this.transactionService.getTransaction(queueNumber);
-				if(txData['2'] != '') {
-					var txSended = await this.web3.eth.getTransaction(txData['2']);
-					if(txSended != null) {
-						txSended.value = this.web3.utils.fromWei(txSended.value.toString(), 'ether')
-						transactions.push(txSended);
-					}
-				}
-			}
-			return transactions;
-		} catch (e) {
-			throw e;
-		}
-	}
-
 	public async getByHash(hash: string): Promise<any> {
 		let tx = await this.transactionService.getTransactionByHash(hash);
 		if(this.web3.utils.isHex(tx.hash)) {
-			let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-			let txItem = this.itemFormat(tx, minedTx, tx.queueNumber);
-			if(minedTx != null) {
-				txItem.status = true;
-				txItem.gasUsed = minedTx.gasUsed;
-			} 
+			let txItem = await this.itemFormat(tx, tx.queueNumber);
 			return txItem;
 		}
 		return {};
@@ -64,27 +39,7 @@ export class TransactionFetcher {
 		for (let counter = 1; counter <= queueNumber; counter++) {
 			var tx = await this.transactionService.getAddressTransaction(address, counter);
 			if(this.web3.utils.isHex(tx.hash)) {
-				let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-				var date = new Date(tx.created_at * 1000);
-				var txItem = {
-					'id': tx.fileUuid,
-					'txType': tx.txType,
-					'hash': tx.hash,
-					'serviceNode': tx.serviceNode,
-					'queueNumber': counter,
-					'blockNumber': minedTx.blockNumber,
-					'dataValidator': tx.dataValidator,
-					'dataMart': tx.dataMart,
-					'dataOwner': tx.dataOwner,
-					'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
-					'created_at': date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),
-					'ago': this.timeAgo.format(date),
-					'status': false
-				};
-
-				if(minedTx != null) {
-					txItem.status = true;
-				} 
+				let txItem = await this.itemFormat(tx, counter);
 				transactions['data'].push(txItem);
 			}
 		}
@@ -103,58 +58,11 @@ export class TransactionFetcher {
 		for (counter; counter >= 1; counter--) {
 			var tx = await this.transactionService.getTransaction(counter);
 			if(this.web3.utils.isHex(tx.hash)) {
-				let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-				let date = new Date(tx.created_at * 1000);
-
-				var txItem = {
-					'id': tx.fileUuid,
-					'txType': tx.txType,
-					'hash': tx.hash,
-					'serviceNode': tx.serviceNode,
-					'queueNumber': counter,
-					'blockNumber': 0,
-					'dataValidator': tx.dataValidator,
-					'dataMart': tx.dataMart,
-					'dataOwner': tx.dataOwner,
-					'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
-					'created_at': date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),
-					'ago': this.timeAgo.format(date),
-					'status': false
-				};
-
-				if(minedTx != null) {
-					txItem.status = true;
-					txItem.blockNumber = minedTx.blockNumber;
-				} 
+				let txItem = await this.itemFormat(tx, counter);
 				transactions['data'].push(txItem);
 			}
 		}
 		return transactions;
-	}
-
-	public async getByQueueNumber(queueNumber: number): Promise<any> {
-		console.log(queueNumber);
-		var tx = await this.transactionService.getTransaction(queueNumber);
-		let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-		var txItem = {
-			'id': tx.fileUuid,
-			'txType': tx.txType,
-			'hash': tx.hash,
-			'serviceNode': tx.serviceNode,
-			'queueNumber': queueNumber,
-			'blockNumber': minedTx.blockNumber,
-			'dataValidator': tx.dataValidator,
-			'dataMart': tx.dataMart,
-			'dataOwner': tx.dataOwner,
-			'gasUsed': minedTx.gasUsed,
-			'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
-			'status': false
-		};
-
-		if(minedTx != null) {
-			txItem.status = true;
-		} 
-		return txItem;
 	}
 
 	public async getAddressTransactionPaginate(address: string, pageNumber: number, pageSize: number): Promise<any> {
@@ -176,12 +84,7 @@ export class TransactionFetcher {
 
 			for (counter; counter <= max; counter++) {
 				var tx = await this.transactionService.getAddressTransaction(address, counter);
-				let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-				var txItem = this.itemFormat(tx, minedTx, counter);
-
-				if(minedTx != null) {
-					txItem.status = true;
-				} 
+				var txItem = this.itemFormat(tx, counter);
 				transactions['data'].push(txItem);
 			}
 		}
@@ -195,88 +98,45 @@ export class TransactionFetcher {
 			'data': []
 		};
 
-
-		// let firstPage = pageNumber - 
-
 		let counter = Math.ceil(queueNumber / pageSize);
 		let max = ((counter - pageSize) + 1);
-		console.log(max);
-		console.log(counter);
 		for (counter; counter >= max; counter--) {
 			var tx = await this.transactionService.getTransaction(counter);
 
 			if(this.web3.utils.isHex(tx.hash)) {
-				let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-				var txItem = this.itemFormat(tx, minedTx, counter);
-
-				if(minedTx != null) {
-					txItem.status = true;
-				} 
+				let txItem = await this.itemFormat(tx, counter); 
 				transactions['data'].push(txItem);
 			}
 		}
 		return transactions;
 	}
 
-	private itemFormat(tx: any, minedTx: any, queueNumber: number): any {
-		return {
+	private async itemFormat(tx: any, queueNumber: number): Promise<any> {
+		let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
+		let date = new Date(tx.created_at * 1000);
+
+		let txItem = {
 			'id': tx.fileUuid,
 			'txType': tx.txType,
 			'hash': tx.hash,
 			'serviceNode': tx.serviceNode,
 			'queueNumber': queueNumber,
-			'blockNumber': minedTx.blockNumber,
+			'blockNumber': 0,
 			'dataValidator': tx.dataValidator,
 			'dataMart': tx.dataMart,
 			'dataOwner': tx.dataOwner,
 			'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
-			'status': false
+			'created_at': date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),
+			'ago': this.timeAgo.format(date),
+			'status': false,
+			'fee': 0
 		};
+
+		if(minedTx != null) {
+			txItem.fee = await this.transactionService.transactionFeeByHash(tx.hash);
+			txItem.status = true;
+			txItem.blockNumber = minedTx.blockNumber;
+		} 
+		return txItem;
 	}
-
-	// public async paginate(pageNumber: number, pageSize: number): Promise<any> {
-	// 	let queueNumber = await this.transactionService.queueNumber();
-	// 	let transactions = {
-	// 		'count': queueNumber,
-	// 		'data': []
-	// 	};
-	// 	let max = pageSize * pageNumber;
-	// 	let counter = (max - pageSize) + 1;
-	// 	if(pageNumber == 1) {
-	// 		let counter = 1;
-	// 	}
-
-	// 	if(queueNumber >= 1) {
-	// 		if(max > queueNumber) {
-	// 			max = queueNumber;
-	// 		}
-
-	// 		for (counter; counter <= max; counter++) {
-	// 			var tx = await this.transactionService.getTransaction(counter);
-	// 			if(this.web3.utils.isHex(tx.hash)) {
-	// 				let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
-	// 				var date = new Date(tx.created_at * 1000);
-	// 				var txItem = {
-	// 					'id': tx.fileUuid,
-	// 					'txType': tx.txType,
-	// 					'hash': tx.hash,
-	// 					'serviceNode': tx.serviceNode,
-	// 					'queueNumber': counter,
-	// 					'blockNumber': minedTx.blockNumber,
-	// 					'from': tx.from,
-	// 					'to': tx.to,
-	// 					'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
-	// 					'created_at': date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),
-	// 					'status': false
-	// 				};
-
-	// 				if(minedTx != null) {
-	// 					txItem.status = true;
-	// 				} 
-	// 				transactions['data'].push(txItem);
-	// 			}
-	// 		}
-	// 	}
-	// 	return transactions;
-	// }
 }

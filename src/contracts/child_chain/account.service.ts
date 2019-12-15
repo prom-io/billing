@@ -1,5 +1,5 @@
 import { Web3PrivateNetService } from "../../web3/web3PrivateNet.service";
-import { Injectable, Global } from '@nestjs/common';
+import { Injectable, Global, BadRequestException } from '@nestjs/common';
 import Web3 from 'web3';
 import { ConfigService } from "../../config/config.service";
 import { AccountDto } from "./dto/account.dto";
@@ -92,6 +92,42 @@ export class AccountService {
 
 	public async getRole(address: string): Promise<any> {
 		return this.contract.methods.getRole(address).call();
+	}
+
+	public async isDataValidator(address: string): Promise<any> {
+		let role = await this.getRole(address);
+
+		if(role == 1) {
+			return true;
+		}
+		throw new BadRequestException(`This ${address} is not Data Validator!`);
+	}
+
+	public async isDataMart(address: string): Promise<any> {
+		let role = await this.getRole(address);
+
+		if(role == 2) {
+			return true;
+		}
+		throw new BadRequestException(`This ${address} is not Data Mart!`);
+	}
+
+	public async isServiceNode(address: string): Promise<any> {
+		let role = await this.getRole(address);
+
+		if(role == 3) {
+			return true;
+		}
+		throw new BadRequestException(`This ${address} is not Service node!`);
+	}
+
+	public async isDataOwner(address: string): Promise<any> {
+		let role = await this.getRole(address);
+
+		if(role == 4) {
+			return true;
+		}
+		throw new BadRequestException(`This ${address} is not Data owner!`);
 	}
 
 	public async validatorOwnersCount(address: string): Promise<any> {

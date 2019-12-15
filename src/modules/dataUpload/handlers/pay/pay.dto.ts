@@ -5,7 +5,7 @@ export class PayDto {
 	readonly id: string;
 
 	@IsNotEmpty()
-	readonly owner: string;
+	readonly data_validator: string;
 
 	@IsNotEmpty()
 	readonly name: string;

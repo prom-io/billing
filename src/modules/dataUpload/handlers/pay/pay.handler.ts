@@ -40,11 +40,12 @@ export class PayHandler {
 			dto.coinbase = await this.accountService.coinbaseAccount();
 			dto.sum = this.web3.utils.toWei(dto.sum, 'ether');
 			dto.buy_sum = this.web3.utils.toWei(dto.buy_sum, 'ether');
-			let checkOwner = await this.accountService.checkAccountExist(dto.owner);
+			let checkOwner = await this.accountService.checkAccountExist(dto.data_validator);
 			let checkDataOwner = await this.accountService.checkAccountExist(dto.data_owner);
 			let checkServiceNode = await this.accountService.checkAccountExist(dto.service_node);
+
 			if(checkOwner == false) {
-				throw new BadRequestException("Is account " + dto.owner + " not registered!");
+				throw new BadRequestException("Is account " + dto.data_validator + " not registered!");
 			}
 			if(checkServiceNode == false) {
 				throw new BadRequestException("Is account " + dto.service_node + " not registered!");
@@ -54,17 +55,21 @@ export class PayHandler {
 				throw new BadRequestException("Is account " + dto.data_owner + " not registered!");
 			}
 
-			let checkBalance = await this.walletService.checkBalance(dto.owner, dto.sum);
+			await this.accountService.isDataValidator(dto.data_validator);
+			await this.accountService.isServiceNode(dto.service_node);
+			await this.accountService.isDataOwner(dto.data_owner);
+
+			let checkBalance = await this.walletService.checkBalance(dto.data_validator, dto.sum);
 
 			if(!checkBalance) {
-				throw new BadRequestException("Is account " + dto.owner + " not enough funds on the balance sheet!");
+				throw new BadRequestException("Is account " + dto.data_validator + " not enough funds on the balance sheet!");
 			}
 			let tx = await this.dataUploadService.payToUpload(dto);
 			let transactionDto = this.transactionDto.make(
 				dto.id, 
 				tx.transactionHash, 
 				dto.service_node, 
-				dto.owner, 
+				dto.data_validator, 
 				dto.data_owner, 
 				dto.sum,
 				dto.coinbase

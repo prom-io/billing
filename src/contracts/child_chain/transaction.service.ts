@@ -101,6 +101,16 @@ export class TransactionService {
 		});
 	}
 
+	public transactionFee(gasUsed: number): any {
+		return (gasUsed * (8 * 1e9));
+	}
+
+	public async transactionFeeByHash(hash: string): Promise<any> {
+		let transaction = await this.web3.eth.getTransaction(hash);
+		let transactionReceipt = await this.web3.eth.getTransactionReceipt(hash);
+		return (Number(transaction.gasPrice) * transactionReceipt.gasUsed);
+	}
+
 	public async queueNumber(): Promise<any> {
 		return this.contract.methods.queueNumber().call();
 	}
