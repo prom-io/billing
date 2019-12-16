@@ -13,6 +13,18 @@ export class TransactionController {
 		return res.status(HttpStatus.OK).json(transactions);
 	}
 
+	@Get('/address/:address/type/:type/paginate/:pageNumber/:pageSize')
+	async addressTransactionByTypePaginate(
+		@Param('address') address, 
+		@Param('type') type, 
+		@Param('pageNumber') pageNumber, 
+		@Param('pageSize') pageSize,
+		@Res() res: Response
+	) {
+		let data = await this.fetcher.addressTransactionByTypePaginate(address, type, pageNumber, pageSize);
+		return res.status(HttpStatus.OK).send(data);
+	}
+
 	@Get('/paginate/:pageNumber/:pageSize')
 	async paginate(@Param('pageNumber') pageNumber, @Param('pageSize') pageSize, @Res() res: Response) {
 		let data = await this.fetcher.paginate(pageNumber, pageSize);

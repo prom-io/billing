@@ -65,6 +65,36 @@ export class TransactionFetcher {
 		return transactions;
 	}
 
+	public async addressTransactionByTypePaginate(
+		address: string, 
+		type: string, 
+		pageNumber: number, 
+		pageSize: number
+	) {
+		let queueNumber = await this.transactionService.getAddressTransactionCount(address);
+		let transactions = {
+			'count': queueNumber,
+			'pageNumbers': Math.ceil(queueNumber / pageSize),
+			'data': []
+		};
+		let counter = queueNumber - (pageSize * pageNumber);
+		let max = counter - pageSize;
+
+
+		if(max < 0) {
+			max = 0	
+		}
+		for (counter; counter > max; counter--) {
+			var tx = await this.transactionService.getAddressTransaction(address, counter);
+
+			if(this.web3.utils.isHex(tx.hash) && tx.txType == type) {
+				let txItem = await this.itemFormat(tx, counter); 
+				transactions['data'].push(txItem);
+			}
+		}
+		return transactions;
+	}
+
 	public async getAddressTransactionPaginate(address: string, pageNumber: number, pageSize: number): Promise<any> {
 		let queueNumber = await this.transactionService.getAddressTransactionCount(address);
 		let transactions = {
