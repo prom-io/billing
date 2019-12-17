@@ -1,4 +1,5 @@
 import { Web3PrivateNetService } from "../../web3/web3PrivateNet.service";
+import { Web3MainNetService } from "../../web3/web3MainNet.service";
 import { Injectable, Global, BadRequestException } from '@nestjs/common';
 import Web3 from 'web3';
 import { ConfigService } from "../../config/config.service";
@@ -9,11 +10,13 @@ import { DataOwnerRegisterDto } from '../../modules/accounts/handlers/register/d
 export class AccountService {
 	private web3: Web3;
 	private contract: any;
+	private web3MainNet: Web3;
 	private config: ConfigService;
 
-	constructor(private readonly web3Service: Web3PrivateNetService, configService: ConfigService) {
+	constructor(web3Service: Web3PrivateNetService, web3MainNetService: Web3MainNetService, configService: ConfigService) {
 		let web3 = web3Service.websocketInstance();
 		this.web3 = web3;
+		this.web3MainNet = web3MainNetService.websocketInstance();
 		this.config = configService;
 		this.contract = new web3.eth.Contract(
 			configService.getAccountManageAbi(), 
@@ -67,6 +70,25 @@ export class AccountService {
 			gas: 1e6,
 			gasPrice: 8 * 1e9
 		});
+	}
+
+	public async registerDataOwnerWithValidator(
+		dataValidator: string,
+		dataOwner: string, 
+		coinbase: string
+	): Promise<any> {
+		return this.contract.methods.registerOwner(dataValidator, dataOwner).send({
+			from: coinbase,
+			gas: 1e6,
+			gasPrice: 8 * 1e9
+		});
+	}
+
+	public async makeDataOwner(dataValidator: string): Promise<any> {
+		let account = this.web3MainNet.eth.accounts.create();
+		let coinbase = await this.coinbaseAccount();
+		await this.registerDataOwnerWithValidator(dataValidator, account.address, coinbase);
+		return account;
 	}
 
 	public async isRegistered(address: string): Promise<any> {

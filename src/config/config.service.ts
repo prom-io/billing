@@ -1168,6 +1168,53 @@ export class ConfigService {
 		return [
 		    {
 		      "constant": true,
+		      "inputs": [
+		        {
+		          "name": "",
+		          "type": "string"
+		        }
+		      ],
+		      "name": "transactionPayDataByHash",
+		      "outputs": [
+		        {
+		          "name": "valueInServiceNode",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "valueInDataValidator",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "valueInDataMart",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "valueInDataOwner",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "valueOutServiceNode",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "valueOutDataValidator",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "valueOutDataMart",
+		          "type": "uint256"
+		        },
+		        {
+		          "name": "valueOutDataOwner",
+		          "type": "uint256"
+		        }
+		      ],
+		      "payable": false,
+		      "stateMutability": "view",
+		      "type": "function"
+		    },
+		    {
+		      "constant": true,
 		      "inputs": [],
 		      "name": "dataUploadTxCount",
 		      "outputs": [
@@ -1636,7 +1683,7 @@ export class ConfigService {
 	}
 
 	getTransactionAddress(): string {
-		return "0xB49BD64A6bEf8D8e848EdeC25049a2283F8fF05d";
+		return "0xb227dab6dFfDb29BBc238347Ed8180547B9b344d";
 	}
 
 	getWalletAbi(): any {

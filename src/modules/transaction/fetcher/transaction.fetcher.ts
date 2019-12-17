@@ -23,7 +23,8 @@ export class TransactionFetcher {
 	public async getByHash(hash: string): Promise<any> {
 		let tx = await this.transactionService.getTransactionByHash(hash);
 		if(this.web3.utils.isHex(tx.hash)) {
-			let txItem = await this.itemFormat(tx, tx.queueNumber);
+			let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
+			let txItem = await this.itemFormat(tx, payData, tx.queueNumber);
 			return txItem;
 		}
 		return {};
@@ -39,7 +40,8 @@ export class TransactionFetcher {
 		for (let counter = 1; counter <= queueNumber; counter++) {
 			var tx = await this.transactionService.getAddressTransaction(address, counter);
 			if(this.web3.utils.isHex(tx.hash)) {
-				let txItem = await this.itemFormat(tx, counter);
+				let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
+				let txItem = await this.itemFormat(tx, payData, counter);
 				transactions['data'].push(txItem);
 			}
 		}
@@ -58,7 +60,8 @@ export class TransactionFetcher {
 		for (counter; counter >= 1; counter--) {
 			var tx = await this.transactionService.getTransaction(counter);
 			if(this.web3.utils.isHex(tx.hash)) {
-				let txItem = await this.itemFormat(tx, counter);
+				let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
+				let txItem = await this.itemFormat(tx, payData, counter);
 				transactions['data'].push(txItem);
 			}
 		}
@@ -88,7 +91,8 @@ export class TransactionFetcher {
 			var tx = await this.transactionService.getAddressTransaction(address, counter);
 
 			if(this.web3.utils.isHex(tx.hash) && tx.txType == type) {
-				let txItem = await this.itemFormat(tx, counter); 
+				let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
+				let txItem = await this.itemFormat(tx, payData, counter); 
 				transactions['data'].push(txItem);
 			}
 		}
@@ -113,7 +117,8 @@ export class TransactionFetcher {
 			var tx = await this.transactionService.getAddressTransaction(address, counter);
 
 			if(this.web3.utils.isHex(tx.hash)) {
-				let txItem = await this.itemFormat(tx, counter); 
+				let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
+				let txItem = await this.itemFormat(tx, payData, counter); 
 				transactions['data'].push(txItem);
 			}
 		}
@@ -134,17 +139,18 @@ export class TransactionFetcher {
 			max = 0	
 		}
 		for (counter; counter > max; counter--) {
-			var tx = await this.transactionService.getTransaction(counter);
+			let tx = await this.transactionService.getTransaction(counter);
 
 			if(this.web3.utils.isHex(tx.hash)) {
-				let txItem = await this.itemFormat(tx, counter); 
+				let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
+				let txItem = await this.itemFormat(tx, payData, counter); 
 				transactions['data'].push(txItem);
 			}
 		}
 		return transactions;
 	}
 
-	private async itemFormat(tx: any, queueNumber: number): Promise<any> {
+	private async itemFormat(tx: any, payData: any, queueNumber: number): Promise<any> {
 		let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
 		let date = new Date(tx.created_at * 1000);
 
@@ -160,13 +166,28 @@ export class TransactionFetcher {
 			'dataOwner': tx.dataOwner,
 			'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
 			'created_at': date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),
+			'full_date': date.toString(),
 			'ago': this.timeAgo.format(date),
 			'status': false,
-			'fee': 0
+			'fee': 0,
+			'payData': {
+				'in': {
+					'serviceNode': this.web3.utils.fromWei(payData.valueInServiceNode, 'ether'),
+					'dataValidator': this.web3.utils.fromWei(payData.valueInDataValidator, 'ether'),
+					'dataMart': this.web3.utils.fromWei(payData.valueInDataMart, 'ether'),
+					'dataOwner': this.web3.utils.fromWei(payData.valueInDataOwner, 'ether')
+				},
+				'out': {
+					'serviceNode': this.web3.utils.fromWei(payData.valueOutServiceNode, 'ether'),
+					'dataValidator': this.web3.utils.fromWei(payData.valueOutDataValidator, 'ether'),
+					'dataMart': this.web3.utils.fromWei(payData.valueOutDataMart, 'ether'),
+					'dataOwner': this.web3.utils.fromWei(payData.valueOutDataOwner, 'ether')
+				}
+			}
 		};
 
 		if(minedTx != null) {
-			txItem.fee = await this.transactionService.transactionFeeByHash(tx.hash);
+			txItem.fee = await this.transactionService.transactionFeeByHashFormat(tx.hash);
 			txItem.status = true;
 			txItem.blockNumber = minedTx.blockNumber;
 		} 

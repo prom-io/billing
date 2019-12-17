@@ -40,23 +40,20 @@ export class PayHandler {
 			dto.coinbase = await this.accountService.coinbaseAccount();
 			dto.sum = this.web3.utils.toWei(dto.sum, 'ether');
 			dto.buy_sum = this.web3.utils.toWei(dto.buy_sum, 'ether');
-			let checkOwner = await this.accountService.checkAccountExist(dto.data_validator);
-			let checkDataOwner = await this.accountService.checkAccountExist(dto.data_owner);
-			let checkServiceNode = await this.accountService.checkAccountExist(dto.service_node);
 
-			if(checkOwner == false) {
-				throw new BadRequestException("Is account " + dto.data_validator + " not registered!");
-			}
-			if(checkServiceNode == false) {
-				throw new BadRequestException("Is account " + dto.service_node + " not registered!");
-			}
-
-			if(checkDataOwner == false) {
-				throw new BadRequestException("Is account " + dto.data_owner + " not registered!");
-			}
+			await this.accountService.checkIsRegistered(dto.data_validator);
+			await this.accountService.checkIsRegistered(dto.service_node);
 
 			await this.accountService.isDataValidator(dto.data_validator);
 			await this.accountService.isServiceNode(dto.service_node);
+
+			if(dto.data_owner == undefined) {
+				let dataOwner = await this.accountService.makeDataOwner(dto.data_validator);
+				dto.data_owner_full = dataOwner;
+				dto.data_owner = dataOwner.address;
+			}
+
+			await this.accountService.checkIsRegistered(dto.data_owner);
 			await this.accountService.isDataOwner(dto.data_owner);
 
 			let checkBalance = await this.walletService.checkBalance(dto.data_validator, dto.sum);
@@ -75,6 +72,11 @@ export class PayHandler {
 				dto.coinbase
 			);
 			let transactionStart = await this.transactionService.push(transactionDto);
+
+			if(dto.data_owner_full != undefined) {
+				return dto.data_owner_full;
+			}
+
 			return transactionStart;
 		} catch (e) {
 			throw new BadRequestException(e.message);
