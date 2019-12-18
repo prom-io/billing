@@ -165,7 +165,7 @@ export class TransactionFetcher {
 			'dataMart': tx.dataMart,
 			'dataOwner': tx.dataOwner,
 			'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
-			'created_at': date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate(),
+			'created_at': date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
 			'full_date': date.toString(),
 			'ago': this.timeAgo.format(date),
 			'status': false,
