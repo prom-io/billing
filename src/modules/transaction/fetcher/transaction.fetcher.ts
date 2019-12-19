@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { TransactionService } from '../../../contracts/child_chain/transaction.service'
 import { Web3PrivateNetService } from '../../../web3/web3PrivateNet.service'
+import { makePreciseNumberString } from '../../../utils/string-utils'
 import Web3 from 'web3'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -164,7 +165,7 @@ export class TransactionFetcher {
 			'dataValidator': tx.dataValidator,
 			'dataMart': tx.dataMart,
 			'dataOwner': tx.dataOwner,
-			'value': this.web3.utils.fromWei(tx.value.toString(), 'ether'),
+			'value': this.web3Service.fromWeiNumberFormat(tx.value.toString()),
 			'created_at': date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
 			'full_date': date.toString(),
 			'ago': this.timeAgo.format(date),
@@ -172,16 +173,24 @@ export class TransactionFetcher {
 			'fee': 0,
 			'payData': {
 				'in': {
-					'serviceNode': this.web3.utils.fromWei(payData.valueInServiceNode, 'ether'),
-					'dataValidator': this.web3.utils.fromWei(payData.valueInDataValidator, 'ether'),
-					'dataMart': this.web3.utils.fromWei(payData.valueInDataMart, 'ether'),
-					'dataOwner': this.web3.utils.fromWei(payData.valueInDataOwner, 'ether')
+					// 'serviceNode': this.web3.utils.fromWei(payData.valueInServiceNode, 'ether'),
+					// 'dataValidator': this.web3.utils.fromWei(payData.valueInDataValidator, 'ether'),
+					// 'dataMart': this.web3.utils.fromWei(payData.valueInDataMart, 'ether'),
+					// 'dataOwner': this.web3.utils.fromWei(payData.valueInDataOwner, 'ether')
+					'serviceNode': this.web3Service.fromWeiNumberFormat(payData.valueInServiceNode),
+					'dataValidator': this.web3Service.fromWeiNumberFormat(payData.valueInDataValidator),
+					'dataMart': this.web3Service.fromWeiNumberFormat(payData.valueInDataMart),
+					'dataOwner': this.web3Service.fromWeiNumberFormat(payData.valueInDataOwner)
 				},
 				'out': {
-					'serviceNode': this.web3.utils.fromWei(payData.valueOutServiceNode, 'ether'),
-					'dataValidator': this.web3.utils.fromWei(payData.valueOutDataValidator, 'ether'),
-					'dataMart': this.web3.utils.fromWei(payData.valueOutDataMart, 'ether'),
-					'dataOwner': this.web3.utils.fromWei(payData.valueOutDataOwner, 'ether')
+					// 'serviceNode': this.web3.utils.fromWei(payData.valueOutServiceNode, 'ether'),
+					// 'dataValidator': this.web3.utils.fromWei(payData.valueOutDataValidator, 'ether'),
+					// 'dataMart': this.web3.utils.fromWei(payData.valueOutDataMart, 'ether'),
+					// 'dataOwner': this.web3.utils.fromWei(payData.valueOutDataOwner, 'ether')
+					'serviceNode': this.web3Service.fromWeiNumberFormat(payData.valueOutServiceNode),
+					'dataValidator': this.web3Service.fromWeiNumberFormat(payData.valueOutDataValidator),
+					'dataMart': this.web3Service.fromWeiNumberFormat(payData.valueOutDataMart),
+					'dataOwner': this.web3Service.fromWeiNumberFormat(payData.valueOutDataOwner)
 				}
 			}
 		};

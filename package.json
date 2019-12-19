@@ -32,6 +32,7 @@
     "javascript-time-ago": "^2.0.4",
     "nedb": "^1.8.0",
     "nest-schedule": "^0.6.3",
+    "pretty-num": "^0.3.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",

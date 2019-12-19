@@ -115,7 +115,7 @@ export class TransactionService {
 		let transaction = await this.web3.eth.getTransaction(hash);
 		let transactionReceipt = await this.web3.eth.getTransactionReceipt(hash);
 		let sum = (Number(transaction.gasPrice) * transactionReceipt.gasUsed);
-		return this.web3.utils.fromWei(String(sum), 'ether');
+		return Number(this.web3.utils.fromWei(String(sum), 'ether')).toFixed(8);
 	}
 
 	public async queueNumber(): Promise<any> {
