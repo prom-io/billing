@@ -27,6 +27,8 @@ services:
       - /app/ganache-core.docker.cli.js
       - --networkId
       - '5555'
+      - -e
+      - '10000'
   api:
     build:
       context: .
