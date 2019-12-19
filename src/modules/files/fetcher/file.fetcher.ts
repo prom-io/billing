@@ -54,8 +54,8 @@ export class FileFetcher {
 		if(max < 0) {
 			max = 0	
 		}
-
-		for (counter; counter > max; counter--) {
+		// for (counter; counter > max; counter--) {
+		for (max; max < counter; max++) {
 
 			let file = await this.dataUpload.fileList(counter);
 			let uploaded = await this.dataUpload.uploadedData(file.id);
