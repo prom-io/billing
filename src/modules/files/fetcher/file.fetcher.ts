@@ -52,7 +52,7 @@ export class FileFetcher {
 		let counter = fileCount - (pageSize * pageNumber);
 		let max = counter - pageSize;
 		if(max < 0) {
-			max = 0	
+			max = 1;
 		}
 		// for (counter; counter > max; counter--) {
 		for (max; max <= counter; max++) {
