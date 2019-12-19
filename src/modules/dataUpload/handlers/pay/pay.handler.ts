@@ -61,7 +61,6 @@ export class PayHandler {
 			if(!checkBalance) {
 				throw new BadRequestException("Is account " + dto.data_validator + " not enough funds on the balance sheet!");
 			}
-			dto.meta_data = this.web3.utils.asciiToHex(dto.meta_data);
 			let tx = await this.dataUploadService.payToUpload(dto);
 			let transactionDto = this.transactionDto.make(
 				dto.id, 

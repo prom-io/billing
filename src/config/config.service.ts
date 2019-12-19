@@ -494,7 +494,7 @@ export class ConfigService {
 	}
 
 	getAccountManageAddress(): string {
-		return "0x5bbC59721A5269e148C7285A1F4D612977575702"
+		return "0xE17d3263097e7bCbbf71BE50532C8E7D391c96Fd"
 	}
 
 	getDataSellAbi(): any {
@@ -708,7 +708,7 @@ export class ConfigService {
 	}
 
 	getDataSellAddress(): string {
-		return "0xAce2afFc239186Ce978cAbc9c72C9576D4106ECC";
+		return "0x3C6Bc34AAC390aa3F2BEDAf38bA014fbB39A9fd4";
 	}
 
 	getDataUploadAbi(): any {
@@ -745,7 +745,7 @@ export class ConfigService {
 		        },
 		        {
 		          "name": "meta_data",
-		          "type": "bytes32"
+		          "type": "string"
 		        },
 		        {
 		          "name": "owner",
@@ -892,7 +892,7 @@ export class ConfigService {
 		        },
 		        {
 		          "name": "meta_data",
-		          "type": "bytes32"
+		          "type": "string"
 		        },
 		        {
 		          "name": "owner",
@@ -943,7 +943,7 @@ export class ConfigService {
 		        },
 		        {
 		          "name": "meta_data",
-		          "type": "bytes32"
+		          "type": "string"
 		        },
 		        {
 		          "name": "owner",
@@ -1043,7 +1043,7 @@ export class ConfigService {
 		        },
 		        {
 		          "name": "_meta_data",
-		          "type": "bytes32"
+		          "type": "string"
 		        },
 		        {
 		          "name": "_owner",
@@ -1161,7 +1161,7 @@ export class ConfigService {
 	}
 
 	getDataUploadAddress(): string {
-		return "0xB96539532d9e7b34e54BCFFbDAEa15c1365007aA";
+		return "0xB6EaCcB52452A0b56dAC18bC0cC4650486D43aFc";
 	}
 
 	getTransactionAbi(): any {
@@ -1683,7 +1683,7 @@ export class ConfigService {
 	}
 
 	getTransactionAddress(): string {
-		return "0xf3B67e7Eb485df9aCBEcD6ad6550eb03D1092aE2";
+		return "0x4079eCcaBb23d5f4639c3B287E51D5B831933c92";
 	}
 
 	getWalletAbi(): any {
@@ -1958,6 +1958,6 @@ export class ConfigService {
 	}
 
 	getWalletAddress(): string {
-		return "0x162f17BEA6A16369D4bf74755F2583ac5cAAA01e";
+		return "0x8Aa6A019d82d2cFd28A9CafE4B5B572E1bc064D6";
 	}
 }

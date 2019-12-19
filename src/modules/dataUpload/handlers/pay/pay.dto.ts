@@ -25,7 +25,7 @@ export class PayDto {
 	@IsNotEmpty()
 	readonly mime_type: string;
 
-	meta_data: string;
+	readonly meta_data: string;
 
 	@IsNotEmpty()
 	@Matches(
