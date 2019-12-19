@@ -47,7 +47,7 @@ export class DataUploadService {
 			)
 			.send({
 				from: dto.coinbase, 
-				gas: 1e6,
+				gas: 6600000,
 				gasPrice: 8 * 1e9
 			})
 	}

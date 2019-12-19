@@ -494,7 +494,7 @@ export class ConfigService {
 	}
 
 	getAccountManageAddress(): string {
-		return "0xE17d3263097e7bCbbf71BE50532C8E7D391c96Fd"
+		return "0x0051c5eaCC43091065300c5df70F65a4b89B5d8F"
 	}
 
 	getDataSellAbi(): any {
@@ -708,7 +708,7 @@ export class ConfigService {
 	}
 
 	getDataSellAddress(): string {
-		return "0x3C6Bc34AAC390aa3F2BEDAf38bA014fbB39A9fd4";
+		return "0x67F08fF13191F02399a4ba970851C1419a261c35";
 	}
 
 	getDataUploadAbi(): any {
@@ -1161,7 +1161,7 @@ export class ConfigService {
 	}
 
 	getDataUploadAddress(): string {
-		return "0xB6EaCcB52452A0b56dAC18bC0cC4650486D43aFc";
+		return "0xd831d064C54Ec0a6988aD67edE18941fC3AD1B2F";
 	}
 
 	getTransactionAbi(): any {
@@ -1683,7 +1683,7 @@ export class ConfigService {
 	}
 
 	getTransactionAddress(): string {
-		return "0x4079eCcaBb23d5f4639c3B287E51D5B831933c92";
+		return "0xE7561e9c1AF1cB1b0394F0Cd7eE7AA154C8364Ac";
 	}
 
 	getWalletAbi(): any {
@@ -1958,6 +1958,6 @@ export class ConfigService {
 	}
 
 	getWalletAddress(): string {
-		return "0x8Aa6A019d82d2cFd28A9CafE4B5B572E1bc064D6";
+		return "0xf5EF3Dee43748da4eA16c3b93f42BEDfBFCA3e23";
 	}
 }
