@@ -494,1470 +494,1739 @@ export class ConfigService {
 	}
 
 	getAccountManageAddress(): string {
-		return "0x0051c5eaCC43091065300c5df70F65a4b89B5d8F"
+		return "0x64c2d04eCC2b42B23cffEe2a5d77867346831ABf"
 	}
 
 	getDataSellAbi(): any {
 		return [
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "accountManage",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "wallet",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "dataUpload",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "selledData",
-		      "outputs": [
-		        {
-		          "name": "fileId",
-		          "type": "string"
-		        },
-		        {
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "inputs": [
-		        {
-		          "name": "_wallet",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataUpload",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_accountManage",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "constructor"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "fileId",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "SelledDataEvent",
-		      "type": "event"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "dataValidator",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "SelledDataEventPay",
-		      "type": "event"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_fileId",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "sell",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_fileId",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "getSellData",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "string"
-		        },
-		        {
-		          "name": "",
-		          "type": "address"
-		        },
-		        {
-		          "name": "",
-		          "type": "address"
-		        },
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    }
-		  ];
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_wallet",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataUpload",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_accountManage",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "fileId",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataMart",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "SelledDataEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        }
+      ],
+      "name": "SelledDataEventPay",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "accountManage",
+      "outputs": [
+        {
+          "internalType": "contract AbstractAccountManage",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dataUpload",
+      "outputs": [
+        {
+          "internalType": "contract AbstractDataUpload",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "selledData",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "fileId",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataMart",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "wallet",
+      "outputs": [
+        {
+          "internalType": "contract AbstractWallet",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_fileId",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataMart",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_serviceNode",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "sell",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_fileId",
+          "type": "string"
+        }
+      ],
+      "name": "getSellData",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
 	}
 
 	getDataSellAddress(): string {
-		return "0x67F08fF13191F02399a4ba970851C1419a261c35";
+		return "0xE07cC138E77FFD246768FC989DC71D83Df29074c";
 	}
 
 	getDataUploadAbi(): any {
 		return [
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "fileList",
-		      "outputs": [
-		        {
-		          "name": "id",
-		          "type": "string"
-		        },
-		        {
-		          "name": "name",
-		          "type": "string"
-		        },
-		        {
-		          "name": "size",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "file_extension",
-		          "type": "string"
-		        },
-		        {
-		          "name": "mime_type",
-		          "type": "string"
-		        },
-		        {
-		          "name": "meta_data",
-		          "type": "string"
-		        },
-		        {
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "exist",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "uploadedData",
-		      "outputs": [
-		        {
-		          "name": "id",
-		          "type": "string"
-		        },
-		        {
-		          "name": "sum",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "buySum",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "serviceNodeAddress",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataOwner",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "fileCount",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "accountManage",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "wallet",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "fileUploadedCount",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        },
-		        {
-		          "name": "",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "files",
-		      "outputs": [
-		        {
-		          "name": "id",
-		          "type": "string"
-		        },
-		        {
-		          "name": "name",
-		          "type": "string"
-		        },
-		        {
-		          "name": "size",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "file_extension",
-		          "type": "string"
-		        },
-		        {
-		          "name": "mime_type",
-		          "type": "string"
-		        },
-		        {
-		          "name": "meta_data",
-		          "type": "string"
-		        },
-		        {
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "exist",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        },
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "fileUploaded",
-		      "outputs": [
-		        {
-		          "name": "id",
-		          "type": "string"
-		        },
-		        {
-		          "name": "name",
-		          "type": "string"
-		        },
-		        {
-		          "name": "size",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "file_extension",
-		          "type": "string"
-		        },
-		        {
-		          "name": "mime_type",
-		          "type": "string"
-		        },
-		        {
-		          "name": "meta_data",
-		          "type": "string"
-		        },
-		        {
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "exist",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "transaction",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "inputs": [
-		        {
-		          "name": "_transaction",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_wallet",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_accountManage",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "constructor"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "id",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "serviceNodeAddress",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "DataUploaded",
-		      "type": "event"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_id",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_name",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_size",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "_file_extension",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_mime_type",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_meta_data",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_serviceNodeAddress",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_buySum",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "_sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "upload",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_id",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "checkFileOwner",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_fileId",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "checkFileExist",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_id",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "getOwnerFile",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "string"
-		        },
-		        {
-		          "name": "",
-		          "type": "string"
-		        },
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "",
-		          "type": "string"
-		        },
-		        {
-		          "name": "",
-		          "type": "string"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    }
-		  ];
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_transaction",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_wallet",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_accountManage",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "serviceNodeAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "DataUploaded",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "accountManage",
+      "outputs": [
+        {
+          "internalType": "contract AbstractAccountManage",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "fileCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "fileList",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "size",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "file_extension",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "mime_type",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "meta_data",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "exist",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "fileUploaded",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "size",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "file_extension",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "mime_type",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "meta_data",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "exist",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "fileUploadedCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "files",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "size",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "file_extension",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "mime_type",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "meta_data",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "exist",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "transaction",
+      "outputs": [
+        {
+          "internalType": "contract AbstractTransaction",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "uploadedData",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "buySum",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "serviceNodeAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "wallet",
+      "outputs": [
+        {
+          "internalType": "contract AbstractWallet",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_size",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_file_extension",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_mime_type",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_meta_data",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_serviceNodeAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_buySum",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "upload",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_id",
+          "type": "string"
+        }
+      ],
+      "name": "checkFileOwner",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_fileId",
+          "type": "string"
+        }
+      ],
+      "name": "checkFileExist",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_id",
+          "type": "string"
+        }
+      ],
+      "name": "getOwnerFile",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
 	}
 
 	getDataUploadAddress(): string {
-		return "0xd831d064C54Ec0a6988aD67edE18941fC3AD1B2F";
+		return "0xDf41C8d3d01aB0d5Fe0Cad22F3efBD695cc865f4";
 	}
 
 	getTransactionAbi(): any {
 		return [
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "transactionPayDataByHash",
-		      "outputs": [
-		        {
-		          "name": "valueInServiceNode",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "valueInDataValidator",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "valueInDataMart",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "valueInDataOwner",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "valueOutServiceNode",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "valueOutDataValidator",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "valueOutDataMart",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "valueOutDataOwner",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "dataUploadTxCount",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "dataPurchaseTxCount",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "queueNumber",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "lastSyncQueue",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "string"
-		        }
-		      ],
-		      "name": "transactionByHash",
-		      "outputs": [
-		        {
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "txType",
-		          "type": "string"
-		        },
-		        {
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "created_at",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "transactions",
-		      "outputs": [
-		        {
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "txType",
-		          "type": "string"
-		        },
-		        {
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "created_at",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "addressTxCount",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        },
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "addressTx",
-		      "outputs": [
-		        {
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "txType",
-		          "type": "string"
-		        },
-		        {
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "created_at",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "created_at",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "TxDataUpload",
-		      "type": "event"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "hash",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "queueNumber",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "value",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "created_at",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "TxDataPurchase",
-		      "type": "event"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "fileUuid",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "txType",
-		          "type": "string"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "from",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "to",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "value",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "TxEvent",
-		      "type": "event"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_uuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_value",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "transactionDataUpload",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_uuid",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_hash",
-		          "type": "string"
-		        },
-		        {
-		          "name": "_serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataMart",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataOwner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_value",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "transactionDataPurchase",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "lastQueue",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "setLastSyncQueue",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    }
-		  ];
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "fileUuid",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "hash",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "queueNumber",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "serviceNode",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataMart",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "created_at",
+          "type": "uint256"
+        }
+      ],
+      "name": "TxDataPurchase",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "fileUuid",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "hash",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "queueNumber",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "serviceNode",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "created_at",
+          "type": "uint256"
+        }
+      ],
+      "name": "TxDataUpload",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "fileUuid",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "txType",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "serviceNode",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "TxEvent",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "addressTx",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "fileUuid",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "txType",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "hash",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "queueNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "serviceNode",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataMart",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "created_at",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "addressTxCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dataPurchaseTxCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "dataUploadTxCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "lastSyncQueue",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "queueNumber",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "transactionByHash",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "fileUuid",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "txType",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "hash",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "queueNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "serviceNode",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataMart",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "created_at",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "transactionPayDataByHash",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "valueInServiceNode",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valueInDataValidator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valueInDataMart",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valueInDataOwner",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valueOutServiceNode",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valueOutDataValidator",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valueOutDataMart",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valueOutDataOwner",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "transactions",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "fileUuid",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "txType",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "hash",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "queueNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "serviceNode",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataMart",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "dataOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "created_at",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_uuid",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_hash",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_serviceNode",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transactionDataUpload",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_uuid",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_hash",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_serviceNode",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataMart",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataOwner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transactionDataPurchase",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "lastQueue",
+          "type": "uint256"
+        }
+      ],
+      "name": "setLastSyncQueue",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ];
 	}
 
 	getTransactionAddress(): string {
-		return "0xE7561e9c1AF1cB1b0394F0Cd7eE7AA154C8364Ac";
+		return "0x3969509B5DB6b786D0e0B12386405C0fAEE66414";
 	}
 
 	getWalletAbi(): any {
 		return [
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "isWhiteListed",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "wallets",
-		      "outputs": [
-		        {
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "balance",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "exists",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "inputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "constructor"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "BalanceCreated",
-		      "type": "event"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "DepositCreated",
-		      "type": "event"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "currentSum",
-		          "type": "uint256"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "replenishmentSum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "BalanceEvent",
-		      "type": "event"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "ExtendFileStore",
-		      "type": "event"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "initWallet",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "balanceReplenishment",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "balanceConsumption",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_serviceNode",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "extendFileStore",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_dataSell",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataUpload",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_accountManage",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "setWhiteList",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "checkExists",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "balanceOf",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    }
-		  ];
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "BalanceCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "currentSum",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "replenishmentSum",
+          "type": "uint256"
+        }
+      ],
+      "name": "BalanceEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "DepositCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "dataValidator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "serviceNode",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "ExtendFileStore",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "TransferTo",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "isWhiteListed",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "wallets",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "exists",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "initWallet",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "balanceReplenishment",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "balanceConsumption",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_serviceNode",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "extendFileStore",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferTo",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_dataSell",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataUpload",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_accountManage",
+          "type": "address"
+        }
+      ],
+      "name": "setWhiteList",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "checkExists",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
 	}
 
 	getWalletAddress(): string {
-		return "0xf5EF3Dee43748da4eA16c3b93f42BEDfBFCA3e23";
+		return "0xd1064b68b20354e03b9AeED5877691274308d4D4";
 	}
 }
