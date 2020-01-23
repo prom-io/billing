@@ -37,6 +37,11 @@ export class PayHandler {
 
 	public async handle(dto: PayDto): Promise<any> {
 		try {
+			let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);
+			if(this.web3.eth.accounts.recover(dto.sum, signature.signature) != dto.data_validator) {
+				throw new BadRequestException("Account " + dto.data_validator + " couldn`t be verified");
+			}
+
 			dto.coinbase = await this.accountService.coinbaseAccount();
 			dto.sum = this.web3.utils.toWei(dto.sum, 'ether');
 			dto.buy_sum = this.web3.utils.toWei(dto.buy_sum, 'ether');
@@ -61,7 +66,7 @@ export class PayHandler {
 			if(!checkBalance) {
 				throw new BadRequestException("Is account " + dto.data_validator + " not enough funds on the balance sheet!");
 			}
-			let tx = await this.dataUploadService.payToUpload(dto);
+			let tx = await this.dataUploadService.payToUpload(dto, signature.signature, signature.messageHash);
 			let transactionDto = this.transactionDto.make(
 				dto.id, 
 				tx.transactionHash, 

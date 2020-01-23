@@ -22,5 +22,8 @@ export class TransferDto {
 	@IsNotEmpty()
 	sum: string;
 
+    @IsNotEmpty()
+    privateKey: string;
+
 	coinbase: string;
 }

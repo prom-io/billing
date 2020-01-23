@@ -11,6 +11,10 @@ import { ExtendFileStoreHandler } from './handlers/extendFileStore/extendFileSto
 import { ExtendFileStoreDto } from './handlers/extendFileStore/extendFileStore.dto';
 import { TransferHandler } from './handlers/transfer/transfer.handler';
 import { TransferDto } from './handlers/transfer/transfer.dto';
+import { TransactionTransferService } from './services/transactionTransfer.service';
+import { TransactionService } from '../../contracts/child_chain/transaction.service';
+import { TransactionDto } from './services/transaction.dto';
+
 @Module({
   imports: [],
   controllers: [WalletController],
@@ -23,7 +27,10 @@ import { TransferDto } from './handlers/transfer/transfer.dto';
   	DepositHandler, 
   	PlasmaService,
     ExtendFileStoreHandler,
-    TransferHandler
+    TransferHandler,
+    TransactionTransferService,
+    TransactionService,
+    TransactionDto
   ],
 })
 export class WalletModule {}

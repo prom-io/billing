@@ -139,362 +139,399 @@ export class ConfigService {
 
 	getAccountManageAbi(): any {
 		return [
-		    {
-		      "constant": true,
-		      "inputs": [],
-		      "name": "wallet",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "accounts",
-		      "outputs": [
-		        {
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "role",
-		          "type": "uint256"
-		        },
-		        {
-		          "name": "registered",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "dataOwnersCount",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        },
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "dataOwners",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "inputs": [
-		        {
-		          "name": "_wallet",
-		          "type": "address"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "constructor"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "role",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "Registered",
-		      "type": "event"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "RegisteredSum",
-		      "type": "event"
-		    },
-		    {
-		      "anonymous": false,
-		      "inputs": [
-		        {
-		          "indexed": false,
-		          "name": "owner",
-		          "type": "address"
-		        },
-		        {
-		          "indexed": false,
-		          "name": "sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "ChildChainDeposit",
-		      "type": "event"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_sum",
-		          "type": "uint256"
-		        }
-		      ],
-		      "name": "initAccount",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "registerDataMart",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "registerServiceNode",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "registerDataValidator",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "registerDataOwner",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": false,
-		      "inputs": [
-		        {
-		          "name": "_dataValidator",
-		          "type": "address"
-		        },
-		        {
-		          "name": "_dataOwner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "registerOwner",
-		      "outputs": [],
-		      "payable": false,
-		      "stateMutability": "nonpayable",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "getRole",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "uint256"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "isRegistered",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "isDataValidator",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "isDataOwner",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "isDataMart",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    },
-		    {
-		      "constant": true,
-		      "inputs": [
-		        {
-		          "name": "_owner",
-		          "type": "address"
-		        }
-		      ],
-		      "name": "isServiceNode",
-		      "outputs": [
-		        {
-		          "name": "",
-		          "type": "bool"
-		        }
-		      ],
-		      "payable": false,
-		      "stateMutability": "view",
-		      "type": "function"
-		    }
-		  ];
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_wallet",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "ChildChainDeposit",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "role",
+          "type": "uint256"
+        }
+      ],
+      "name": "Registered",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "RegisteredSum",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "accounts",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "role",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "registered",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "dataOwners",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "dataOwnersCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "wallet",
+      "outputs": [
+        {
+          "internalType": "contract AbstractWallet",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        }
+      ],
+      "name": "initAccount",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "registerDataMart",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "registerServiceNode",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "registerDataValidator",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "registerDataOwner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataOwner",
+          "type": "address"
+        }
+      ],
+      "name": "registerOwner",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "getRole",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "isRegistered",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "isDataValidator",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "isDataOwner",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "isDataMart",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "isServiceNode",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ];
 	}
 
 	getAccountManageAddress(): string {
-		return "0x64c2d04eCC2b42B23cffEe2a5d77867346831ABf"
+		return "0x88F5FF853f307c45750823345757cCcaE2d6de09"
 	}
 
 	getDataSellAbi(): any {
@@ -689,6 +726,16 @@ export class ConfigService {
           "internalType": "uint256",
           "name": "_sum",
           "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_sig",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_message",
+          "type": "bytes32"
         }
       ],
       "name": "sell",
@@ -737,7 +784,7 @@ export class ConfigService {
 	}
 
 	getDataSellAddress(): string {
-		return "0xE07cC138E77FFD246768FC989DC71D83Df29074c";
+		return "0xA2EA49A79A6E743aCa14820A17df0d66C9E5c3aE";
 	}
 
 	getDataUploadAbi(): any {
@@ -1152,9 +1199,64 @@ export class ConfigService {
           "internalType": "uint256",
           "name": "_sum",
           "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_sig",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_message",
+          "type": "bytes32"
         }
       ],
       "name": "upload",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_id",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_size",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_file_extension",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_mime_type",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_meta_data",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "uploadFile",
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
@@ -1262,7 +1364,7 @@ export class ConfigService {
 	}
 
 	getDataUploadAddress(): string {
-		return "0xDf41C8d3d01aB0d5Fe0Cad22F3efBD695cc865f4";
+		return "0x9aCEe1f98bC7Bb5BE60F0f4a66F23a2F5647B6f1";
 	}
 
 	getTransactionAbi(): any {
@@ -1389,14 +1491,14 @@ export class ConfigService {
         {
           "indexed": false,
           "internalType": "string",
-          "name": "fileUuid",
+          "name": "hash",
           "type": "string"
         },
         {
           "indexed": false,
-          "internalType": "string",
-          "name": "txType",
-          "type": "string"
+          "internalType": "uint256",
+          "name": "queueNumber",
+          "type": "uint256"
         },
         {
           "indexed": false,
@@ -1407,13 +1509,7 @@ export class ConfigService {
         {
           "indexed": false,
           "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "address",
-          "name": "to",
+          "name": "dataValidator",
           "type": "address"
         },
         {
@@ -1421,9 +1517,15 @@ export class ConfigService {
           "internalType": "uint256",
           "name": "value",
           "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "created_at",
+          "type": "uint256"
         }
       ],
-      "name": "TxEvent",
+      "name": "TxTransfer",
       "type": "event"
     },
     {
@@ -1767,6 +1869,21 @@ export class ConfigService {
       "type": "function"
     },
     {
+      "constant": true,
+      "inputs": [],
+      "name": "transferTxCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "constant": false,
       "inputs": [
         {
@@ -1855,6 +1972,36 @@ export class ConfigService {
       "constant": false,
       "inputs": [
         {
+          "internalType": "string",
+          "name": "_hash",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "_serviceNode",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataValidator",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transactionTransfer",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
           "internalType": "uint256",
           "name": "lastQueue",
           "type": "uint256"
@@ -1870,7 +2017,7 @@ export class ConfigService {
 	}
 
 	getTransactionAddress(): string {
-		return "0x3969509B5DB6b786D0e0B12386405C0fAEE66414";
+		return "0x8B0FE1d9cCBEaeA5BDF35584C8c57CD6383595c1";
 	}
 
 	getWalletAbi(): any {
@@ -1989,6 +2136,18 @@ export class ConfigService {
           "internalType": "uint256",
           "name": "sum",
           "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "sig",
+          "type": "bytes"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "message",
+          "type": "bytes32"
         }
       ],
       "name": "TransferTo",
@@ -2148,6 +2307,16 @@ export class ConfigService {
           "internalType": "uint256",
           "name": "_sum",
           "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_sig",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_message",
+          "type": "bytes32"
         }
       ],
       "name": "transferTo",
@@ -2227,6 +2396,6 @@ export class ConfigService {
 	}
 
 	getWalletAddress(): string {
-		return "0xd1064b68b20354e03b9AeED5877691274308d4D4";
+		return "0xbf7B4a3c206697a21EA833500186F50EA74fC763";
 	}
 }

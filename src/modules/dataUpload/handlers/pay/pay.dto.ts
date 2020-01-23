@@ -28,6 +28,9 @@ export class PayDto {
 	readonly meta_data: string;
 
 	@IsNotEmpty()
+	readonly private_key: string;
+
+	@IsNotEmpty()
 	@Matches(
         new RegExp("^0x[a-fA-F0-9]{40}$"),
         {

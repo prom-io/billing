@@ -31,7 +31,7 @@ export class DataUploadService {
 		return this.contract;
 	}
 
-	public async payToUpload(dto: PayDto): Promise<any> {
+	public async payToUpload(dto: PayDto, signature: string, msgHash: string): Promise<any> {
 		return this.contract.methods.upload(
 				dto.id, 
 				dto.name,
@@ -43,7 +43,9 @@ export class DataUploadService {
 				dto.service_node, 
 				dto.data_owner, 
 				dto.buy_sum, 
-				dto.sum
+				dto.sum,
+				signature,
+				msgHash
 			)
 			.send({
 				from: dto.coinbase, 

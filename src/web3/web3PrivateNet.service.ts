@@ -36,4 +36,9 @@ export class Web3PrivateNetService {
 		let sum = Number(this.web3.utils.fromWei(number, 'ether'));
 		return sum.toFixed(8);
 	}
+
+	public signMessage(message: string, privateKey: string) {
+		let signature = this.web3.eth.accounts.sign(message, privateKey);
+		console.log('Signature: ', signature);
+	}
 }
