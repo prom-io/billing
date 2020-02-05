@@ -3,64 +3,21 @@
 ## Table of contents
 
 - [Description](#description)
-- [How it works](#how-it-works)
-- [How to run](#how-to-run)
-- [How to test](#how-to-test)
+- [License](#license)
 
 ## Description
 
-The service is responsible for payment in the Prometheus project. When downloading data, the service distributes the funds between the service node and the data validator. When purchasing data, the service pays to data validator.
+The service is responsible for all the business logic, concerning flow of tokens in the Prometeus project. When any business transaction is executed, billing service distributes the tokens from the payer to recipients. Fir instance, when data is uploading to the Storage, the service transfer the tokens from the Data Validator to the Service Node (it passes tokens to the Storage via tokenswap). When purchasing data, the service distributes tokens recieved from the Data Mart between Data Validator and Data Owner. Each transaction is stored in a Plasma - tree-like structure of numerous chains (able to handle more transactions per second) based on the Ethereum blockchain. The essence of Plasma is that its use allows you to save all transactions and display data about it for the user immediately after the transaction, without waiting for confirmation of the Ethereum network. If the transaction is not confirmed, then the plasma repeats it until success is achieved.
 
-Billing is a service which provides payment for transactions related to downloading and purchasing data. Each transaction is stored in a plasma-decentralized data storage based on the Ethereum blockchain.
+For the relevance of plasma data, transactions will be synchronized with the main network of Ethereum every hour. 
+All the transactions received after synchronization will be collected in one transaction, thereby saving gas.
 
-The essence of plasma is that its use allows you to save all transactions and display data about it for the user immediately after the transaction, without waiting for confirmation of the ethereum network.
-If the transaction is not confirmed, then the plasma repeats it until success is achieved.
-
-For the relevance of plasma data, transactions will be synchronized with the main network of Ethereum every hour. All transactions received after synchronization will be collected in one transaction, thereby saving gas
+Prometeus Blockchain Explorer: http://178.62.211.224
  
+## License
 
-## How it works
-- Deployment of smart contracts in a private network
-- Deployments of the smart contract in the main network
-- Deployments the backend part for interacting with a smart contract
+Prometeus Network is licensed under the Apache software license (see LICENSE [file](https://github.com/Prometeus-Network/prometeus/blob/master/LICENSE)). Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either \express or implied.
 
-## How to run
-- Start two private ganache networks
-- Deploy Contracts
-- Deploy a server on node js
-- Deploy frontend part (optional)
+Prometeus Network makes no representation or guarantee that this software (including any third-party libraries) will perform as intended or will be free of errors, bugs or faulty code. The software may fail which could completely or partially limit functionality or compromise computer systems. If you use or implement it, you do so at your own risk. In no event will Prometeus Network be liable to any party for any damages whatsoever, even if it had been advised of the possibility of damage.
 
-## How to test
-
-Test stand: http://178.62.211.224
-
-The billing service has a frontend part.
-
-There are three sections to the frontend of the part:
-- Data loading
-- Buying data
-- Transactions
-
-### Data loading section:
-The section is responsible for simulating payment when downloading data on a private network.
-There are 5 fields on the page:
-1. Current user address
-2. Service node address
-3. Data owner address
-4. Cost of data
-5. Amount to be paid
-When you click on the send button, a transaction to load data is launched, with a passage of 10-15 seconds
-A modal window with transaction data will open.
-
-### Purchase data section:
-The section is responsible for simulating when purchasing data on a private network.
-There are 3 fields on the page:
-1. Current user address
-2. Data validator address
-3. Amount to be paid
-When you click on the send button, a transaction to purchase data will start, with a passage of 10-15 seconds
-A modal window with transaction data will open.
-
-### Transaction Section:
-The section displays transactions made in the previous two sections.
-
+As such this codebase should be treated as experimental and does not contain all currently developed features. Prometeus Network will be delivering regular updates.
