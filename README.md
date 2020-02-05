@@ -12,7 +12,7 @@ The service is responsible for all the business logic, concerning flow of tokens
 For the relevance of plasma data, transactions will be synchronized with the main network of Ethereum every hour. 
 All the transactions received after synchronization will be collected in one transaction, thereby saving gas.
 
-Prometeus Blockchain Explorer: http://178.62.211.224
+You can see all the transactions via Prometeus Blockchain Explorer: http://178.62.211.224
  
 ## License
 
