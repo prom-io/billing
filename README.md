@@ -19,6 +19,7 @@ When any business transaction is executed, billing service distributes the token
 ## How it works
 
 When data is beeing uploaded to the Storage, the service transfers tokens from the Data Validator to the Service Node (it passes tokens to the Storage via tokenswap). 
+
 When data is beeing purchased, the service distributes tokens recieved from the Data Mart between Data Validator and Data Owner. Each transaction is stored in a Plasma - tree-like structure of numerous chains (able to handle more transactions per second) based on the Ethereum blockchain. The essence of Plasma is that its use allows you to save all transactions and display data about it for the user immediately after the transaction, without waiting for confirmation of the Ethereum network. If the transaction is not confirmed, then the plasma repeats it until success is achieved.
 
 For the relevance of plasma data, transactions will be synchronized with the main network of Ethereum every hour. 
