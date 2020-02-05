@@ -35,7 +35,7 @@ export class TransferHandler {
 		try {
 			let sum = this.web3.utils.toWei(transferDto.sum, 'ether'); // Convert ethers to weis
 			let signature = await this.web3.eth.accounts.sign(transferDto.sum, transferDto.privateKey);
-			
+
 			if(this.web3.eth.accounts.recover(transferDto.sum, signature.signature) != transferDto.from) {
 				throw new BadRequestException("Account " + transferDto.from + " couldn`t be verified");
 			}

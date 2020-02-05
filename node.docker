@@ -14,13 +14,11 @@ RUN mkdir storage
 RUN ./go-ethereum/build/bin/geth --datadir ./storage init genesis.json
 
 ARG password
-ARG privatekey
 ARG bootnode
 RUN echo $password > ~/.accountpassword
-RUN echo $privatekey > ~/.privatekey
-RUN ./go-ethereum/build/bin/geth --datadir ./storage account import --password ~/.accountpassword  ~/.privatekey
+RUN ./go-ethereum/build/bin/geth account new --password ~/.accountpassword
 
-CMD exec ./go-ethereum/build/bin/geth --bootnodes "$bootnode" --datadir ./storage --syncmode "full" --cache 1024 --networkid 817718719871 --port 30307 --nousb --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --ws --wsaddr "0.0.0.0" --mine --etherbase $address --unlock $address --password ~/.accountpassword --rpcapi "web3,admin,db,debug,eth,miner,net,personal,shh,txpool" --rpcport 7545 --allow-insecure-unlock
+CMD exec ./go-ethereum/build/bin/geth --bootnodes "$bootnode" --datadir ./storage --syncmode "full" --cache 1024 --networkid 817718719871 --port 30307 --nousb --rpc --rpcaddr "0.0.0.0" --rpccorsdomain "*" --ws --wsaddr "0.0.0.0" --mine --keystore /root/.ethereum/keystore/ --rpcapi "web3,admin,db,debug,eth,miner,net,personal,shh,txpool" --rpcport 7545 --allow-insecure-unlock
 
 EXPOSE 7545
 EXPOSE 8546

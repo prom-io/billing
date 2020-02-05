@@ -531,7 +531,7 @@ export class ConfigService {
 	}
 
 	getAccountManageAddress(): string {
-		return "0x88F5FF853f307c45750823345757cCcaE2d6de09"
+		return "0x3FaB8C8Ad085e7aE00Db9034A9e04FB7d166F82D"
 	}
 
 	getDataSellAbi(): any {
@@ -784,7 +784,7 @@ export class ConfigService {
 	}
 
 	getDataSellAddress(): string {
-		return "0xA2EA49A79A6E743aCa14820A17df0d66C9E5c3aE";
+		return "0xB4e9913AaC82F82F807c99C671b8fd6861656923";
 	}
 
 	getDataUploadAbi(): any {
@@ -1364,7 +1364,7 @@ export class ConfigService {
 	}
 
 	getDataUploadAddress(): string {
-		return "0x9aCEe1f98bC7Bb5BE60F0f4a66F23a2F5647B6f1";
+		return "0x57Cb775E984B01812ad22F4Fb1235F9df898F786";
 	}
 
 	getTransactionAbi(): any {
@@ -2017,7 +2017,7 @@ export class ConfigService {
 	}
 
 	getTransactionAddress(): string {
-		return "0x8B0FE1d9cCBEaeA5BDF35584C8c57CD6383595c1";
+		return "0x4117A2642231bF11987649436cCA3DF89CEEd910";
 	}
 
 	getWalletAbi(): any {
@@ -2270,6 +2270,36 @@ export class ConfigService {
       "inputs": [
         {
           "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_sum",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_sig",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_message",
+          "type": "bytes32"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
           "name": "_dataValidator",
           "type": "address"
         },
@@ -2396,6 +2426,6 @@ export class ConfigService {
 	}
 
 	getWalletAddress(): string {
-		return "0xbf7B4a3c206697a21EA833500186F50EA74fC763";
+		return "0x60CBB19EC4227142D4B3ac2AFf68eD092F8708d6";
 	}
 }
