@@ -13,11 +13,13 @@
 
 ## Description
 
-The service is responsible for all the business logic, concerning flow of tokens in the Prometeus project. When any business transaction is executed, billing service distributes the tokens from the payer to recipients. 
+The service is responsible for all the business logic, concerning flow of tokens in the Prometeus project. 
+When any business transaction is executed, billing service distributes the tokens from the payer to recipients. 
 
 ## How it works
 
-For instance, when data is beeing uploaded to the Storage, the service transfers tokens from the Data Validator to the Service Node (it passes tokens to the Storage via tokenswap). When data is beeing purchased, the service distributes tokens recieved from the Data Mart between Data Validator and Data Owner. Each transaction is stored in a Plasma - tree-like structure of numerous chains (able to handle more transactions per second) based on the Ethereum blockchain. The essence of Plasma is that its use allows you to save all transactions and display data about it for the user immediately after the transaction, without waiting for confirmation of the Ethereum network. If the transaction is not confirmed, then the plasma repeats it until success is achieved.
+When data is beeing uploaded to the Storage, the service transfers tokens from the Data Validator to the Service Node (it passes tokens to the Storage via tokenswap). 
+When data is beeing purchased, the service distributes tokens recieved from the Data Mart between Data Validator and Data Owner. Each transaction is stored in a Plasma - tree-like structure of numerous chains (able to handle more transactions per second) based on the Ethereum blockchain. The essence of Plasma is that its use allows you to save all transactions and display data about it for the user immediately after the transaction, without waiting for confirmation of the Ethereum network. If the transaction is not confirmed, then the plasma repeats it until success is achieved.
 
 For the relevance of plasma data, transactions will be synchronized with the main network of Ethereum every hour. 
 All the transactions received after synchronization will be collected in one transaction, thereby saving gas.
@@ -52,7 +54,7 @@ git clone https://github.com/Prometeus-Network/service-node_net.git
 After repository is cloned, perform next commands:
 
 ````
-git submodule init
+git submodule init 
 git submodule update
 ````
 
