@@ -48,7 +48,7 @@ export class PlasmaService {
 	}
 
 	public async deposit(owner: string, amount: string): Promise<any> {
-		return this.contract.methods.deposit().send({
+		return this.contract.methods.deposit().send({ 
 			from: owner,
 			value: amount, 
 			gas: 1e6,

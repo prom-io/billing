@@ -32,7 +32,7 @@ For the relevance of plasma data, transactions will be synchronized with the mai
 
 ## How to test
 
-Test stand: http://34.76.229.133
+Test stand: http://178.62.211.224
 
 The billing service has a frontend part.
 

@@ -39,6 +39,12 @@ export class BuyHandler {
 	public async handle(dto: BuyDto): Promise<any> {
 		try {
 			dto.coinbase = await this.accountService.coinbaseAccount();
+
+			let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);
+			if(this.web3.eth.accounts.recover(dto.sum, signature.signature) != dto.data_mart) {
+				throw new BadRequestException("Account " + dto.data_mart + " couldn`t be verified");
+			}
+
 			dto.sum = this.web3.utils.toWei(dto.sum, 'ether');
 
 			await this.accountService.checkIsRegistered(dto.service_node);
@@ -53,9 +59,9 @@ export class BuyHandler {
 
 			await this.walletService.checkWalletBalance(dto.data_mart, dto.sum);
 
-			let tx = await this.dataMartservice
-				.sellData(dto);
 
+			let tx = await this.dataMartservice
+				.sellData(dto, signature.signature, signature.messageHash);
 			let transactionDto = this.transactionDto.make(
 				dto.id,
 				tx.transactionHash,
@@ -66,7 +72,6 @@ export class BuyHandler {
 				dto.sum,
 				dto.coinbase
 			);
-
 			let startTransaction = await this.transactionService.push(transactionDto);
 
 			return startTransaction;

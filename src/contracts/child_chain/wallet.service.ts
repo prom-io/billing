@@ -62,4 +62,14 @@ export class WalletService {
 				gasPrice: 8 * 1e9
 			});
 	}
+
+	public async transferTo(sender: string, reciever: string, amount: string, signature: string, msgHash: string): Promise<any> {
+		return this.contract.methods.transferTo(
+			sender, reciever, amount, signature, msgHash
+			).send({
+				from: this.config.get("COINBASE_ACCOUNT"), 
+				gas: 1e6,
+				gasPrice: 8 * 1e9
+			});
+	}
 }

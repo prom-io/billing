@@ -69,6 +69,25 @@ export class TransactionService {
 		});
 	}
 
+	public async transactionTransfer(
+		hash: string,
+		from: string,
+		to: string,
+		value: string,
+		coinbase: string
+	): Promise<any> {
+		return this.contract.methods.transactionTransfer(
+			hash,
+			from,
+			to,
+			value
+		).send({
+			from: coinbase,
+			gas: 4612388,
+			gasPrice: 8 * 1e9
+		});
+	}
+
 	public async transactionStart(dto: TransactionDto): Promise<any> {
 		return this.contract.methods.transactionStart(
 			dto.uuid, 

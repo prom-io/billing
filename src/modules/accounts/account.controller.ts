@@ -46,15 +46,15 @@ export class AccountController {
 		return res.status(HttpStatus.OK).send();
 	}
 
-	@Post('register/data-owner')
-	async registerDataOwner(@Body() dto: DataOwnerRegisterDto, @Res() res: Response) {
-		await this.dataOwnerHandler.handle(dto);
-		return res.status(HttpStatus.OK).send();
-	}
-
 	@Post('register/service-node')
 	async registerServiceNode(@Body() dto: AccountDto, @Res() res: Response) {
 		await this.serviceNodeHandler.handle(dto);
+		return res.status(HttpStatus.OK).send();
+	}
+
+	@Post('register/data-owner')
+	async registerDataOwner(@Body() dto: DataOwnerRegisterDto, @Res() res: Response) {
+		await this.dataOwnerHandler.handle(dto);
 		return res.status(HttpStatus.OK).send();
 	}
 

@@ -31,14 +31,16 @@ export class DataMartService {
 		return this.contract;
 	}
 
-	public sellData(dto: BuyDto): Promise<any> {
+	public sellData(dto: BuyDto, signature: string, msgHash: string): Promise<any> {
 		return this.contract.methods.sell(
 			dto.id, 
 			dto.data_mart, 
 			dto.data_validator, 
 			dto.service_node, 
 			dto.data_owner,
-			dto.sum
+			dto.sum,
+			signature,
+			msgHash
 		)
 			.send({
 				from: dto.coinbase, 

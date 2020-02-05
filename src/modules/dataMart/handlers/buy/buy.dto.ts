@@ -17,6 +17,9 @@ export class BuyDto {
 	readonly data_owner: string;
 
 	@IsNotEmpty()
+	readonly private_key: string;
+
+	@IsNotEmpty()
 	sum: string;
 
 	coinbase: string;

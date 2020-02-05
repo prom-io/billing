@@ -1,21 +1,5 @@
 version: "3"
 services:
-  node:
-    build:
-      context: .
-      dockerfile: node.docker
-      args:
-        privatekey: df504d175ae63abf209bad9dda965310d99559620550e74521a6798a41215f46
-        password: word
-        bootnode: enode://f3e4d75df33d46fb5feacdb36a14fe3ca50e07fcb12ec3e2b7164b54015cb58a7f87210be8026c3c8f374340a2186a1d515dbd12ef08b5e3e0ef13deb47602b1@192.168.8.156:30301
-    environment:
-      - address=0x8cc5a1a0802db41db826c2fcb72423744338dcb0
-    volumes:
-      - storage:/opt/storage
-    ports:
-      - 30307:30307
-      - 7545:7545 
-      - 8546:8546
   main_net:
     image: trufflesuite/ganache-cli:latest
     ports:
@@ -29,12 +13,27 @@ services:
       - '5555'
       - -e
       - '10000'
+  node:
+    build:
+      context: .
+      dockerfile: node.docker
+      args:
+        password: word
+        bootnode: enode://938cb74ddd084f7441344ed4a86e9a3aa813351537470322c6529cb42af6806c136617588352b52561bd587c3763c190990a82ff9ec3c534ba32c8fc39e8ccd6@127.0.0.1:30301
+    volumes:
+      - storage:/opt/storage
+    ports:
+      - 30307:30307
+      - 7545:7545 
+      - 8546:8546
+    depends_on:
+      - main_net
   api:
     build:
       context: .
       dockerfile: api.docker
     volumes:
-      - .:/usr/src/app
+      - ./usr/src/app
     ports:
       - 3001:3001
     depends_on:
