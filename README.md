@@ -33,7 +33,6 @@ Billing deployment is integrated in the standard process of running a Service No
 ### Prerequisites
 
 In order to run a service node, you need to install:
-- Golang. You can find it [here](https://golang.org/dl/).
 - Docker. You can find installation instructions on 
 [official website](https://docs.docker.com/install/).
 - Docker-compose, which can be found 
