@@ -21,7 +21,7 @@ You can see all the transactions via Prometeus Blockchain Explorer: http://178.6
 
 All the interactions with billing happen through Service node, which is responsible for connecting all the nodes with each other.
 
-As connecting with billing happens through Service node it is necessary to deploy them together.
+Billing deployment is integrated in the standard process of running a Service Node.
  
 ## License
 
