@@ -4,6 +4,11 @@
 
 - [Description](#description)
 - [How it works](#how-it-works)
+- [How to run](#how-to-run)
+    - [Prerequisites](#prerequisites)
+    - [Build and run process](#build-and-run-process)
+        - [Running inside Docker](#running-inside-docker)
+        - [Running outside Docker](#running-outside-docker)
 - [License](#license)
 
 ## Description
@@ -22,6 +27,54 @@ You can see all the transactions via Prometeus Blockchain Explorer: http://178.6
 All the interactions with billing happen through Service node, which is responsible for connecting all the nodes with each other.
 
 Billing deployment is integrated in the standard process of running a Service Node.
+
+## How to run
+
+### Prerequisites
+
+In order to run a service node, you need to install:
+- Golang. You can find it [here](https://golang.org/dl/).
+- Docker. You can find installation instructions on 
+[official website](https://docs.docker.com/install/).
+- Docker-compose, which can be found 
+[here](https://docs.docker.com/compose/install/).
+- If you want to run service-node outside of docker container, 
+you will need NodeJS installed. 
+You can find installations instructions [here](https://nodejs.org/en/download/).
+
+### Build and run process
+
+Firstly, you need to clone service-node from repository:
+
+````
+git clone https://github.com/Prometeus-Network/service-node_net.git
+````
+
+After repository is cloned, perform next commands:
+
+````
+git submodule init
+git submodule update
+````
+
+This will download go-ethereum submodule.
+
+#### Running inside Docker
+
+To run Service node inside Docker, execute the following command:
+
+````
+docker-compose up --build
+````
+
+#### Running outside Docker
+
+If you want to run service node outside docker container, you will need to perform next steps:
+- Execute `build.sh` script. It will build go-ethereum;
+- Run `npm install`. 
+This will install dependencies required for Service node;
+- Run `npm run c`. This command will compile typescript;
+- Run `npm run start` to start the application.
  
 ## License
 
