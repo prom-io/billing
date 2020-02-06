@@ -11,6 +11,9 @@ RUN make -C ./go-ethereum geth
 
 ADD ./genesis.json ./genesis.json
 
+RUN mkdir storage
+RUN ./go-ethereum/build/bin/geth --datadir ./storage init genesis.json
+
 EXPOSE 7545
 EXPOSE 8546
 EXPOSE 30307
