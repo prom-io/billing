@@ -38,6 +38,7 @@ export class BuyHandler {
 
 	public async handle(dto: BuyDto): Promise<any> {
 		try {
+			await this.accountService.unlockCoinbase();
 			dto.coinbase = await this.accountService.coinbaseAccount();
 
 			let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);

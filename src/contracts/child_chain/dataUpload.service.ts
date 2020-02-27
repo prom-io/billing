@@ -42,7 +42,7 @@ export class DataUploadService {
 				dto.data_validator,
 				dto.service_node, 
 				dto.data_owner, 
-				dto.buy_sum, 
+				dto.sum, 
 				dto.sum,
 				signature,
 				msgHash

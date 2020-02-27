@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, HttpModule } from '@nestjs/common';
 import { DataUploadController } from './dataUpload.controller';
 import { PayHandler } from './handlers/pay/pay.handler';
 import { DataUploadService } from '../../contracts/child_chain/dataUpload.service';
@@ -12,7 +12,11 @@ import { TransactionDto } from './services/transaction.dto';
 import { TransactionPayService } from './services/transactionPay.service';
 
 @Module({
-  imports: [],
+  imports: [
+    HttpModule.register({
+      baseURL: 'http://localhost:3005'
+    })
+  ],
   controllers: [DataUploadController],
   providers: [
   	PayHandler, 

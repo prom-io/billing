@@ -48,7 +48,6 @@ export class TransferHandler {
 				throw new BadRequestException("Is account " + transferDto.from + " not enough funds on the balance sheet!");
 			}
 			let tx4 = await this.walletService.transferTo(transferDto.from, transferDto.to, sum, signature.signature, signature.messageHash);
-
 			let transactionDto = this.transactionDto.make(
 				tx4.transactionHash,
 				transferDto.from,

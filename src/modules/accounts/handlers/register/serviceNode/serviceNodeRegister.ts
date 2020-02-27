@@ -15,6 +15,7 @@ export class ServiceNodeRegister {
 		if(isRegistered) {
 			throw new BadRequestException("Address is registered in child chain!");
 		}
+		await this.accountService.unlockCoinbase();
 		dto.coinbase = await this.accountService.coinbaseAccount();
 		let tx = await this.accountService.registerServiceNode(dto);
 		return tx;

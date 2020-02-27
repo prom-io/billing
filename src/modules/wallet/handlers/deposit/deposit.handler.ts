@@ -38,6 +38,7 @@ export class DepositHandler {
 			let tx1 = await this.plasmaService.deposit(address, sum); // Calls deposit method from smart contract
 			console.log('Main net deposit: ', tx1);
 			if(tx1.status == true) {
+				await this.accountService.unlockCoinbase();
 				let coinbase = await this.accountService.coinbaseAccount(); // Returns the coinbase address to which mining rewards will go
 				let dto = new AccountDto(address, coinbase);
 				dto.sum = sum;

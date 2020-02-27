@@ -35,12 +35,12 @@ export class PlasmaService {
 	public listen(): any {
 		this.contract.events.DepositCreated({}, (error, event) => {console.log(event)})
 			.on('data', async (event) => {
+				await this.accountService.unlockCoinbase();
 				let coinbase = await this.accountService.coinbaseAccount();
 				let eventData = event.returnValues;
 				let dto = new AccountDto(eventData.owner, coinbase);
 				dto.sum = eventData.amount;
 				let tx = await this.accountService.initAccount(dto);
-				console.log(tx);
 			})
 			.on('error', (error) => {
 				console.log(error);

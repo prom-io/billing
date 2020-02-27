@@ -26,9 +26,8 @@ export class WalletController {
 	}
 
 	@Get('balance/:address')
-	async balance(@Param('address') address: string) {
-		let balance = await this.fetcher.balance(address);
-		return {"balance": balance};
+	async balance(@Param('address') address: string) { 
+		return await this.fetcher.balance(address);
 	}
 
 	@Get('deposit/:address/:amount')

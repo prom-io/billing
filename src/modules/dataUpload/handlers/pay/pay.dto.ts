@@ -46,8 +46,5 @@ export class PayDto {
 	@IsNotEmpty()
 	sum: string;
 
-	@IsNotEmpty()
-	buy_sum: string;
-
 	coinbase: string;
 }

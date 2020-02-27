@@ -17,7 +17,10 @@ export class WalletFetcher {
 		if(!this.web3.utils.isAddress(address)) {
 			throw new BadRequestException("Is not valid address!");
 		}
-		let result = await this.walletService.balanceOf(address);
-		return this.walletService.formatEther(result);
+		let result = await this.walletService.wallets(address);
+		return {
+ 			'balance': this.walletService.formatEther(result.balance),
+ 			'siaBalance': this.walletService.formatEther(result.siaBalance),
+		};
 	}
 }

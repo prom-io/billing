@@ -18,6 +18,10 @@ export class WalletService {
 		); 
 	}
 
+	public async wallets(address: string): Promise<any> {
+		return this.contract.methods.wallets(address).call();
+	}
+
 	public async balanceOf(address: string): Promise<any> {
 		return this.contract.methods.balanceOf(address).call();
 	}

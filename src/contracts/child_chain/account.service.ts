@@ -25,7 +25,6 @@ export class AccountService {
 	}
 
 	public initAccount(dto: AccountDto): Promise<any> {
-		console.log('coinbase: ', dto.coinbase);
 		return this.contract.methods.initAccount(dto.owner, dto.sum).send({
 			from: dto.coinbase,
 			gas: 1e6,
