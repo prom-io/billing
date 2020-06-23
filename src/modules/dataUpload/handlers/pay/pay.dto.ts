@@ -1,4 +1,4 @@
-import { Matches, IsEmail, IsNotEmpty } from 'class-validator';
+import { Matches, IsEmail, IsBase64, IsString, IsNotEmpty } from 'class-validator';
 import {ISignedRequest} from './ISignedRequest';
 export class PayDto implements ISignedRequest {
 	@IsNotEmpty()
