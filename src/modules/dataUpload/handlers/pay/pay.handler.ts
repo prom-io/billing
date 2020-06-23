@@ -76,8 +76,8 @@ export class PayHandler {
 				'private_key': dto.private_key,
 				'service_node': dto.service_node,
 				'sum': dto.sum,
-				'signature': dto.signature,
-				'messageHash': dto.messageHash,
+				'signature': dto.signature.signature,
+				'messageHash': dto.signature.messageHash,
 				'data_owner': dto.data_owner,
 				'data_validator': dto.data_validator,
 				'coinbase': dto.coinbase
