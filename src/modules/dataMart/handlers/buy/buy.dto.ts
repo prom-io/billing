@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
+import {ISignedRequest} from '../../../dataUpload/handlers/pay/ISignedRequest';
 
 export class BuyDto {
 	@IsNotEmpty()
@@ -17,7 +18,7 @@ export class BuyDto {
 	readonly data_owner: string;
 
 	@IsNotEmpty()
-	readonly private_key: string;
+	readonly signature: ISignedRequest;
 
 	@IsNotEmpty()
 	sum: string;

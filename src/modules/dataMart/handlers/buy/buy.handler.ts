@@ -41,8 +41,8 @@ export class BuyHandler {
 			await this.accountService.unlockCoinbase();
 			dto.coinbase = await this.accountService.coinbaseAccount();
 
-			let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);
-			if(this.web3.eth.accounts.recover(dto.sum, signature.signature) != dto.data_mart) {
+			// let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);
+			if(this.web3.eth.accounts.recover(dto.signature) != dto.data_mart) {
 				throw new BadRequestException("Account " + dto.data_mart + " couldn`t be verified");
 			}
 
@@ -62,7 +62,7 @@ export class BuyHandler {
 
 
 			let tx = await this.dataMartservice
-				.sellData(dto, signature.signature, signature.messageHash);
+				.sellData(dto, dto.signature.signature, dto.signature.messageHash);
 			let transactionDto = this.transactionDto.make(
 				dto.id,
 				tx.transactionHash,
