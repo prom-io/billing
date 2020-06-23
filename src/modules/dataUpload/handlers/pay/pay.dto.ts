@@ -1,6 +1,6 @@
 import { Matches, IsEmail, IsNotEmpty } from 'class-validator';
-
-export class PayDto {
+import {ISignedRequest} from './ISignedRequest';
+export class PayDto implements ISignedRequest {
 	@IsNotEmpty()
 	readonly id: string;
 
@@ -27,8 +27,30 @@ export class PayDto {
 
 	readonly meta_data: string;
 
-	@IsNotEmpty()
-	readonly private_key: string;
+	@IsNotEmpty({message: "Signed message must be present"})
+	@IsString({message: "Signed message must be string"})
+	@IsBase64({message: "Signed message must be encoded in base 64"})
+	public message: string;
+
+	@IsNotEmpty({message: "Message hash must be present"})
+	@IsString({message: "Message hash must be string"})
+	public messageHash: string;
+
+	@IsNotEmpty({message: "Signature must be present"})
+	@IsString({message: "Signature must be string"})
+	public signature: string;
+
+	@IsNotEmpty({message: "'r' parameter must be present"})
+	@IsString({message: "'r' parameter must be string"})
+	public r: string;
+
+	@IsNotEmpty({message: "'v' parameter must be present"})
+	@IsString({message: "'v' parameter must be string"})
+	public v: string;
+
+	@IsNotEmpty({message: "'s' parameter must be present"})
+	@IsString({message: "'s' parameter must be string"})
+	public s: string;
 
 	@IsNotEmpty()
 	@Matches(
@@ -38,6 +60,8 @@ export class PayDto {
         }
     )
 	readonly service_node: string;
+
+	readonly private_key: string;
 
 	data_owner: string;
 

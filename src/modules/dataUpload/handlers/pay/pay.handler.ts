@@ -38,8 +38,8 @@ export class PayHandler {
 
 	public async handle(dto: PayDto): Promise<any> {
 		try {
-			let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);
-			if(this.web3.eth.accounts.recover(dto.sum, signature.signature) != dto.data_validator) {
+			// let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);
+			if(this.web3.eth.accounts.recover(dto.signature) != dto.data_validator) {
 				throw new BadRequestException("Account " + dto.data_validator + " couldn`t be verified");
 			}
 			await this.accountService.unlockCoinbase();
@@ -76,8 +76,8 @@ export class PayHandler {
 				'private_key': dto.private_key,
 				'service_node': dto.service_node,
 				'sum': dto.sum,
-				'signature': signature.signature,
-				'messageHash': signature.messageHash,
+				'signature': dto.signature,
+				'messageHash': dto.messageHash,
 				'data_owner': dto.data_owner,
 				'data_validator': dto.data_validator,
 				'coinbase': dto.coinbase
