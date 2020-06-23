@@ -1,6 +1,6 @@
 import { Matches, IsEmail, IsBase64, IsString, IsNotEmpty } from 'class-validator';
 import {ISignedRequest} from './ISignedRequest';
-export class PayDto implements ISignedRequest {
+export class PayDto {
 	@IsNotEmpty()
 	readonly id: string;
 
