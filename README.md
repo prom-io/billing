@@ -13,7 +13,8 @@
 
 ## Description
 
-The service is responsible for all the business logic, concerning flow of tokens in the Prometeus project. 
+The service is responsible for all the business logic, concerning flow of tokens in Stoa: 
+Data Exchange Platform within Prometeus ecosystem. 
 When any business transaction is executed, billing service distributes the tokens from the payer to recipients. 
 
 ## How it works
