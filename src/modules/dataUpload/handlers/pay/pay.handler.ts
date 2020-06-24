@@ -44,6 +44,7 @@ export class PayHandler {
 			}
 			await this.accountService.unlockCoinbase();
 			dto.coinbase = await this.accountService.coinbaseAccount();
+			dto.sum = this.web3.utils.toWei(dto.sum);
 
 			await this.accountService.checkIsRegistered(dto.data_validator);
 			await this.accountService.checkIsRegistered(dto.service_node);
@@ -65,30 +66,18 @@ export class PayHandler {
 			if(!checkBalance) {
 				throw new BadRequestException("Is account " + dto.data_validator + " not enough funds on the balance sheet!");
 			}
-			let tx = await this.dataUploadService.payToUpload(dto, dto.signature.signature, dto.signature.messageHash);
-			// let tx = await this.httpService.post('/data/upload/pay', {
-			// 	'id': dto.id,
-			// 	'name': dto.name,
-			// 	'size': dto.size,
-			// 	'extension': dto.extension,
-			// 	'mime_type': dto.mime_type,
-			// 	'meta_data': dto.meta_data,
-			// 	'private_key': dto.private_key,
-			// 	'service_node': dto.service_node,
-			// 	'sum': dto.sum,
-			// 	'signature': dto.signature.signature,
-			// 	'messageHash': dto.signature.messageHash,
-			// 	'data_owner': dto.data_owner,
-			// 	'data_validator': dto.data_validator,
-			// 	'coinbase': dto.coinbase
-			// }).toPromise();
+			let tx = await this.dataUploadService.payToUpload(
+				dto,
+				dto.signature.signature,
+				dto.signature.messageHash
+			);
 			let transactionDto = this.transactionDto.make(
 				dto.id, 
 				tx.data.transactionHash, 
 				dto.service_node, 
 				dto.data_validator, 
 				dto.data_owner, 
-				dto.sum,
+				dto.buy_sum,
 				dto.coinbase
 			);
 			let transactionStart = await this.transactionService.push(transactionDto);

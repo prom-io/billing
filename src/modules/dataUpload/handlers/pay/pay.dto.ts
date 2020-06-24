@@ -38,14 +38,15 @@ export class PayDto {
     )
 	readonly service_node: string;
 
-	readonly private_key: string;
-
 	data_owner: string;
 
 	data_owner_full: any;
 
 	@IsNotEmpty()
 	sum: string;
+
+	@IsNotEmpty()
+	buy_sum: string;
 
 	coinbase: string;
 }
