@@ -73,7 +73,7 @@ export class PayHandler {
 			);
 			let transactionDto = this.transactionDto.make(
 				dto.id, 
-				tx.data.transactionHash, 
+				tx.transactionHash,
 				dto.service_node, 
 				dto.data_validator, 
 				dto.data_owner, 
@@ -88,6 +88,7 @@ export class PayHandler {
 
 			return transactionStart;
 		} catch (e) {
+			console.log(e);
 			throw new BadRequestException(e.message);
 		}
 	}
