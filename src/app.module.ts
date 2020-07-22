@@ -15,20 +15,24 @@ import { AccountModule } from './modules/accounts/account.module';
 import { FileModule } from './modules/files/file.module';
 import { DepositModule } from './deposit/deposit.module';
 import { Web3Module } from './web3/web3.module'
-import { ScheduleModule } from 'nest-schedule';
+import { ScheduleModule } from '@nestjs/schedule';
 import { TransactionModule } from './modules/transaction/transaction.module'
+import {LambdaStorageModule} from "./modules/lambdaStorage/lambdaStorage.module";
+import {SignModule} from "./modules/sign/sign.module";
 
 @Module({
   imports: [
-    ScheduleModule.register(),
+    ScheduleModule.forRoot(),
     WalletModule,
-    DataUploadModule, 
-    DataMartModule, 
+    DataUploadModule,
+    DataMartModule,
     AccountModule,
     TransactionModule,
     ConfigModule,
     DepositModule,
-    FileModule
+    FileModule,
+    LambdaStorageModule,
+    SignModule
   ],
   controllers: [AppController],
   providers: [

@@ -43,7 +43,6 @@ export class DataUploadService {
 				dto.service_node, 
 				dto.data_owner, 
 				dto.buy_sum,
-				dto.sum,
 				signature,
 				msgHash
 			)

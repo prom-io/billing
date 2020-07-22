@@ -9,7 +9,7 @@ import { ConfigService } from "../../config/config.service";
 export class DataMartService {
 	private web3: Web3;
 	private accountService: AccountService;
-	private contract: any;
+	private readonly contract: any;
 	private config: ConfigService;
 
 	constructor(
