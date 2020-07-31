@@ -34,9 +34,9 @@ export class FileFetcher {
 				'mime_type': file.mime_type,
 				'meta_data': file.meta_data,
 				'owner': file.owner,
-				'buy_sum': this.web3.utils.fromWei(uploaded.buySum + "", 'ether'),
+				'buy_sum': uploaded.buySum,
 				'data_owner': uploaded.dataOwner,
-				'sum': this.web3.utils.fromWei(uploaded.sum, 'ether')
+				'sum': uploaded.sum
 			};
 			files['data'].push(fileItem);
 		}
@@ -66,9 +66,9 @@ export class FileFetcher {
 				'mime_type': file.mime_type,
 				'meta_data': file.meta_data,
 				'owner': file.owner,
-				'buy_sum': this.web3.utils.fromWei(uploaded.buySum + "", 'ether'),
+				'buy_sum': uploaded.buySum,
 				'data_owner': uploaded.dataOwner,
-				'sum': this.web3.utils.fromWei(uploaded.sum, 'ether')
+				'sum': uploaded.sum
 			};
 			files['data'].push(fileItem);
 		}
