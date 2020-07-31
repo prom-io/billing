@@ -20,6 +20,12 @@ export class AccountController {
 		return res.status(200).send({message: 'Wallet success registered!'})
 	}
 
+	@Get('/registered/:address')
+	public async registered(@Param('address') address: string, @Res() res: Response) {
+		const isRegistered = await this.walletLambdaContract.registeredWallet(address);
+		return res.status(200).send({isRegistered})
+	}
+
 	@Get('/tx/:address')
 	public async getAddressTx(@Param('address') address: string, @Res() res: Response) {
 		const tx = await this.transactionRequest.getAddressTx(address);

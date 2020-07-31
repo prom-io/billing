@@ -10,9 +10,7 @@ export class DataUploadController {
 
 	@Post('/upload/pay')
 	async pay(@Body() payDto: PayDto, @Res() res: Response) {
-		console.log(1);
 		let tx = await this.handler.handle(payDto);
-		console.log(11);
 		return res.status(HttpStatus.CREATED).send(tx);
 	}
 }

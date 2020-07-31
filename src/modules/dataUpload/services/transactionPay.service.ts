@@ -10,7 +10,7 @@ export class TransactionPayService {
 	}
 
 	public async push(dto: TransactionDto): Promise<any> {
-		let tx = await this.transactionContract.transactionDataUpload(
+		return this.transactionContract.transactionDataUpload(
 			dto.uuid,
 			dto.hash,
 			dto.serviceNode,
@@ -19,6 +19,5 @@ export class TransactionPayService {
 			dto.value,
 			dto.coinbase
 		);
-		return tx;
 	}
 }

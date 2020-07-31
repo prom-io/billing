@@ -2,7 +2,7 @@ import { Matches, IsEmail, IsBase64, IsString, IsNotEmpty } from 'class-validato
 import {ISignedRequest} from './ISignedRequest';
 export class PayDto {
 	@IsNotEmpty()
-	readonly id: string;
+	public id: string;
 
 	@IsNotEmpty()
 	@Matches(
@@ -11,23 +11,19 @@ export class PayDto {
             message: "Data Validator address must be valid Ethereum address"
         }
     )
-	readonly data_validator: string;
+	public data_validator: string;
 
 	@IsNotEmpty()
-	readonly name: string;
+	public name: string;
 
 	@IsNotEmpty()
-	readonly size: number;
+	public size: number;
 
 	@IsNotEmpty()
-	readonly extension: string;
+	public extension: string;
 
 	@IsNotEmpty()
-	readonly mime_type: string;
-
-	readonly meta_data: string;
-
-	public signature: ISignedRequest;
+	public mime_type: string;
 
 	@IsNotEmpty()
 	@Matches(
@@ -38,15 +34,21 @@ export class PayDto {
     )
 	readonly service_node: string;
 
-	data_owner: string;
-
-	data_owner_full: any;
+	@IsNotEmpty()
+	public sum: string;
 
 	@IsNotEmpty()
-	sum: string;
+	public signature: ISignedRequest;
 
-	@IsNotEmpty()
-	buy_sum: string;
+	public buy_sum: string;
 
-	coinbase: string;
+	public meta_data: string;
+
+	public data_owner: string;
+
+	public data_owner_full: any;
+
+	public coinbase: string;
+
+	public amount: number;
 }

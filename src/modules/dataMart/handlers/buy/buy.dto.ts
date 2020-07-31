@@ -3,25 +3,27 @@ import {ISignedRequest} from '../../../dataUpload/handlers/pay/ISignedRequest';
 
 export class BuyDto {
 	@IsNotEmpty()
-	readonly id: string;
+	public id: string;
 
 	@IsNotEmpty()
-	readonly data_mart: string;
+	public data_mart: string;
 
 	@IsNotEmpty()
-	readonly data_validator: string;
+	public data_validator: string;
 
 	@IsNotEmpty()
-	readonly service_node: string;
+	public service_node: string;
 
 	@IsNotEmpty()
-	readonly data_owner: string;
+	public data_owner: string;
 
 	@IsNotEmpty()
-	readonly signature: ISignedRequest;
+	public signature: ISignedRequest;
 
 	@IsNotEmpty()
-	sum: string;
+	public sum: string;
+
+	public amount: number;
 
 	coinbase: string;
 }

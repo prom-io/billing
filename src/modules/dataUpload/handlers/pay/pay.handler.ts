@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException, HttpService } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { PayDto } from "./pay.dto";
 import { DataUploadService } from '../../../../contracts/child_chain/dataUpload.service';
 import { AccountService } from '../../../../contracts/child_chain/account.service'
@@ -9,6 +9,7 @@ import { TransactionPayService } from '../../services/transactionPay.service'
 import { WalletService } from '../../../../contracts/child_chain/wallet.service'
 import { Web3PrivateNetService } from '../../../../web3/web3PrivateNet.service';
 import Web3 from 'web3';
+import {WalletLambdaContract} from "../../../lambdaStorage/plasma/walletLambda.contract";
 
 @Injectable()
 export class PayHandler {
@@ -20,7 +21,7 @@ export class PayHandler {
 	private web3: Web3;
 
 	constructor(
-		private readonly httpService: HttpService,
+		private readonly walletLambda: WalletLambdaContract,
 		transactionService: TransactionPayService,
 		transactionDto: TransactionDto,
 		dataUploadService: DataUploadService, 
@@ -38,13 +39,12 @@ export class PayHandler {
 
 	public async handle(dto: PayDto): Promise<any> {
 		try {
-			// let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);
 			if(this.web3.eth.accounts.recover(dto.signature) != dto.data_validator) {
 				throw new BadRequestException("Account " + dto.data_validator + " couldn`t be verified");
 			}
 			await this.accountService.unlockCoinbase();
 			dto.coinbase = await this.accountService.coinbaseAccount();
-			dto.sum = this.web3.utils.toWei(dto.sum);
+			dto.amount = Number(dto.sum) * (10 ** 10);
 
 			await this.accountService.checkIsRegistered(dto.data_validator);
 			await this.accountService.checkIsRegistered(dto.service_node);
@@ -58,14 +58,27 @@ export class PayHandler {
 				dto.data_owner = dataOwner.address;
 			}
 
+			if(dto.meta_data === undefined) {
+				dto.meta_data = '{}';
+			}
+
 			await this.accountService.checkIsRegistered(dto.data_owner);
 			await this.accountService.isDataOwner(dto.data_owner);
 
-			let checkBalance = await this.walletService.checkBalance(dto.data_validator, dto.sum);
-
-			if(!checkBalance) {
-				throw new BadRequestException("Is account " + dto.data_validator + " not enough funds on the balance sheet!");
+			const dataValidatorWallet = await this.walletLambda.lambdaWalletByEthAddress(dto.data_validator);
+			const serviceNodeWallet = await this.walletLambda.lambdaWalletByEthAddress(dto.service_node);
+			if(dataValidatorWallet.lambdaAddress === '') {
+				throw new Error('Data validator wallet not registered!');
 			}
+
+			if(serviceNodeWallet.lambdaAddress === '') {
+				throw new Error('Service node wallet not registered!');
+			}
+			if(dataValidatorWallet.amount < dto.amount) {
+				throw new Error('Data validator does not have enough funds on the balance sheet!');
+			}
+			console.log(dataValidatorWallet);
+			console.log(serviceNodeWallet);
 			let tx = await this.dataUploadService.payToUpload(
 				dto,
 				dto.signature.signature,
@@ -77,7 +90,7 @@ export class PayHandler {
 				dto.service_node, 
 				dto.data_validator, 
 				dto.data_owner, 
-				dto.buy_sum,
+				dto.amount,
 				dto.coinbase
 			);
 			let transactionStart = await this.transactionService.push(transactionDto);

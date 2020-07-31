@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@jswebfans/hdkeytest": "^0.0.2",
     "@nestjs/common": "^6.7.2",
     "@nestjs/core": "^6.7.2",
     "@nestjs/platform-express": "^6.7.2",
@@ -34,7 +35,6 @@
     "@types/javascript-time-ago": "^2.0.0",
     "@types/nedb": "^1.8.9",
     "@types/ripemd160": "^2.0.0",
-    "@types/secp256k1": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "bech32": "^1.1.4",
     "bip32": "^2.0.5",
@@ -52,7 +52,7 @@
     "rimraf": "^3.0.0",
     "ripemd160": "^2.0.2",
     "rxjs": "^6.5.3",
-    "secp256k1": "^4.0.1",
+    "secp256k1": "3.7.1",
     "web3": "^1.2.4"
   },
   "devDependencies": {

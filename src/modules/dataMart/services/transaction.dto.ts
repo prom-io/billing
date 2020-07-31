@@ -5,7 +5,7 @@ export class TransactionDto {
 	dataValidator: string;
 	dataMart: string;
 	dataOwner: string;
-	value: string;
+	value: number;
 	coinbase: string;
 
 	public make(
@@ -15,7 +15,7 @@ export class TransactionDto {
 		dataValidator: string,
 		dataMart: string,
 		dataOwner: string,
-		value: string,
+		value: number,
 		coinbase: string
 	): any {
 		this.uuid = uuid;

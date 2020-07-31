@@ -38,4 +38,49 @@ export class TransactionRequest {
             baseURL: this.configService.get('LAMBDA_API_URL')
         }).toPromise();
     }
+
+    public transferTo(
+        amount: string,
+        denom: string,
+        fromAddress: string,
+        toAddress: string,
+        feeAmount: string,
+        gas: string,
+        signature: string,
+        pubKey: string
+    ) {
+        return this.httpService.post('/txs', {
+            tx: {
+                msg: [{
+                    type: 'cosmos-sdk/MsgSend',
+                    value: {
+                        amount: [{
+                            amount: amount,
+                            denom: denom
+                        }],
+                        from_address: fromAddress,
+                        to_address: toAddress
+                    }
+                }],
+                fee: {
+                    amount: [{
+                        amount: amount,
+                        denom: denom
+                    }],
+                    gas: "35182"
+                },
+                signatures: [{
+                    signature: signature,
+                    pub_key: {
+                        type: 'tendermint/PubKeySecp256k1',
+                        value: pubKey
+                    }
+                }],
+                memo: ""
+            },
+            mode: 'block'
+        }, {
+            baseURL: this.configService.get('LAMBDA_API_URL')
+        }).toPromise();
+    }
 }

@@ -32,6 +32,22 @@ export class DataUploadService {
 	}
 
 	public async payToUpload(dto: PayDto, signature: string, msgHash: string): Promise<any> {
+		console.log(dto.coinbase);
+		const gas = await this.contract.methods.upload(
+			dto.id,
+			dto.name,
+			dto.size,
+			dto.extension,
+			dto.mime_type,
+			dto.meta_data,
+			dto.data_validator,
+			dto.service_node,
+			dto.data_owner,
+			dto.amount,
+			signature,
+			msgHash
+		).estimateGas({from: dto.coinbase});
+		console.log(gas);
 		return this.contract.methods.upload(
 				dto.id, 
 				dto.name,
@@ -42,7 +58,7 @@ export class DataUploadService {
 				dto.data_validator,
 				dto.service_node, 
 				dto.data_owner, 
-				dto.buy_sum,
+				dto.amount,
 				signature,
 				msgHash
 			)
@@ -50,7 +66,7 @@ export class DataUploadService {
 				from: dto.coinbase, 
 				gas: 6600000,
 				gasPrice: 8 * 1e9
-			})
+			});
 	}
 
 	public async fileCount(): Promise<any> {

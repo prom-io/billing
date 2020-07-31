@@ -10,6 +10,7 @@ import { TransactionPayService } from '../../services/transactionPay.service';
 import { TransactionDto } from '../../services/transaction.dto';
 
 import Web3 from 'web3';
+import {WalletLambdaContract} from "../../../lambdaStorage/plasma/walletLambda.contract";
 
 @Injectable()
 export class BuyHandler {
@@ -18,6 +19,7 @@ export class BuyHandler {
 	private transactionService: TransactionPayService;
 	private transactionDto: TransactionDto;
 	private walletService: WalletService;
+	private walletLambda: WalletLambdaContract;
 	private web3: Web3;
 
 	constructor(
@@ -26,27 +28,23 @@ export class BuyHandler {
 		web3Service: Web3PrivateNetService,
 		walletService: WalletService,
 		transactionService: TransactionPayService,
-		transactionDto: TransactionDto
+		transactionDto: TransactionDto,
+		walletLambda: WalletLambdaContract
 	) {
 		this.dataMartservice = service;
 		this.accountService = accountService;
 		this.transactionService = transactionService;
 		this.transactionDto = transactionDto;
 		this.walletService = walletService;
+		this.walletLambda = walletLambda;
 		this.web3 = web3Service.websocketInstance();
 	}
 
 	public async handle(dto: BuyDto): Promise<any> {
 		try {
-			await this.accountService.unlockCoinbase();
-			dto.coinbase = await this.accountService.coinbaseAccount();
-
-			// let signature = await this.web3.eth.accounts.sign(dto.sum, dto.private_key);
 			if(this.web3.eth.accounts.recover(dto.signature) != dto.data_mart) {
 				throw new BadRequestException("Account " + dto.data_mart + " couldn`t be verified");
 			}
-
-			dto.sum = this.web3.utils.toWei(dto.sum, 'ether');
 
 			await this.accountService.checkIsRegistered(dto.service_node);
 			await this.accountService.checkIsRegistered(dto.data_validator);
@@ -58,8 +56,29 @@ export class BuyHandler {
 			await this.accountService.isDataMart(dto.data_mart);
 			await this.accountService.isDataOwner(dto.data_owner);
 
-			await this.walletService.checkWalletBalance(dto.data_mart, dto.sum);
+			const dataMart = await this.walletLambda.lambdaWalletByEthAddress(dto.data_mart);
+			const serviceNode = await this.walletLambda.lambdaWalletByEthAddress(dto.service_node);
+			const dataValidator = await this.walletLambda.lambdaWalletByEthAddress(dto.data_validator);
 
+			if(dataMart.lambdaAddress === '') {
+				throw new Error('Data mart wallet not registered!')
+			}
+
+			if(dataValidator.lambdaAddress === '') {
+				throw new Error('Data validator wallet not registered!')
+			}
+
+			if(serviceNode.lambdaAddress === '') {
+				throw new Error('Service node wallet not registered!');
+			}
+
+			if(dataMart.amount < dto.amount) {
+				throw new Error('Data mart does not have enough funds on the balance sheet!')
+			}
+
+			await this.accountService.unlockCoinbase();
+			dto.coinbase = await this.accountService.coinbaseAccount();
+			dto.amount = Number(dto.sum) * (10 ** 10);
 
 			let tx = await this.dataMartservice
 				.sellData(dto, dto.signature.signature, dto.signature.messageHash);
@@ -70,12 +89,10 @@ export class BuyHandler {
 				dto.data_validator,
 				dto.data_mart,
 				dto.data_owner,
-				dto.sum,
+				dto.amount,
 				dto.coinbase
 			);
-			let startTransaction = await this.transactionService.push(transactionDto);
-
-			return startTransaction;
+			return this.transactionService.push(transactionDto);
 		} catch (e) {
 			throw new BadRequestException(e.message);
 			

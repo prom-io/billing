@@ -9,7 +9,7 @@ import { ConfigService } from "../../config/config.service";
 export class DataMartService {
 	private web3: Web3;
 	private accountService: AccountService;
-	private readonly contract: any;
+	private readonly contract;
 	private config: ConfigService;
 
 	constructor(
@@ -27,7 +27,7 @@ export class DataMartService {
 		);
 	}
 
-	public getContract(): any {
+	public getContract() {
 		return this.contract;
 	}
 
@@ -38,7 +38,7 @@ export class DataMartService {
 			dto.data_validator, 
 			dto.service_node, 
 			dto.data_owner,
-			dto.sum,
+			dto.amount,
 			signature,
 			msgHash
 		)

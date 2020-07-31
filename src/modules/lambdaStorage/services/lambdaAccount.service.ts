@@ -45,4 +45,10 @@ export class LambdaAccountService {
 		const words = Bech32.toWords(wallet.privateKey);
 		return Bech32.encode('', words);
 	}
+
+	public getPrivateAndPublicKey(mnemonic: string): BIP32Interface {
+		const seed = this.mnemonicService.getSeed(mnemonic);
+		const master = this.mnemonicService.getMaster(seed);
+		return master.derivePath(this.path);
+	}
 }

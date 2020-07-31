@@ -7,7 +7,7 @@ export class TransactionDto {
 	serviceNode: string;
 	dataValidator: string;
 	dataOwner: string;
-	value: string;
+	value: number;
 	coinbase: string;
 
 	public make(
@@ -16,7 +16,7 @@ export class TransactionDto {
 		serviceNode: string, 
 		dataValidator: string, 
 		dataOwner: string,
-		value: string,
+		value: number,
 		coinbase: string
 	): any {
 		this.uuid = uuid;

@@ -27,7 +27,7 @@ export class TransactionService {
 		serviceNode: string, 
 		dataValidator: string,
 		dataOwner: string,
-		value: string,
+		value: number,
 		coinbase: string
 	): Promise<any> {
 		return this.contract.methods.transactionDataUpload(
@@ -51,7 +51,7 @@ export class TransactionService {
 		dataValidator: string,
 		dataMart: string,
 		dataOwner: string,
-		value: string,
+		value: number,
 		coinbase: string
 	): Promise<any> {
 		return this.contract.methods.transactionDataPurchase(

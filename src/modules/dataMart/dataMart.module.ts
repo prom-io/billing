@@ -9,19 +9,23 @@ import { TransactionService } from '../../contracts/child_chain/transaction.serv
 import { TransactionPayService } from './services/transactionPay.service';
 import { AccountService } from '../../contracts/child_chain/account.service';
 import { WalletService } from '../../contracts/child_chain/wallet.service'
+import {WalletLambdaContract} from "../lambdaStorage/plasma/walletLambda.contract";
+import {PlasmaNetworkService} from "../../web3/plasmaNetwork.service";
 @Module({
   imports: [],
   controllers: [DataMartController],
   providers: [
-  	BuyHandler, 
-  	DataMartService, 
-  	Web3PrivateNetService, 
-  	Web3MainNetService, 
-  	AccountService,
-  	TransactionService,
-    TransactionPayService,
-  	WalletService,
-  	TransactionDto
+	BuyHandler,
+	DataMartService,
+	Web3PrivateNetService,
+	Web3MainNetService,
+	AccountService,
+	TransactionService,
+	TransactionPayService,
+	WalletService,
+	TransactionDto,
+	WalletLambdaContract,
+	PlasmaNetworkService
   ],
 })
 export class DataMartModule {}

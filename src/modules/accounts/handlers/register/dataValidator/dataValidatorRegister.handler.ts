@@ -17,7 +17,6 @@ export class DataValidatorRegisterHandler {
 		}
 		await this.accountService.unlockCoinbase();
 		dto.coinbase = await this.accountService.coinbaseAccount();
-		let tx = await this.accountService.registerDataValidator(dto);
-		return tx;
+		return this.accountService.registerDataValidator(dto);
 	}
 }
