@@ -72,13 +72,15 @@ export class BuyHandler {
 				throw new Error('Service node wallet not registered!');
 			}
 
-			if(dataMart.amount < dto.amount) {
+			dto.amount = Number(dto.sum) * (10 ** 10);
+			const balance = Number(dataMart.amount) * (10 ** 10);
+
+			if(balance < dto.amount) {
 				throw new Error('Data mart does not have enough funds on the balance sheet!')
 			}
 
 			await this.accountService.unlockCoinbase();
 			dto.coinbase = await this.accountService.coinbaseAccount();
-			dto.amount = Number(dto.sum) * (10 ** 10);
 
 			let tx = await this.dataMartservice
 				.sellData(dto, dto.signature.signature, dto.signature.messageHash);

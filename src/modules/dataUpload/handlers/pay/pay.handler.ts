@@ -67,6 +67,8 @@ export class PayHandler {
 
 			const dataValidatorWallet = await this.walletLambda.lambdaWalletByEthAddress(dto.data_validator);
 			const serviceNodeWallet = await this.walletLambda.lambdaWalletByEthAddress(dto.service_node);
+			console.log(dataValidatorWallet);
+			console.log(serviceNodeWallet);
 			if(dataValidatorWallet.lambdaAddress === '') {
 				throw new Error('Data validator wallet not registered!');
 			}
@@ -74,11 +76,11 @@ export class PayHandler {
 			if(serviceNodeWallet.lambdaAddress === '') {
 				throw new Error('Service node wallet not registered!');
 			}
-			if(dataValidatorWallet.amount < dto.amount) {
+
+			const balance = Number(dataValidatorWallet.amount) * (10 ** 10);
+			if(balance < dto.amount) {
 				throw new Error('Data validator does not have enough funds on the balance sheet!');
 			}
-			console.log(dataValidatorWallet);
-			console.log(serviceNodeWallet);
 			let tx = await this.dataUploadService.payToUpload(
 				dto,
 				dto.signature.signature,
