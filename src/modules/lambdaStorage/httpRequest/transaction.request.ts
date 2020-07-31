@@ -30,7 +30,7 @@ export class TransactionRequest {
             },
             amount: [{
                 amount: amount,
-                denom: "ulamb"
+                denom: "uvoda"
             }],
             from_address: accountResponse.value.address,
             to_address: toAddress

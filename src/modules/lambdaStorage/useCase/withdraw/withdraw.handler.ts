@@ -76,8 +76,8 @@ export class WithdrawHandler {
     }
 }
 //
-// 1001984782ulamb
-// 8203002000ulamb
+// 1001984782uvoda
+// 8203002000uvoda
 // 10000000000
 // 10000000000
-// 1000000000ulamb
+// 1000000000uvoda

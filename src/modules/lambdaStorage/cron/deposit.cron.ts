@@ -35,7 +35,7 @@ export class DepositCron {
                     transaction.tx.value.msg.forEach((msg) => {
                         fromAddress = msg.value.from_address;
                         msg.value.amount.forEach((msgAmount) => {
-                            if(msgAmount.denom == 'ulamb') {
+                            if(msgAmount.denom == 'uvoda') {
                                 amount = msgAmount.amount;
                             }
                         });

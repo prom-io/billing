@@ -44,7 +44,7 @@ export class SignRequestTransferFactory {
             fee: {
                 amount: [{
                     amount: amount,
-                    denom: "ulamb"
+                    denom: "uvoda"
                 }],
                 gas: transactionFeeResponse.gas_estimate
             },
@@ -54,7 +54,7 @@ export class SignRequestTransferFactory {
                 value: {
                     amount: [{
                         amount: amount,
-                        denom: "ulamb"
+                        denom: "uvoda"
                     }],
                     from_address: accountResponse.value.address,
                     to_address: toAddress
