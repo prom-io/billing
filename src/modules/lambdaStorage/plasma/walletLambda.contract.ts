@@ -43,7 +43,7 @@ export class WalletLambdaContract {
     }
 
     public deposit(lambdaAddress: string, txHash: string, amount: number) {
-        return this.instance().methods.deposit(lambdaAddress, txHash, amount).send({
+        return this.instance().methods.deposit(lambdaAddress, txHash, String(amount)).send({
             from: this.configService.get('COINBASE_ACCOUNT'),
             gas: 6600000,
             gasPrice: 8 * 1e9
