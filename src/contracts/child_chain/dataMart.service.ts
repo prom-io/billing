@@ -4,6 +4,7 @@ import { BuyDto } from "../../modules/dataMart/handlers/buy/buy.dto";
 import { AccountService } from "./account.service";
 import Web3 from "web3";
 import { ConfigService } from "../../config/config.service";
+import BN = require("bn.js");
 
 @Injectable()
 export class DataMartService {
@@ -38,7 +39,7 @@ export class DataMartService {
 			dto.data_validator, 
 			dto.service_node, 
 			dto.data_owner,
-			Number(dto.amount),
+			new BN(String(dto.amount)),
 			signature,
 			msgHash
 		)

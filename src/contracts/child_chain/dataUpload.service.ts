@@ -4,7 +4,9 @@ import { PayDto } from "../../modules/dataUpload/handlers/pay/pay.dto";
 import { AccountService } from "./account.service";
 import Web3 from "web3";
 import { ConfigService } from "../../config/config.service";
- 
+import BN = require("bn.js");
+
+
 @Injectable()
 export class DataUploadService {
 	private web3: Web3;
@@ -43,7 +45,7 @@ export class DataUploadService {
 			dto.data_validator,
 			dto.service_node,
 			dto.data_owner,
-			Number(dto.amount),
+			new BN(String(dto.amount)),
 			signature,
 			msgHash
 		).estimateGas({from: dto.coinbase});
@@ -58,7 +60,7 @@ export class DataUploadService {
 				dto.data_validator,
 				dto.service_node, 
 				dto.data_owner, 
-				Number(dto.amount),
+				new BN(String(dto.amount)),
 				signature,
 				msgHash
 			)
