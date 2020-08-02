@@ -38,7 +38,7 @@ export class DataMartService {
 			dto.data_validator, 
 			dto.service_node, 
 			dto.data_owner,
-			dto.amount,
+			Number(dto.amount),
 			signature,
 			msgHash
 		)
