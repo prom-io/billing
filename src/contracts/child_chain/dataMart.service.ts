@@ -39,7 +39,7 @@ export class DataMartService {
 			dto.data_validator, 
 			dto.service_node, 
 			dto.data_owner,
-			new BN(String(dto.amount)),
+			Web3.utils.toWei(String(dto.amount), 'ether'),
 			signature,
 			msgHash
 		)

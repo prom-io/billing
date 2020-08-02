@@ -45,7 +45,7 @@ export class DataUploadService {
 			dto.data_validator,
 			dto.service_node,
 			dto.data_owner,
-			new BN(String(dto.amount)),
+			Web3.utils.toWei(String(dto.amount), 'ether'),
 			signature,
 			msgHash
 		).estimateGas({from: dto.coinbase});
@@ -59,8 +59,8 @@ export class DataUploadService {
 				dto.meta_data,
 				dto.data_validator,
 				dto.service_node, 
-				dto.data_owner, 
-				new BN(String(dto.amount)),
+				dto.data_owner,
+				Web3.utils.toWei(String(dto.amount), 'ether'),
 				signature,
 				msgHash
 			)
