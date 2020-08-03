@@ -23,7 +23,7 @@ export class WithdrawHandler {
     public async handle(dto: WithdrawDto): Promise<any> {
         try {
             const wallet = await this.walletLambda.lambdaWalletByEthAddress(dto.ethereumAddress);
-            const amount = dto.amount * (10 ** 10);
+            const amount = dto.amount * (10 ** 6);
             if(wallet.ethAddress === '') {
                 throw new Error('Wallet not registered!');
             }

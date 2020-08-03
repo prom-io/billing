@@ -35,7 +35,7 @@ export class AccountController {
 	@Get('/balance/:address')
 	public async getBalance(@Param('address') address: string, @Res() res: Response) {
 		let balanceOf = await this.walletLambdaContract.balanceOf(address);
-		balanceOf = balanceOf / (10 ** 10);
+		balanceOf = balanceOf / (10 ** 6);
 		return res.status(200).send({balanceOf});
 	}
 }
