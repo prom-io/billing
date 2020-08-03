@@ -72,8 +72,8 @@ export class BuyHandler {
 				throw new Error('Service node wallet not registered!');
 			}
 
-			dto.amount = Number(dto.sum) * (10 ** 10);
-			const balance = Number(dataMart.amount) * (10 ** 10);
+			dto.amount = Number(dto.sum) * (10 ** 6);
+			const balance = Number(dataMart.amount) * (10 ** 6);
 
 			if(balance < dto.amount) {
 				throw new Error('Data mart does not have enough funds on the balance sheet!')

@@ -44,7 +44,7 @@ export class PayHandler {
 			}
 			await this.accountService.unlockCoinbase();
 			dto.coinbase = await this.accountService.coinbaseAccount();
-			dto.amount = Number(dto.sum) * (10 ** 10);
+			dto.amount = Number(dto.sum) * (10 ** 6);
 
 			await this.accountService.checkIsRegistered(dto.data_validator);
 			await this.accountService.checkIsRegistered(dto.service_node);
@@ -77,7 +77,7 @@ export class PayHandler {
 				throw new Error('Service node wallet not registered!');
 			}
 
-			const balance = Number(dataValidatorWallet.amount) * (10 ** 10);
+			const balance = Number(dataValidatorWallet.amount) * (10 ** 6);
 			if(balance < dto.amount) {
 				throw new Error('Data validator does not have enough funds on the balance sheet!');
 			}
