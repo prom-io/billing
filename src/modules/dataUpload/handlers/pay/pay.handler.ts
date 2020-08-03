@@ -77,7 +77,7 @@ export class PayHandler {
 				throw new Error('Service node wallet not registered!');
 			}
 
-			const balance = Number(dataValidatorWallet.amount) * (10 ** 6);
+			const balance = Number(dataValidatorWallet.amount);
 			if(balance < dto.amount) {
 				throw new Error('Data validator does not have enough funds on the balance sheet!');
 			}

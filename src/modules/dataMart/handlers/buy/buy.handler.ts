@@ -73,7 +73,7 @@ export class BuyHandler {
 			}
 
 			dto.amount = Number(dto.sum) * (10 ** 6);
-			const balance = Number(dataMart.amount) * (10 ** 6);
+			const balance = Number(dataMart.amount);
 
 			if(balance < dto.amount) {
 				throw new Error('Data mart does not have enough funds on the balance sheet!')
