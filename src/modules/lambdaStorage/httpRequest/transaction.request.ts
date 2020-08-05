@@ -13,7 +13,7 @@ export class TransactionRequest {
     ) {}
 
     public getAddressTx(address: string): Promise<AxiosResponse<WalletTransactionResponse[]>> {
-        return this.httpService.get(`/txs?address=${address}`, {
+        return this.httpService.get(`/txs?address=${address}&page=1&limit=1000000000000`, {
             baseURL: this.configService.get('LAMBDA_API_URL')
         }).toPromise();
     }
