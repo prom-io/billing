@@ -93,6 +93,7 @@ export class TransactionFetcher {
 
 			if(this.web3.utils.isHex(tx.hash) && tx.txType == type) {
 				let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
+				console.log(payData);
 				let txItem = await this.itemFormat(tx, payData, counter); 
 				transactions['data'].push(txItem);
 			}
@@ -154,7 +155,7 @@ export class TransactionFetcher {
 	private async itemFormat(tx: any, payData: any, queueNumber: number): Promise<any> {
 		let minedTx = await this.web3.eth.getTransactionReceipt(tx.hash);
 		let date = new Date(tx.created_at * 1000);
-
+		console.log(tx.value);
 		let txItem = {
 			'id': tx.fileUuid,
 			'txType': tx.txType,
@@ -165,7 +166,7 @@ export class TransactionFetcher {
 			'dataValidator': tx.dataValidator,
 			'dataMart': tx.dataMart,
 			'dataOwner': tx.dataOwner,
-			'value': this.web3Service.fromWeiNumberFormat(tx.value.toString()),
+			'value': this.formatLambda(tx.value),
 			'created_at': date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(),
 			'full_date': date.toString(),
 			'ago': this.timeAgo.format(date),
@@ -177,20 +178,20 @@ export class TransactionFetcher {
 					// 'dataValidator': this.web3.utils.fromWei(payData.valueInDataValidator, 'ether'),
 					// 'dataMart': this.web3.utils.fromWei(payData.valueInDataMart, 'ether'),
 					// 'dataOwner': this.web3.utils.fromWei(payData.valueInDataOwner, 'ether')
-					'serviceNode': this.web3Service.fromWeiNumberFormat(payData.valueInServiceNode),
-					'dataValidator': this.web3Service.fromWeiNumberFormat(payData.valueInDataValidator),
-					'dataMart': this.web3Service.fromWeiNumberFormat(payData.valueInDataMart),
-					'dataOwner': this.web3Service.fromWeiNumberFormat(payData.valueInDataOwner)
+					'serviceNode': this.formatLambda(payData.valueInServiceNode),
+					'dataValidator': this.formatLambda(payData.valueInDataValidator),
+					'dataMart': this.formatLambda(payData.valueInDataMart),
+					'dataOwner': this.formatLambda(payData.valueInDataOwner)
 				},
 				'out': {
 					// 'serviceNode': this.web3.utils.fromWei(payData.valueOutServiceNode, 'ether'),
 					// 'dataValidator': this.web3.utils.fromWei(payData.valueOutDataValidator, 'ether'),
 					// 'dataMart': this.web3.utils.fromWei(payData.valueOutDataMart, 'ether'),
 					// 'dataOwner': this.web3.utils.fromWei(payData.valueOutDataOwner, 'ether')
-					'serviceNode': this.web3Service.fromWeiNumberFormat(payData.valueOutServiceNode),
-					'dataValidator': this.web3Service.fromWeiNumberFormat(payData.valueOutDataValidator),
-					'dataMart': this.web3Service.fromWeiNumberFormat(payData.valueOutDataMart),
-					'dataOwner': this.web3Service.fromWeiNumberFormat(payData.valueOutDataOwner)
+					'serviceNode': this.formatLambda(payData.valueOutServiceNode),
+					'dataValidator': this.formatLambda(payData.valueOutDataValidator),
+					'dataMart': this.formatLambda(payData.valueOutDataMart),
+					'dataOwner': this.formatLambda(payData.valueOutDataOwner)
 				}
 			}
 		};
@@ -201,5 +202,9 @@ export class TransactionFetcher {
 			txItem.blockNumber = minedTx.blockNumber;
 		} 
 		return txItem;
+	}
+
+	public formatLambda(amount: number) {
+		return amount / (10 ** 6);
 	}
 }
