@@ -104,7 +104,7 @@ export class AccountService {
 	}
 
 	public async coinbaseAccount(): Promise<string> {
-		return this.web3.eth.getCoinbase();
+		return this.config.get("COINBASE_ACCOUNT");
 	}
 
 	public async unlockCoinbase(): Promise<any> {

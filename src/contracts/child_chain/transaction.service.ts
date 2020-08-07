@@ -161,6 +161,18 @@ export class TransactionService {
 		return this.contract.methods.transactionPayDataByHash(hash).call();
 	}
 
+	public dataUploadTxCount(): Promise<number> {
+		return this.contract.methods.dataUploadTxCount().call();
+	}
+
+	public transactionsByType(type: string, index: number): Promise<any> {
+		return this.contract.methods.transactionsByType(type, index).call();
+	}
+
+	public dataPurchaseTxCount(): Promise<number> {
+		return this.contract.methods.dataPurchaseTxCount().call();
+	}
+
 	public getContract(): any {
 		return this.contract;
 	}
