@@ -10,6 +10,8 @@ import { WalletService } from '../../../../contracts/child_chain/wallet.service'
 import { Web3PrivateNetService } from '../../../../web3/web3PrivateNet.service';
 import Web3 from 'web3';
 import {WalletLambdaContract} from "../../../lambdaStorage/plasma/walletLambda.contract";
+import {TransactionPlasmaRepository} from "../../../../repositories/transactionPlasma.repository";
+import {TransactionPlasmaFactory} from "../../../../factories/transactionPlasma.factory";
 
 @Injectable()
 export class PayHandler {
@@ -22,6 +24,8 @@ export class PayHandler {
 
 	constructor(
 		private readonly walletLambda: WalletLambdaContract,
+		private readonly transactionPlasmaRepository: TransactionPlasmaRepository,
+		private readonly transactionPlasmaFactory: TransactionPlasmaFactory,
 		transactionService: TransactionPayService,
 		transactionDto: TransactionDto,
 		dataUploadService: DataUploadService, 

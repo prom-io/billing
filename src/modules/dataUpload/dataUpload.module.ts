@@ -11,22 +11,26 @@ import { TransactionDto } from './services/transaction.dto';
 import { TransactionPayService } from './services/transactionPay.service';
 import {WalletLambdaContract} from "../lambdaStorage/plasma/walletLambda.contract";
 import {PlasmaNetworkService} from "../../web3/plasmaNetwork.service";
+import {TransactionPlasmaRepository} from "../../repositories/transactionPlasma.repository";
+import {TransactionPlasmaFactory} from "../../factories/transactionPlasma.factory";
 
 @Module({
   imports: [],
   controllers: [DataUploadController],
   providers: [
-    PayHandler,
-    DataUploadService,
-    Web3MainNetService,
-    Web3PrivateNetService,
-    AccountService,
-    TransactionService,
-    TransactionPayService,
-    TransactionDto,
-    WalletService,
-    WalletLambdaContract,
-    PlasmaNetworkService
+      TransactionPlasmaRepository,
+      TransactionPlasmaFactory,
+      PayHandler,
+      DataUploadService,
+      Web3MainNetService,
+      Web3PrivateNetService,
+      AccountService,
+      TransactionService,
+      TransactionPayService,
+      TransactionDto,
+      WalletService,
+      WalletLambdaContract,
+      PlasmaNetworkService
   ],
 })
 export class DataUploadModule {}

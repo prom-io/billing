@@ -4,6 +4,8 @@ import Web3 from 'web3';
 import { ConfigService } from "../../config/config.service";
 import { AccountDto } from "./dto/account.dto";
 import { TransactionDto } from './dto/transaction.dto';
+import {TxStruct} from "./struct/tx.struct";
+import {TxPayDataStruct} from "./struct/txPayData.struct";
 
 @Injectable()
 export class TransactionService {
@@ -137,12 +139,20 @@ export class TransactionService {
 		return Number(this.web3.utils.fromWei(String(sum), 'ether')).toFixed(8);
 	}
 
-	public async queueNumber(): Promise<any> {
+	public async queueNumber(): Promise<number> {
 		return this.contract.methods.queueNumber().call();
 	}
 
 	public async getTransaction(queueNumber: number): Promise<any> {
 		return this.contract.methods.transactions(queueNumber).call();
+	}
+
+	public transactions(index: number): Promise<TxStruct> {
+		return this.contract.methods.transactions(index).call();
+	}
+
+	public transactionPayDataByHash(hash: string): Promise<TxPayDataStruct> {
+		return this.contract.methods.transactionPayDataByHash(hash).call();
 	}
 
 	public async getAddressTransactionCount(address: string): Promise<any> {
@@ -157,9 +167,9 @@ export class TransactionService {
 		return this.contract.methods.transactionByHash(hash).call();
 	}
 
-	public async transactionPayDataByHash(hash: string): Promise<any> {
-		return this.contract.methods.transactionPayDataByHash(hash).call();
-	}
+	// public async transactionPayDataByHash(hash: string): Promise<any> {
+	// 	return this.contract.methods.transactionPayDataByHash(hash).call();
+	// }
 
 	public dataUploadTxCount(): Promise<number> {
 		return this.contract.methods.dataUploadTxCount().call();

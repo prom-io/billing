@@ -306,6 +306,65 @@ export const transactionAbi: AbiItem[] = [
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "transactionsByType",
+    "outputs": [
+      {
+        "name": "fileUuid",
+        "type": "string"
+      },
+      {
+        "name": "txType",
+        "type": "string"
+      },
+      {
+        "name": "hash",
+        "type": "string"
+      },
+      {
+        "name": "queueNumber",
+        "type": "uint256"
+      },
+      {
+        "name": "serviceNode",
+        "type": "address"
+      },
+      {
+        "name": "dataValidator",
+        "type": "address"
+      },
+      {
+        "name": "dataMart",
+        "type": "address"
+      },
+      {
+        "name": "dataOwner",
+        "type": "address"
+      },
+      {
+        "name": "value",
+        "type": "uint256"
+      },
+      {
+        "name": "created_at",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {

@@ -19,9 +19,16 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { TransactionModule } from './modules/transaction/transaction.module'
 import {LambdaStorageModule} from "./modules/lambdaStorage/lambdaStorage.module";
 import {SignModule} from "./modules/sign/sign.module";
+import {TypeOrmModule} from "@nestjs/typeorm";
+import {ConfigService} from "./config/config.service";
 
 @Module({
   imports: [
+      TypeOrmModule.forRootAsync({
+          imports: [ConfigModule],
+          useFactory: (config: ConfigService) => config.getTypeOrmConfig(),
+          inject: [ConfigService],
+      }),
     ScheduleModule.forRoot(),
     WalletModule,
     DataUploadModule,

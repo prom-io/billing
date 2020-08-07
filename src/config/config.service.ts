@@ -8,6 +8,8 @@ import {transactionAbi} from "./contractAbi/plasmaNetwork/transaction.abi";
 import {walletAbi} from "./contractAbi/plasmaNetwork/wallet.abi";
 import {plasmaAbi} from "./contractAbi/mainNetwork/plasma.abi";
 import {AbiItem} from 'web3-utils';
+import {TypeOrmModuleOptions} from "@nestjs/typeorm";
+import {TransactionPlasmaEntity} from "../entities/transactionPlasma.entity";
 
 export class ConfigService {
 	private readonly envConfig: { [key: string]: string };
@@ -74,5 +76,19 @@ export class ConfigService {
 
 	getWalletAddress(): string {
 		return this.get("WALLET_CONTRACT_ADDRESS");
+	}
+
+	getTypeOrmConfig(): TypeOrmModuleOptions {
+		return {
+			type: 'postgres',
+			host: this.get('POSTGRES_HOST'),
+			port: Number(this.get('POSTGRES_PORT')),
+			username: this.get('POSTGRES_USER'),
+			password: this.get('POSTGRES_PASSWORD'),
+			database: this.get('POSTGRES_DATABASE'),
+			entities: [TransactionPlasmaEntity],
+			synchronize: true,
+			ssl: false,
+		};
 	}
 }
