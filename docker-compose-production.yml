@@ -43,5 +43,6 @@ services:
       - 3001:3001
     depends_on:
       - stoa-billing-main-net
+      - stoa-billing-postgres
 volumes:
   stoa-billing-postgres:
