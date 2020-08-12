@@ -11,21 +11,27 @@ import { AccountService } from '../../contracts/child_chain/account.service';
 import { WalletService } from '../../contracts/child_chain/wallet.service'
 import {WalletLambdaContract} from "../lambdaStorage/plasma/walletLambda.contract";
 import {PlasmaNetworkService} from "../../web3/plasmaNetwork.service";
+import {TransactionDBService} from "../transaction/services/transactionDB.service";
+import {TransactionPlasmaRepository} from "../../repositories/transactionPlasma.repository";
+import {TransactionPlasmaFactory} from "../../factories/transactionPlasma.factory";
 @Module({
   imports: [],
   controllers: [DataMartController],
   providers: [
-	BuyHandler,
-	DataMartService,
-	Web3PrivateNetService,
-	Web3MainNetService,
-	AccountService,
-	TransactionService,
-	TransactionPayService,
-	WalletService,
-	TransactionDto,
-	WalletLambdaContract,
-	PlasmaNetworkService
+		TransactionPlasmaRepository,
+		TransactionPlasmaFactory,
+		BuyHandler,
+		DataMartService,
+		Web3PrivateNetService,
+		Web3MainNetService,
+		AccountService,
+		TransactionService,
+		TransactionPayService,
+		WalletService,
+		TransactionDto,
+		WalletLambdaContract,
+		PlasmaNetworkService,
+		TransactionDBService
   ],
 })
 export class DataMartModule {}

@@ -7,6 +7,7 @@ import {TransactionRequest} from "../../httpRequest/transaction.request";
 import {AccountRequest} from "../../httpRequest/account.request";
 import {SignService} from "../../services/sign.service";
 import {AccountService} from "../../../../contracts/child_chain/account.service";
+import {SignRequestTransferFactory} from "../../factory/signRequestTransfer.factory";
 
 @Injectable()
 export class WithdrawHandler {
@@ -17,7 +18,8 @@ export class WithdrawHandler {
         private readonly transactionRequest: TransactionRequest,
         private readonly accountRequest: AccountRequest,
         private readonly signService: SignService,
-        private readonly accountService: AccountService
+        private readonly accountService: AccountService,
+        private readonly signRequestFactory: SignRequestTransferFactory
     ) {}
 
     public async handle(dto: WithdrawDto): Promise<any> {
@@ -43,7 +45,8 @@ export class WithdrawHandler {
                 String(amount),
                 wallet.lambdaAddress
             );
-            const signature = this.signService.signTransactionData(
+
+            const txData = this.signRequestFactory.build(
                 accountData.value.account_number,
                 this.configService.get('LAMBDA_CHAIN_ID'),
                 String(amount),
@@ -52,8 +55,8 @@ export class WithdrawHandler {
                 this.configService.get('LAMBDA_NODE_ACCOUNT_ADDRESS'),
                 wallet.lambdaAddress,
                 accountData.value.sequence,
-                account
             );
+            const signature = this.signService.signTransactionData(txData, account);
             const feeAmont = Math.round(Number(txFee.data.gas_estimate) * 0.025);
             const transfer = await this.transactionRequest.transferTo(
                 String(amount),
@@ -75,9 +78,3 @@ export class WithdrawHandler {
         }
     }
 }
-//
-// 1001984782uvoda
-// 8203002000uvoda
-// 10000000000
-// 10000000000
-// 1000000000uvoda

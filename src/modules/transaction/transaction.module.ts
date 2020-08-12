@@ -7,6 +7,7 @@ import { Web3MainNetService } from '../../web3/web3MainNet.service';
 import {SyncAllTransactionCron} from "./cron/syncAllTransaction.cron";
 import {TransactionPlasmaRepository} from "../../repositories/transactionPlasma.repository";
 import {TransactionPlasmaFactory} from "../../factories/transactionPlasma.factory";
+import {TransactionDBService} from "./services/transactionDB.service";
 
 @Module({
 	imports: [],
@@ -18,7 +19,8 @@ import {TransactionPlasmaFactory} from "../../factories/transactionPlasma.factor
   		TransactionService,
 		TransactionFetcher, 
 		Web3MainNetService, 
-		Web3PrivateNetService
-	],
+		Web3PrivateNetService,
+		TransactionDBService
+	]
 })
 export class TransactionModule {}

@@ -4,6 +4,7 @@ import {TransactionPlasmaEntity} from "../entities/transactionPlasma.entity";
 
 export class TransactionPlasmaFactory {
     public build(txData: TxStruct, txPayData: TxPayDataStruct): TransactionPlasmaEntity {
+        console.log(new Date(txData.created_at * 1000));
         const plasmaTx = new TransactionPlasmaEntity();
         plasmaTx.fileUuid = txData.fileUuid;
         plasmaTx.type = txData.txType;
@@ -22,7 +23,7 @@ export class TransactionPlasmaFactory {
         plasmaTx.valueOutDataValidator = txPayData.valueOutDataValidator;
         plasmaTx.valueOutDataMart = txPayData.valueOutDataMart;
         plasmaTx.valueOutDataOwner = txPayData.valueOutDataOwner;
-        plasmaTx.createdAt = new Date(txData.created_at);
+        plasmaTx.createdAt = new Date(txData.created_at * 1000);
         return plasmaTx;
     }
 }

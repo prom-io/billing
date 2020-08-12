@@ -4,7 +4,7 @@ import {TransactionFeeResponse} from "../httpResponse/transactionFee.response";
 import {ConfigService} from "../../../config/config.service";
 import {BIP32Interface} from "bip32/types/bip32";
 
-export interface SignRequestToTransfer {
+export interface BuyStorage {
     account_number: string,
     chain_id: string,
     fee: {
@@ -18,19 +18,18 @@ export interface SignRequestToTransfer {
     msgs: [{
         type: string,
         value: {
-            amount: [{
-                amount: string,
-                denom: string
-            }],
-            from_address: string,
-            to_address: string
+            address: string,
+            duration: string,
+            marketName: string,
+            sellOrderId: string,
+            size: string
         }
     }],
     sequence: string
 }
 
 @Injectable()
-export class SignRequestTransferFactory {
+export class BuyStorageFactory {
     constructor(private readonly config: ConfigService) {}
 
     public build(
@@ -39,10 +38,13 @@ export class SignRequestTransferFactory {
         amount: string,
         denom: string,
         gas: string,
-        fromAddress: string,
-        toAddress: string,
+        address: string,
+        duration: string,
+        marketName: string,
+        sellOrderId: string,
+        size: string,
         sequence: string
-    ): SignRequestToTransfer {
+    ): BuyStorage {
         return {
             account_number: accountNumber,
             chain_id: chainId,
@@ -51,18 +53,17 @@ export class SignRequestTransferFactory {
                     amount: amount,
                     denom: denom
                 }],
-                gas: "35182"
+                gas: gas
             },
             memo: '',
             msgs: [{
-                type: 'cosmos-sdk/MsgSend',
+                type: 'lambda/MsgCreateBuyOrder',
                 value: {
-                    amount: [{
-                        amount: amount,
-                        denom: denom
-                    }],
-                    from_address: fromAddress,
-                    to_address: toAddress
+                    address: address,
+                    duration: duration,
+                    marketName: marketName,
+                    sellOrderId: sellOrderId,
+                    size: size
                 }
             }],
             sequence: sequence

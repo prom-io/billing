@@ -13,6 +13,7 @@ import {WalletLambdaContract} from "../lambdaStorage/plasma/walletLambda.contrac
 import {PlasmaNetworkService} from "../../web3/plasmaNetwork.service";
 import {TransactionPlasmaRepository} from "../../repositories/transactionPlasma.repository";
 import {TransactionPlasmaFactory} from "../../factories/transactionPlasma.factory";
+import {TransactionDBService} from "../transaction/services/transactionDB.service";
 
 @Module({
   imports: [],
@@ -30,7 +31,8 @@ import {TransactionPlasmaFactory} from "../../factories/transactionPlasma.factor
       TransactionDto,
       WalletService,
       WalletLambdaContract,
-      PlasmaNetworkService
+      PlasmaNetworkService,
+      TransactionDBService
   ],
 })
 export class DataUploadModule {}

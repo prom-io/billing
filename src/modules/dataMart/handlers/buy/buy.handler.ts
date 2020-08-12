@@ -11,6 +11,7 @@ import { TransactionDto } from '../../services/transaction.dto';
 
 import Web3 from 'web3';
 import {WalletLambdaContract} from "../../../lambdaStorage/plasma/walletLambda.contract";
+import {TransactionDBService} from "../../../transaction/services/transactionDB.service";
 
 @Injectable()
 export class BuyHandler {
@@ -23,6 +24,7 @@ export class BuyHandler {
 	private web3: Web3;
 
 	constructor(
+		private readonly transactionDBService: TransactionDBService,
 		service: DataMartService, 
 		accountService: AccountService, 
 		web3Service: Web3PrivateNetService,
@@ -94,7 +96,8 @@ export class BuyHandler {
 				dto.amount,
 				dto.coinbase
 			);
-			return this.transactionService.push(transactionDto);
+			await this.transactionService.push(transactionDto);
+			return this.transactionDBService.saveTxToDb(tx.transactionHash);
 		} catch (e) {
 			throw new BadRequestException(e.message);
 			

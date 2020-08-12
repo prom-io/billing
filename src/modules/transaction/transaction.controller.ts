@@ -21,7 +21,7 @@ export class TransactionController {
 		@Param('pageSize') pageSize,
 		@Res() res: Response
 	) {
-		let data = await this.fetcher.addressTransactionByTypePaginate(address, type, pageNumber, pageSize);
+		let data = await this.fetcher.addressTransactionByTypePaginate(address, type, {page: pageNumber, limit: pageSize});
 		return res.status(HttpStatus.OK).send(data);
 	}
 

@@ -12,6 +12,8 @@ import Web3 from 'web3';
 import {WalletLambdaContract} from "../../../lambdaStorage/plasma/walletLambda.contract";
 import {TransactionPlasmaRepository} from "../../../../repositories/transactionPlasma.repository";
 import {TransactionPlasmaFactory} from "../../../../factories/transactionPlasma.factory";
+import {TransactionService} from "../../../../contracts/child_chain/transaction.service";
+import {TransactionDBService} from "../../../transaction/services/transactionDB.service";
 
 @Injectable()
 export class PayHandler {
@@ -24,11 +26,10 @@ export class PayHandler {
 
 	constructor(
 		private readonly walletLambda: WalletLambdaContract,
-		private readonly transactionPlasmaRepository: TransactionPlasmaRepository,
-		private readonly transactionPlasmaFactory: TransactionPlasmaFactory,
+		private readonly transactionDbService: TransactionDBService,
 		transactionService: TransactionPayService,
 		transactionDto: TransactionDto,
-		dataUploadService: DataUploadService, 
+		dataUploadService: DataUploadService,
 		accountService: AccountService,
 		walletService: WalletService,
 		web3Service: Web3PrivateNetService
@@ -91,15 +92,17 @@ export class PayHandler {
 				dto.signature.messageHash
 			);
 			let transactionDto = this.transactionDto.make(
-				dto.id, 
+				dto.id,
 				tx.transactionHash,
-				dto.service_node, 
-				dto.data_validator, 
-				dto.data_owner, 
+				dto.service_node,
+				dto.data_validator,
+				dto.data_owner,
 				dto.amount,
 				dto.coinbase
 			);
 			let transactionStart = await this.transactionService.push(transactionDto);
+
+			await this.transactionDbService.saveTxToDb(tx.transactionHash);
 
 			if(dto.data_owner_full != undefined) {
 				return dto.data_owner_full;

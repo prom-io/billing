@@ -5,6 +5,8 @@ import { makePreciseNumberString } from '../../../utils/string-utils'
 import Web3 from 'web3'
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import {TransactionPlasmaRepository} from "../../../repositories/transactionPlasma.repository";
+import {IPaginationOptions} from "nestjs-typeorm-paginate/index";
 
 @Injectable()
 export class TransactionFetcher {
@@ -13,7 +15,11 @@ export class TransactionFetcher {
 	private transactionService: TransactionService;
 	private timeAgo: TimeAgo;
 
-	constructor(transactionService: TransactionService, web3Service: Web3PrivateNetService) {
+	constructor(
+		private readonly transactionPlasmaRepository: TransactionPlasmaRepository,
+		transactionService: TransactionService,
+		web3Service: Web3PrivateNetService
+	) {
 		this.web3 = web3Service.websocketInstance();
 		this.web3Service = web3Service;
 		this.transactionService = transactionService;
@@ -25,8 +31,7 @@ export class TransactionFetcher {
 		let tx = await this.transactionService.getTransactionByHash(hash);
 		if(this.web3.utils.isHex(tx.hash)) {
 			let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
-			let txItem = await this.itemFormat(tx, payData, tx.queueNumber);
-			return txItem;
+			return this.itemFormat(tx, payData, tx.queueNumber);
 		}
 		return {};
 	}
@@ -72,33 +77,35 @@ export class TransactionFetcher {
 	public async addressTransactionByTypePaginate(
 		address: string, 
 		type: string, 
-		pageNumber: number, 
-		pageSize: number
+		pagination: IPaginationOptions
 	) {
-		let queueNumber = await this.transactionService.getAddressTransactionCount(address);
-		let transactions = {
-			'count': queueNumber,
-			'pageNumbers': Math.ceil(queueNumber / pageSize),
-			'data': []
-		};
-		let counter = queueNumber - (pageSize * pageNumber);
-		let max = counter - pageSize;
-
-
-		if(max < 0) {
-			max = 0	
-		}
-		for (counter; counter > max; counter--) {
-			var tx = await this.transactionService.getAddressTransaction(address, counter);
-
-			if(this.web3.utils.isHex(tx.hash) && tx.txType == type) {
-				let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
-				console.log(payData);
-				let txItem = await this.itemFormat(tx, payData, counter); 
-				transactions['data'].push(txItem);
-			}
-		}
-		return transactions;
+		return this.transactionPlasmaRepository.addressTransactionByTypePaginate(
+			pagination, address, type
+		);
+		// let queueNumber = await this.transactionService.getAddressTransactionCount(address);
+		// let transactions = {
+		// 	'count': queueNumber,
+		// 	'pageNumbers': Math.ceil(queueNumber / pageSize),
+		// 	'data': []
+		// };
+		// let counter = queueNumber - (pageSize * pageNumber);
+		// let max = counter - pageSize;
+		//
+		//
+		// if(max < 0) {
+		// 	max = 0
+		// }
+		// for (counter; counter > max; counter--) {
+		// 	var tx = await this.transactionService.getAddressTransaction(address, counter);
+		//
+		// 	if(this.web3.utils.isHex(tx.hash) && tx.txType == type) {
+		// 		let payData = await this.transactionService.transactionPayDataByHash(tx.hash);
+		// 		console.log(payData);
+		// 		let txItem = await this.itemFormat(tx, payData, counter);
+		// 		transactions['data'].push(txItem);
+		// 	}
+		// }
+		// return transactions;
 	}
 
 	public async getAddressTransactionPaginate(address: string, pageNumber: number, pageSize: number): Promise<any> {

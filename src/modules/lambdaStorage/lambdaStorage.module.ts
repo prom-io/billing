@@ -19,6 +19,10 @@ import {WalletController} from "./wallet.controller";
 import {WalletFetcher} from "../wallet/fetcher/wallet.fetcher";
 import {WalletService} from "../../contracts/child_chain/wallet.service";
 import {WithdrawHandler} from "./useCase/withdraw/withdraw.handler";
+import {BuyStorageHandler} from "./useCase/buyStorage/buyStorage.handler";
+import {StorageRequest} from "./httpRequest/storage.request";
+import {BuyStorageFactory} from "./factory/buyStorage.factory";
+import {StorageController} from "./storage.controller";
 @Module({
   imports: [
       HttpModule.register({
@@ -28,7 +32,8 @@ import {WithdrawHandler} from "./useCase/withdraw/withdraw.handler";
   ],
   controllers: [
       AccountController,
-      WalletController
+      WalletController,
+      StorageController
   ],
   providers: [
       WithdrawHandler,
@@ -48,7 +53,10 @@ import {WithdrawHandler} from "./useCase/withdraw/withdraw.handler";
       SignService,
       RegisterWalletHandler,
       RegisterWalletDto,
-      DepositCron
+      // DepositCron,
+      BuyStorageHandler,
+      StorageRequest,
+      BuyStorageFactory,
   ],
 })
 export class LambdaStorageModule {}
