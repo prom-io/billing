@@ -15,7 +15,7 @@ import {TransactionDBService} from "./services/transactionDB.service";
   	providers: [
   		TransactionPlasmaRepository,
 		TransactionPlasmaFactory,
-  		SyncAllTransactionCron,
+  		// SyncAllTransactionCron,
   		TransactionService,
 		TransactionFetcher, 
 		Web3MainNetService, 

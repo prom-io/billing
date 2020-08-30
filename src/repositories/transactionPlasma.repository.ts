@@ -17,7 +17,7 @@ export class TransactionPlasmaRepository {
     public addressTransactionByTypePaginate(options: IPaginationOptions, address: string, type: string): Promise<Pagination<TransactionPlasmaEntity>> {
         const queryBuilder = this.manager.createQueryBuilder(TransactionPlasmaEntity, 'c');
         queryBuilder
-            .where('c.serviceNode = :address OR c.dataValidator = :address OR c.dataMart = :address OR c.dataOwner = :address')
+            .where('(c.serviceNode = :address OR c.dataValidator = :address OR c.dataMart = :address OR c.dataOwner = :address)')
             .andWhere('c.type = :type')
             .setParameters({ address, type });
         return paginate<TransactionPlasmaEntity>(queryBuilder, options);
