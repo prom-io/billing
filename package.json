@@ -41,7 +41,7 @@
     "bip32": "^2.0.5",
     "bip39": "^3.0.2",
     "class-transformer": "^0.2.3",
-    "class-validator": "^0.12.2",
+    "class-validator": "^0.14.0",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "helmet": "^3.21.2",
